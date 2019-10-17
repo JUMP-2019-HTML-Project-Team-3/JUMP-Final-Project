@@ -18,9 +18,9 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Long id;
-	private Integer number; // street number
+	private String number; // street number
 	private String name; // street name
-	private Integer suiteNo; // apartment/suite number
+	private String suiteNo; // apartment/suite number
 	private String township;
 	private String state;
 	private String ZIP; // abbreviations are the exception to camelCase naming convention rules
