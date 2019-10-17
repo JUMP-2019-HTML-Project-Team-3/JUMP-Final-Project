@@ -32,8 +32,8 @@ public class Student {
 	@ManyToMany(mappedBy = "students")
 	private Set<Instructor> instructors = new HashSet<>();
 
-	@ManyToMany(mappedBy = "students")
-	private Set<Client> clients = new HashSet<>();
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Client> clients;
 	
 	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Resource> resources;
