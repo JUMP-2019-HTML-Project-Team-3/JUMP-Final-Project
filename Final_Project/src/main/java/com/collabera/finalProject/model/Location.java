@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Table(name = "location")
 public class Location implements Serializable {
 	private static final long serialVersionUID = 1L;
 
