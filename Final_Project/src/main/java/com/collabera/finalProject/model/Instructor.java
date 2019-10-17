@@ -1,6 +1,7 @@
 package com.collabera.finalProject.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -35,8 +37,8 @@ public class Instructor implements Serializable {
 	private UserType userType;
 	
 	//FK to Student
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-	private Set<Student> students;
+    @ManyToMany(mappedBy = "instructors")
+	private Set<Student> students = new HashSet<>();
     
     //FK to Resource
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
