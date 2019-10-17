@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -16,7 +17,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Table(name = "location")
 public class Location implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -35,6 +35,9 @@ public class Location implements Serializable {
 
 	@OneToMany(mappedBy = "location")
 	private Student student;
+
+	@ManyToMany(mappedBy = "instructor")
+	private Instructor instructor;
 
 	public Long getId() {
 		return id;

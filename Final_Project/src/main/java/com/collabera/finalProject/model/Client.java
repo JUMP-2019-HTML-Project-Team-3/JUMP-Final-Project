@@ -28,9 +28,6 @@ public class Client implements  Serializable {
 	@OneToOne
 	@JoinColumn(name = "id")
 	private Address address;
-	
-	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-	private Set<Student> students;
 
 	public Client(Long id, String imagePath, String name, String phone, Address address, Set<Student> students) {
 		super();
@@ -39,7 +36,6 @@ public class Client implements  Serializable {
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
-		this.students = students;
 	}
 
 	public Long getId() {
@@ -82,13 +78,6 @@ public class Client implements  Serializable {
 		this.address = address;
 	}
 
-	public Set<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(Set<Student> students) {
-		this.students = students;
-	}
 	
 
 }
