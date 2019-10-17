@@ -18,8 +18,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Student {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String imagePath;
 	private String firstName;
 	private String lastName;
@@ -45,7 +45,7 @@ public class Student {
 	@JoinColumn(name = "id")
 	private Location location;
 
-	public Student(Integer id, String imagePath, String firstName, String lastName, String description,
+	public Student(Long id, String imagePath, String firstName, String lastName, String description,
 			UserType userType, Set<Instructor> instructors, Set<Client> clients, Set<Resource> resources,
 			Set<Resource> tools, Location location) {
 		super();
@@ -62,11 +62,11 @@ public class Student {
 		this.location = location;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

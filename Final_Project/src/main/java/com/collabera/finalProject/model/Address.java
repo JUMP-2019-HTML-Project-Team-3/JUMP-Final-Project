@@ -15,7 +15,7 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 	private String number; // street number
@@ -32,10 +32,10 @@ public class Address implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Integer getNumber() {
+	public String getNumber() {
 		return number;
 	}
-	public void setNumber(Integer number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 	public String getName() {
@@ -44,10 +44,10 @@ public class Address implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getSuiteNo() {
+	public String getSuiteNo() {
 		return suiteNo;
 	}
-	public void setSuiteNo(Integer suiteNo) {
+	public void setSuiteNo(String suiteNo) {
 		this.suiteNo = suiteNo;
 	}
 	public String getTownship() {
