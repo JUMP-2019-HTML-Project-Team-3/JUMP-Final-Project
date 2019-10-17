@@ -16,7 +16,7 @@ public class Address implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "id", updatable = false, nullable = false) // establishes column value id as final and never null
 	private Long id;
 	private String number; // street number
 	private String name; // street name
