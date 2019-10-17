@@ -1,7 +1,10 @@
 package com.collabera.finalProject.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,14 +34,15 @@ public class Location implements Serializable {
 	private String phoneNo; // phone number has default value as annotated
 
 	@OneToOne
+	@JoinColumn(name = "id")
 	private Address address;
+	
+	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+	private Set<Student> students;
 
-	@OneToMany(mappedBy = "location")
-	private Student student;
-
-	@ManyToMany(mappedBy = "instructor")
-	private Instructor instructor;
-
+	@ManyToMany(mappedBy = "locations")
+	private Set<Instructor> instructors = new HashSet<>();
+	
 	public Long getId() {
 		return id;
 	}
