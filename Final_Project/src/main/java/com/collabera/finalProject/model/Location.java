@@ -1,7 +1,10 @@
 package com.collabera.finalProject.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,13 +34,27 @@ public class Location implements Serializable {
 	private String phoneNo; // phone number has default value as annotated
 
 	@OneToOne
+	@JoinColumn(name = "id")
 	private Address address;
+	
+	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+	private Set<Student> students;
 
-	@OneToMany(mappedBy = "location")
-	private Student student;
+	@ManyToMany(mappedBy = "locations")
+	private Set<Instructor> instructors = new HashSet<>();
+	
 
-	@ManyToMany(mappedBy = "instructor")
-	private Instructor instructor;
+	public Location(Long id, String imagePath, String name, String phoneNo, Address address, Set<Student> students,
+			Set<Instructor> instructors) {
+		super();
+		this.id = id;
+		this.imagePath = imagePath;
+		this.name = name;
+		this.phoneNo = phoneNo;
+		this.address = address;
+		this.students = students;
+		this.instructors = instructors;
+	}
 
 	public Long getId() {
 		return id;
@@ -79,20 +96,21 @@ public class Location implements Serializable {
 		this.address = address;
 	}
 
-	public Student getStudent() {
-		return student;
+	public Set<Student> getStudents() {
+		return students;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setStudents(Set<Student> students) {
+		this.students = students;
 	}
 
-	public Location(String imagePath, String name, String phoneNo, Address address, Student student) {
-		super();
-		this.imagePath = imagePath;
-		this.name = name;
-		this.phoneNo = phoneNo;
-		this.address = address;
-		this.student = student;
+	public Set<Instructor> getInstructors() {
+		return instructors;
 	}
+
+	public void setInstructors(Set<Instructor> instructors) {
+		this.instructors = instructors;
+	}
+	
+	
 }
