@@ -1,5 +1,6 @@
 package com.collabera.finalProject.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,7 +16,10 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-public class Instructor {
+public class Instructor implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
