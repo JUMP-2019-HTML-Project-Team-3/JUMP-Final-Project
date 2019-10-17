@@ -74,4 +74,17 @@ public class Address implements Serializable {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
+	/* Constructors */
+	public Address(String number, String name, String suiteNo, String township, String state, String zIP,
+			String country) {
+		super();
+		this.number = number;
+		this.name = name;
+		this.suiteNo = suiteNo;
+		this.township = township;
+		this.state = state;
+		ZIP = zIP;
+		this.country = country;
+	}
 }
