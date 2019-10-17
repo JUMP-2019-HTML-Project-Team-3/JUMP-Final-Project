@@ -3,7 +3,7 @@ spring:
     serialization:
       indent-output: true
   datasource:
-    url:      jdbc:mysql://${MYSQL_HOST:den1.mysql5.gear.host}:3306/jumpfinalproject
+    url:      jdbc:mysql://den1.mysql2.gear.host:3306/?user=jumpfinalproject
 #   url:      jdbc:mysql://localhost:3306/movie_db2?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: jumpfinalproject
     password: jumpfinalproject!
