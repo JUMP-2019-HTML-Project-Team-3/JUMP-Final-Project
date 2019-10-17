@@ -14,7 +14,7 @@ public class Address implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false, nullable = false)
+	@Column(name = "id", updatable = false, nullable = false) // establishes column value id as final and never null
 	private Long id;
 	private String number; // street number
 	private String name; // street name
@@ -70,6 +70,19 @@ public class Address implements Serializable {
 		return country;
 	}
 	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	/* Constructors */
+	public Address(String number, String name, String suiteNo, String township, String state, String zIP,
+			String country) {
+		super();
+		this.number = number;
+		this.name = name;
+		this.suiteNo = suiteNo;
+		this.township = township;
+		this.state = state;
+		ZIP = zIP;
 		this.country = country;
 	}
 }
