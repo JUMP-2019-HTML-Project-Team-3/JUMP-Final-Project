@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,7 @@ public class Student implements  Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	private String imagePath;
 	private String firstName;
@@ -35,14 +37,14 @@ public class Student implements  Serializable {
 	@ManyToMany(mappedBy = "students")
 	private Set<Instructor> instructors = new HashSet<>();
 
-	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
 	private Set<Client> clients;
 	
-	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
 	private Set<Resource> resources;
 	
-	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Resource> tools;
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+	private Set<Tool> tools;
 	
 	@ManyToOne
 	@JoinColumn(name = "id")
@@ -50,7 +52,7 @@ public class Student implements  Serializable {
 
 	public Student(Long id, String imagePath, String firstName, String lastName, String description,
 			UserType userType, Set<Instructor> instructors, Set<Client> clients, Set<Resource> resources,
-			Set<Resource> tools, Location location) {
+			Set<Tool> tools, Location location) {
 		super();
 		this.id = id;
 		this.imagePath = imagePath;
@@ -137,11 +139,11 @@ public class Student implements  Serializable {
 		this.resources = resources;
 	}
 
-	public Set<Resource> getTools() {
+	public Set<Tool> getTools() {
 		return tools;
 	}
 
-	public void setTools(Set<Resource> tools) {
+	public void setTools(Set<Tool> tools) {
 		this.tools = tools;
 	}
 
