@@ -27,22 +27,23 @@ public class Location implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false) // establishes column value id as final and never null
 	private Long id;
-
+	@Column(name = "imagePath", nullable = false, length = 100)
 	private String imagePath;
+	@Column(name = "name", nullable = false, length = 50)
 	private String name;
+	@Column(name = "phoneNo", nullable = false, length = 14)
 	@ColumnDefault("(×××) ×××-××××")
 	private String phoneNo; // phone number has default value as annotated
 
 	@OneToOne
 	@JoinColumn(name = "id")
 	private Address address;
-	
+
 	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
 	private Set<Student> students;
 
 	@ManyToMany(mappedBy = "locations")
 	private Set<Instructor> instructors = new HashSet<>();
-	
 
 	public Location(Long id, String imagePath, String name, String phoneNo, Address address, Set<Student> students,
 			Set<Instructor> instructors) {
