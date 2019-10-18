@@ -22,14 +22,11 @@ public class UserTypeService {
 	}
 	
 	//Add
-	public void addUserType(String imagePath, String name, String phone, String description)
+	public void addUserType(String name)
 	{
 		UserType tempUserType = new UserType();
 		
-		tempUserType.setImagePath(imagePath);
 		tempUserType.setName(name);
-		tempUserType.setPhone(phone);
-		tempUserType.setDescription(description);
 	
 		userTypeRepository.save(tempUserType);
 	}
@@ -55,10 +52,7 @@ public class UserTypeService {
 		{
 			UserType userTypeToUpdate = findById.get();
 			
-			userTypeToUpdate.setImagePath(userTypeToUpdate.getImagePath());
-			userTypeToUpdate.setName(userTypeToUpdate.getName());
-			userTypeToUpdate.setPhone(userTypeToUpdate.getPhone());
-			userTypeToUpdate.setDescription(userTypeToUpdate.getDescription());
+			userTypeToUpdate.setName(userType.getName());
 
 			userTypeRepository.save(userTypeToUpdate);
 		}
