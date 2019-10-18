@@ -26,7 +26,6 @@ public class StudentService {
 	public void addStudent(String imagePath, String firstName, String lastName, String description) {
 		
 		Student tempStudent = new Student();
-		
 		tempStudent.setImagePath(imagePath);
 		tempStudent.setFirstName(firstName);
 		tempStudent.setLastName(lastName);

@@ -58,6 +58,10 @@ public class Location implements Serializable {
 		this.instructors = instructors;
 	}
 
+	public Location() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}
