@@ -35,6 +35,10 @@ public class Resource implements Serializable {
 		this.description = description;
 	}
 
+	public Resource() {
+		// TODO Auto-generated constructor stub
+	}
+
 	//Getters and Setters
 	public Long getId() {
 		return id;
@@ -56,15 +60,15 @@ public class Resource implements Serializable {
 		return link;
 	}
 
-	public void setLinkDownLoad(String link) {
+	public void setLink(String link) {
 		this.link = link;
 	}
 
 	public String getDescription() {
 		return description;
 	}
-
-	public void setLinkDocumentation(String description) {
+	
+	public void setDescription(String description) {
 		this.description = description;
 	}
 	
