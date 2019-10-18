@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.collabera.finalProject.model.Address;
 import com.collabera.finalProject.repository.AddressRepository;
-import com.collabera.three.animalshelter.model.Shelter;
 
 @Service
 public class AddressService {
@@ -16,6 +15,14 @@ public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
 	
+	
+	
+	public AddressService(AddressRepository addressRepository) {
+		
+		this.addressRepository = addressRepository;
+	}
+
+	//Add
 	public void addAddress(Long id, String streetNumber, String streetName, String suiteNo, 
 			String township, String state, String zip, String country) {
 
@@ -31,19 +38,19 @@ public class AddressService {
 		template.setCountry(country);
 	}
 
-	public Address getAddressById(Long id) {
-		try {
-			Optional<Address> AddressOpt = addressRepository.findById(Integer.parseInt(id));
-			if(AddressOpt.isPresent()) return AddressOpt.get();
-		}
-		catch(Exception e) {}
-		return null;
+	//Find By Id
+	public Optional<Address> getAddressById(Long id) {
+
+		return addressRepository.findById(id);
+		
 	}
 
+	//Find All
 	public List<Address> findAll() {
 		return addressRepository.findAll();
 	}
 
+	//Update
 	public void updateAddress(Address address) {
 		Optional<Address> findById = addressRepository.findById(address.getId());
 		if (findById.isPresent()) {
@@ -60,5 +67,6 @@ public class AddressService {
 		else throw new IllegalArgumentException();
 	}
 
+	//Delete
 	public void deleteAddress(Long id) { addressRepository.deleteById(id); }
 }
