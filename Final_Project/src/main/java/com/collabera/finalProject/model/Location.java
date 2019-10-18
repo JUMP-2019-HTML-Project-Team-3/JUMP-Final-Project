@@ -12,10 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 
@@ -27,11 +25,14 @@ public class Location implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false) // establishes column value id as final and never null
 	private Long id;
+	
 	@Column(name = "imagePath", nullable = false, length = 100)
 	private String imagePath;
+	
 	@Column(name = "name", nullable = false, length = 50)
 	private String name;
-	@Column(name = "phoneNo", nullable = false, length = 14)
+	
+	@Column(name = "phoneNo", nullable = true, length = 14)
 	@ColumnDefault("(×××) ×××-××××")
 	private String phoneNo; // phone number has default value as annotated
 

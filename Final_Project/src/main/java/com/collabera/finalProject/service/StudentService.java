@@ -16,11 +16,13 @@ public class StudentService {
 	@Autowired
 	private StudentRepository studentRepository;
 	
+	//Constructor
 	public StudentService(StudentRepository studentRepository)
 	{
 		this.studentRepository = studentRepository;
 	}
 	
+	//Add
 	public void addStudent(String imagePath, String firstName, String lastName, String description) {
 		
 		Student tempStudent = new Student();
@@ -31,16 +33,19 @@ public class StudentService {
 		tempStudent.setDescription(description);
 	}
 	
+	//Find All
 	public List<Student> findAll()
 	{
 		return studentRepository.findAll();
 	}
 	
+	//Find By Id
 	public Optional<Student> getStudentById(Long id)
 	{
 		return studentRepository.findById(id);
 	}
 	
+	//Update
 	public void updateStudent(Student student)
 	{
 		Optional<Student> findById = studentRepository.findById(student.getId());
@@ -62,6 +67,7 @@ public class StudentService {
 		}
 	}
 	
+	//Delete
 	public void deleteStudent(Long id)
 	{
 		studentRepository.deleteById(id);
