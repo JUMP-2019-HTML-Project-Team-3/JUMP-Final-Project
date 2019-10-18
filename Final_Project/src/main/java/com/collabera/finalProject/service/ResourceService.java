@@ -22,12 +22,12 @@ public class ResourceService {
 	}
 	
 	//Add
-	public void addInstructor(String firstName, String lastName, String description)
+	public void addResource(String name, String link, String description)
 	{
 		Resource tempResource = new Resource();
 		
-		tempResource.setName(firstName);
-		tempResource.setLink(lastName);
+		tempResource.setName(name);
+		tempResource.setLink(link);
 		tempResource.setDescription(description);
 	
 		resourceRepository.save(tempResource);
