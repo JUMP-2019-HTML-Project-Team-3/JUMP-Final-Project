@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Entity
 public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false) // establishes column value id as final and never null
@@ -31,7 +31,7 @@ public class Address implements Serializable {
 	private String zip; // abbreviations are the exception to camelCase naming convention rules
 	@Column(name = "country", nullable = false, length = 50)
 	private String country;
-	
+
 	public Address(Long id, String streetNumber, String streetName, String suiteNo, String township, String state,
 			String zip, String country) {
 		super();
@@ -44,7 +44,11 @@ public class Address implements Serializable {
 		this.zip = zip;
 		this.country = country;
 	}
-	
+
+	public Address() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -92,8 +96,5 @@ public class Address implements Serializable {
 	}
 	public void setCountry(String country) {
 		this.country = country;
-	}
-	
-	
-	
+	}	
 }
