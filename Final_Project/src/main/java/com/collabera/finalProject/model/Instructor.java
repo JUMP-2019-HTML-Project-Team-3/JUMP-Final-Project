@@ -66,6 +66,10 @@ public class Instructor implements Serializable {
 		this.tools = tools;
 	}
 
+	public Instructor() {
+		// TODO Auto-generated constructor stub
+	}
+
 	//Getters and Setters
 	public Long getId() {
 		return id;
