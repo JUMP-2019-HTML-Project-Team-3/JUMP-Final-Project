@@ -16,14 +16,18 @@ public class UserType implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
+	
 	@Column(name = "name", updatable = false, nullable = false)
 	private String name;
+	
+	//Constructor
 	public UserType(Long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
+	//Getters and Setters
 	public Long getId() {
 		return id;
 	}

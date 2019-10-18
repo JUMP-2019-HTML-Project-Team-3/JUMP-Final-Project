@@ -18,10 +18,13 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
+	
 	@Column(name = "username", updatable = false, nullable = false, length = 25)
 	private String username;
+	
 	@Column(name = "password", updatable = true, nullable = false, length = 25)
 	private String password;
+	
 	@Column(name = "email", updatable = false, nullable = false, length = 25)
 	private String email;
 	
@@ -29,6 +32,7 @@ public class User implements Serializable {
 	@JoinColumn(name = "id")
 	private UserType userType;
 
+	//Constructor
 	public User(Long id, String username, String password, String email, UserType userType) {
 		super();
 		this.id = id;
@@ -42,6 +46,7 @@ public class User implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	//Getters and Setters
 	public Long getId() {
 		return id;
 	}
