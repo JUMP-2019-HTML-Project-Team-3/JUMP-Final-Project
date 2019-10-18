@@ -3,14 +3,12 @@ package com.collabera.finalProject.model;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -21,24 +19,34 @@ public class Client implements  Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
-	@Column(name = "imagePath", nullable = false, length = 100)
+	
+	@Column(name = "imagePath", nullable = true, length = 100)
 	private String imagePath;
+	
 	@Column(name = "name", nullable = false, length = 50)
 	private String name;
-	@Column(name = "phone", nullable = false, length = 10)
+	
+	@Column(name = "phone", nullable = true, length = 10)
 	private String phone;
+	
+	@Column(name = "description", nullable = true, length = 250)
+	private String description;
 	
 	@OneToOne
 	@JoinColumn(name = "id")
 	private Address address;
 
-	public Client(Long id, String imagePath, String name, String phone, Address address, Set<Student> students) {
-		super();
+	public Client(Long id, String imagePath, String name, String phone, String description, Address address, Set<Student> students) {
 		this.id = id;
 		this.imagePath = imagePath;
 		this.name = name;
 		this.phone = phone;
+		this.description = description;
 		this.address = address;
+	}
+
+	public Client() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
@@ -71,6 +79,14 @@ public class Client implements  Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Address getAddress() {
