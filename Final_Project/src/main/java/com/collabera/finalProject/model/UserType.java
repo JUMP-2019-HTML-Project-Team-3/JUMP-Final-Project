@@ -22,9 +22,12 @@ public class UserType implements Serializable {
 	
 	//Constructor
 	public UserType(Long id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
+	}
+
+	public UserType() {
+		// TODO Auto-generated constructor stub
 	}
 
 	//Getters and Setters
