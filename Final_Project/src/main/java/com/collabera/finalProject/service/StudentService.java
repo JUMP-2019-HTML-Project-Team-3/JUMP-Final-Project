@@ -3,15 +3,9 @@ package com.collabera.finalProject.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.collabera.finalProject.model.Instructor;
 import com.collabera.finalProject.model.Student;
 import com.collabera.finalProject.repository.StudentRepository;
 
