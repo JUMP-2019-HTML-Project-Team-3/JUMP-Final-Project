@@ -24,7 +24,7 @@ public class ClientController {
 	@Autowired
 	private ClientService clientService;
 	
-	@PostMapping(path = "/addClient")
+	@PostMapping(path = "/addclient")
 	public @ResponseBody String addNewClient (@RequestBody @Valid Client aClient)
 	{
 		clientService.addClient(
@@ -36,19 +36,19 @@ public class ClientController {
 		return "Saved";
 	}
 	
-	@GetMapping(path = "/allClients")
+	@GetMapping(path = "/allclients")
 	public @ResponseBody Iterable<Client> getAllClients()
 	{
 		return clientService.findAll();
 	}
 	
-	@GetMapping(path = "/getClient/{id}")
+	@GetMapping(path = "/getclient/{id}")
 	public Optional<Client> getClientById(@PathVariable Long id)
 	{
 		return clientService.getClientById(id);
 	}
 	
-	@PutMapping("/updateClient")
+	@PutMapping("/updateclient")
 	public String updateClient(@RequestBody @Valid Client client)
 	{
 		System.out.println("Added Client");
@@ -56,7 +56,7 @@ public class ClientController {
 		return "Updated";
 	}
 	
-	@DeleteMapping("/deleteClient/{id}")
+	@DeleteMapping("/deleteclient/{id}")
 	public void deleteClient(@PathVariable String id)
 	{
 		clientService.deleteClient(Long.parseLong(id));
