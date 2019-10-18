@@ -16,31 +16,50 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false) // establishes column value id as final and never null
 	private Long id;
-	private String number; // street number
-	private String name; // street name
+	@Column(name = "streetNumber", nullable = false, length = 10)
+	private String streetNumber; // street number
+	@Column(name = "streetName", nullable = false, length = 50)
+	private String streetName; // street name
+	@Column(name = "suiteNo", length = 10)
 	private String suiteNo; // apartment/suite number
+	@Column(name = "township", nullable = false, length = 50)
 	private String township;
+	@Column(name = "state", nullable = false, length = 50)
 	private String state;
+	@Column(name = "ZIP", nullable = false, length = 10)
 	private String ZIP; // abbreviations are the exception to camelCase naming convention rules
-	private String country;	
-
+	@Column(name = "country", nullable = false, length = 50)
+	private String country;
+	
+	public Address(Long id, String streetNumber, String streetName, String suiteNo, String township, String state,
+			String zIP, String country) {
+		super();
+		this.id = id;
+		this.streetNumber = streetNumber;
+		this.streetName = streetName;
+		this.suiteNo = suiteNo;
+		this.township = township;
+		this.state = state;
+		ZIP = zIP;
+		this.country = country;
+	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNumber() {
-		return number;
+	public String getStreetNumber() {
+		return streetNumber;
 	}
-	public void setNumber(String number) {
-		this.number = number;
+	public void setStreetNumber(String streetNumber) {
+		this.streetNumber = streetNumber;
 	}
-	public String getName() {
-		return name;
+	public String getStreetName() {
+		return streetName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
 	}
 	public String getSuiteNo() {
 		return suiteNo;
@@ -71,18 +90,7 @@ public class Address implements Serializable {
 	}
 	public void setCountry(String country) {
 		this.country = country;
-	}
+	}	
 
-	/* Constructors */
-	public Address(String number, String name, String suiteNo, String township, String state, String zIP,
-			String country) {
-		super();
-		this.number = number;
-		this.name = name;
-		this.suiteNo = suiteNo;
-		this.township = township;
-		this.state = state;
-		ZIP = zIP;
-		this.country = country;
-	}
+	
 }
