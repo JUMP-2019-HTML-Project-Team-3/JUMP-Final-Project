@@ -21,8 +21,11 @@ public class Client implements  Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
+	@Column(name = "imagePath", nullable = false, length = 100)
 	private String imagePath;
+	@Column(name = "name", nullable = false, length = 50)
 	private String name;
+	@Column(name = "phone", nullable = false, length = 10)
 	private String phone;
 	
 	@OneToOne
