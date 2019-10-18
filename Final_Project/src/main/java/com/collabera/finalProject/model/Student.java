@@ -32,6 +32,10 @@ public class Student implements  Serializable {
 	
 	@OneToOne
 	@JoinColumn(name = "id")
+	private User user;
+	
+	@OneToOne
+	@JoinColumn(name = "id")
 	private UserType userType;
 	
 	@OneToMany(mappedBy = "student")
@@ -50,8 +54,7 @@ public class Student implements  Serializable {
 	@JoinColumn(name = "id")
 	private Location location;
 
-	//Constructor
-	public Student(Long id, String imagePath, String firstName, String lastName, String description,
+	public Student(Long id, String imagePath, String firstName, String lastName, String description, User user,
 			UserType userType, Set<Instructor> instructors, Set<Client> clients, Set<Resource> resources,
 			Set<Tool> tools, Location location) {
 		super();
@@ -60,6 +63,7 @@ public class Student implements  Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
+		this.user = user;
 		this.userType = userType;
 		this.instructors = instructors;
 		this.clients = clients;
@@ -68,11 +72,6 @@ public class Student implements  Serializable {
 		this.location = location;
 	}
 
-	public Student() {
-		// TODO Auto-generated constructor stub
-	}
-
-	//Getters and Setters
 	public Long getId() {
 		return id;
 	}
@@ -111,6 +110,14 @@ public class Student implements  Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public UserType getUserType() {
@@ -159,7 +166,5 @@ public class Student implements  Serializable {
 
 	public void setLocation(Location location) {
 		this.location = location;
-	}
-	
-
+	}	
 }
