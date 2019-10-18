@@ -50,6 +50,7 @@ public class Student implements  Serializable {
 	@JoinColumn(name = "id")
 	private Location location;
 
+	//Constructor
 	public Student(Long id, String imagePath, String firstName, String lastName, String description,
 			UserType userType, Set<Instructor> instructors, Set<Client> clients, Set<Resource> resources,
 			Set<Tool> tools, Location location) {
@@ -71,6 +72,7 @@ public class Student implements  Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	//Getters and Setters
 	public Long getId() {
 		return id;
 	}

@@ -16,22 +16,30 @@ public class Address implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false) // establishes column value id as final and never null
 	private Long id;
+	
 	@Column(name = "streetNumber", nullable = false, length = 10)
 	private String streetNumber; // street number
+	
 	@Column(name = "streetName", nullable = false, length = 50)
 	private String streetName; // street name
 	//Is allowed to be null as you may not have a suite number
+	
 	@Column(name = "suiteNo", nullable = true, length = 10)
 	private String suiteNo; // apartment/suite number
+	
 	@Column(name = "township", nullable = false, length = 50)
 	private String township;
+	
 	@Column(name = "state", nullable = false, length = 50)
 	private String state;
+	
 	@Column(name = "zip", nullable = false, length = 10)
 	private String zip; // abbreviations are the exception to camelCase naming convention rules
+	
 	@Column(name = "country", nullable = false, length = 50)
 	private String country;
 
+	//Constructor
 	public Address(Long id, String streetNumber, String streetName, String suiteNo, String township, String state,
 			String zip, String country) {
 		super();
@@ -49,6 +57,7 @@ public class Address implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	//Getters and Setters
 	public Long getId() {
 		return id;
 	}

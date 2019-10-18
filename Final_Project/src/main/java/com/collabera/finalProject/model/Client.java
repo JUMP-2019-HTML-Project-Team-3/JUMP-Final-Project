@@ -36,6 +36,7 @@ public class Client implements  Serializable {
 	@JoinColumn(name = "id")
 	private Address address;
 
+	//Constructor
 	public Client(Long id, String imagePath, String name, String phone, String description, Address address, Set<Student> students) {
 		this.id = id;
 		this.imagePath = imagePath;
@@ -49,6 +50,7 @@ public class Client implements  Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	//Getters and Setters
 	public Long getId() {
 		return id;
 	}
