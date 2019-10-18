@@ -2,16 +2,11 @@ package com.collabera.finalProject.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.collabera.finalProject.model.Instructor;
-import com.collabera.finalProject.model.Resource;
-import com.collabera.finalProject.model.Student;
-import com.collabera.finalProject.model.Tool;
-import com.collabera.finalProject.model.UserType;
 import com.collabera.finalProject.repository.InstructorRepository;
 
 
