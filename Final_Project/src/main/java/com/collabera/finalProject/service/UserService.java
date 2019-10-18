@@ -14,11 +14,13 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	//Constructor
 	public UserService(UserRepository userRepository)
 	{
 		this.userRepository = userRepository;
 	}
 	
+	//Add
 	public void addUser(String username, String password, String email)
 	{
 		User tempUser = new User();
@@ -28,16 +30,19 @@ public class UserService {
 		tempUser.setEmail(email);
 	}
 	
+	//Find All
 	public List<User> findAll()
 	{
 		return userRepository.findAll();
 	}
 	
+	//Find By Id
 	public Optional<User> getUserById(Long id) 
 	{
 		return userRepository.findById(id);
 	}
 	
+	//Update
 	public void updateUser(User user) 
 	{
 		Optional<User> findById = userRepository.findById(user.getId());
@@ -60,6 +65,7 @@ public class UserService {
 		
 	}
 	
+	//Delete
 	public void deleteUser(Long id)
 	{
 		userRepository.deleteById(id);
