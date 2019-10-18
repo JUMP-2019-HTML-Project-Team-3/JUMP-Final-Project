@@ -72,6 +72,10 @@ public class Student implements  Serializable {
 		this.location = location;
 	}
 
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}
