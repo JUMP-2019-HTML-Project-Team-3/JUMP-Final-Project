@@ -39,6 +39,10 @@ public class Tool implements Serializable {
 		this.linkDocumentation = linkDocumentation;
 	}
 
+	public Tool() {
+		// TODO Auto-generated constructor stub
+	}
+
 	//Getters and Setters
 	public Long getId() {
 		return id;
