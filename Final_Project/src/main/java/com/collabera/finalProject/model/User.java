@@ -18,8 +18,11 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
+	@Column(name = "username", updatable = false, nullable = false, length = 25)
 	private String username;
+	@Column(name = "password", updatable = true, nullable = false, length = 25)
 	private String password;
+	@Column(name = "email", updatable = false, nullable = false, length = 25)
 	private String email;
 	
 	@OneToOne
