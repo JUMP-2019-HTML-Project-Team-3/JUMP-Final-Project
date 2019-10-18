@@ -37,8 +37,8 @@ public class Instructor implements Serializable {
 	private UserType userType;
 	
 	//FK to Student
-    @ManyToMany(mappedBy = "instructors")
-	private Set<Student> students = new HashSet<>();
+    @OneToMany(mappedBy = "instructor")
+	private Set<Student> students;
     
     //FK to Resource
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)

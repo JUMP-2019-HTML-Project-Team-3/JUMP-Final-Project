@@ -34,8 +34,8 @@ public class Student implements  Serializable {
 	@JoinColumn(name = "id")
 	private UserType userType;
 	
-	@ManyToMany(mappedBy = "students")
-	private Set<Instructor> instructors = new HashSet<>();
+	@OneToMany(mappedBy = "student")
+	private Set<Instructor> instructors;
 
 	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
 	private Set<Client> clients;
