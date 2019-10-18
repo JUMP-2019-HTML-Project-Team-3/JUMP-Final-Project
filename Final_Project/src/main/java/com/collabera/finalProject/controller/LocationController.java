@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,29 +26,38 @@ public class LocationController {
 		this.locationService = locationService;
 	}
 
-  	@GetMapping(path = "/location/{id}")
+	@PostMapping("/addlocations")
+	public @ResponseBody String addNewLocation(@RequestBody @Valid Location aLocation)
+	{
+		locationService.addLocation(
+				aLocation.getName(), 
+				aLocation.getImagePath(),
+				aLocation.getPhoneNo()
+				);
+		return "Saved";
+  	}
+
+  	@GetMapping(path = "/getlocation/{id}")
   	public Optional<Location> getLocationById(@PathVariable Long id)
 	{
 		return locationService.getLocationById(id);
 	}
 
-	@GetMapping("/locations")
+	@GetMapping("/alllocations")
 	public Iterable<Location> getAllLocations()
 	{
 		return locationService.findAll();
 	}
 
-	@PostMapping("/addlocations")
-	public @ResponseBody String addNewLocation(@RequestBody @Valid Location aLocation)
-	{
-		locationService.addLocation(aLocation.getName(), 
-				aLocation.getImagePath(),
-				aLocation.getPhoneNo());
-		return "Saved";
-  	}
-
 	@PutMapping("updatelocation/{id}")
-	public Optional<Location> getLocationById(@PathVariable Long id) {
-		
+	public String updateLocation(@RequestBody @Valid Location location) {
+		System.out.println("Added Location");
+		locationService.updateLocation(location);
+		return "Updated";
+	}
+	
+	@DeleteMapping("/deletelocation/{id}")
+	public void deleteLocation(@PathVariable String id) {
+		locationService.deleteLocation(Long.parseLong(id));
 	}
 }
