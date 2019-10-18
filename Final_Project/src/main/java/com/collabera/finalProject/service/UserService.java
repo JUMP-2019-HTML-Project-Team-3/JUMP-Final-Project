@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import com.collabera.finalProject.model.User;
 import com.collabera.finalProject.repository.UserRepository;
 
-
-
 @Service
 public class UserService {
 	@Autowired
