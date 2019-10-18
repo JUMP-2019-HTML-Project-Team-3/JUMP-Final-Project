@@ -18,9 +18,17 @@ public class Tool implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	
+	@Column(name = "name", nullable = false, length = 50)
 	private String name;
+	
+	@Column(name = "linkDownload", nullable = false, length = 100)
 	private String linkDownLoad;
+	
+	@Column(name = "linkDocumentation", nullable = true, length = 100)
 	private String linkDocumentation;
+	
+	@Column(name = "description", nullable = true, length = 250)
+	private String description;
 	
 	//Constructor with Fields
 	public Tool(Long id, String name, String linkDownLoad, String linkDocumentation) {
@@ -62,6 +70,14 @@ public class Tool implements Serializable {
 
 	public void setLinkDocumentation(String linkDocumentation) {
 		this.linkDocumentation = linkDocumentation;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }

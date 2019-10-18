@@ -27,8 +27,13 @@ public class Instructor implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	
+	@Column(name = "firstName", nullable = false, length = 25)
 	private String firstName;
+	
+	@Column(name = "lastName", nullable = false, length = 25)
 	private String lastName;
+	
+	@Column(name = "description", nullable = false, length = 250)
 	private String description;
 	
 	//FK to UserType

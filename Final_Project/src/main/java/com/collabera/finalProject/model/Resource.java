@@ -18,8 +18,13 @@ public class Resource implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	
+	@Column(name = "name", nullable = false, length = 50)
 	private String name;
+	
+	@Column(name = "link", nullable = false, length = 100)
 	private String link;
+	
+	@Column(name = "description", nullable = true, length = 250)
 	private String description;
 	
 	//Constructor with Fields
