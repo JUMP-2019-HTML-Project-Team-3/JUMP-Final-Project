@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.collabera.finalProject.model.Address;
 import com.collabera.finalProject.repository.AddressRepository;
-import com.collabera.three.animalshelter.model.Shelter;
 
 @Service
 public class AddressService {
