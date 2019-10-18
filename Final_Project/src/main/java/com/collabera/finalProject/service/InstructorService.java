@@ -52,7 +52,7 @@ public class InstructorService {
 	}
 	
 	//Update
-	public void updateAnimal(Instructor instructor)
+	public void updateInstructor(Instructor instructor)
 	{
 		Optional<Instructor> findById = instructorRepository.findById(instructor.getId());
 		
@@ -74,7 +74,7 @@ public class InstructorService {
 	}
 
 	//Delete
-	public void deleteAnimal(Long id)
+	public void deleteInstructor(Long id)
 	{
 		instructorRepository.deleteById(id);
 	}

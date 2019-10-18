@@ -6,60 +6,60 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.collabera.finalProject.model.Instructor;
-import com.collabera.finalProject.repository.InstructorRepository;
+import com.collabera.finalProject.model.Resource;
+import com.collabera.finalProject.repository.ResourceRepository;
 
 @Service
 public class ResourceService {
 
 
 	@Autowired
-	private InstructorRepository instructorRepository;
+	private ResourceRepository resourceRepository;
 	
 	//Constructor
-	public InstructorService(InstructorRepository instructorRepository)
+	public ResourceService(ResourceRepository resourceRepository)
 	{
-		this.instructorRepository = instructorRepository;
+		this.resourceRepository = resourceRepository;
 	}
 	
 	//Add
 	public void addInstructor(String firstName, String lastName, String description)
 	{
-		Instructor tempInstructor = new Instructor();
+		Resource tempResource = new Resource();
 		
-		tempInstructor.setFirstName(firstName);
-		tempInstructor.setLastName(lastName);
-		tempInstructor.setDescription(description);
+		tempResource.setName(firstName);
+		tempResource.setLink(lastName);
+		tempResource.setDescription(description);
 	
-		instructorRepository. save(tempInstructor);
+		resourceRepository.save(tempResource);
 	}
 	
 	//Find All
-	public List<Instructor> findAll()
+	public List<Resource> findAll()
 	{
-		return instructorRepository.findAll();
+		return resourceRepository.findAll();
 	}
 	
 	//Find by Id
-	public Optional<Instructor> getInstructorById(Long id)
+	public Optional<Resource> getResourceById(Long id)
 	{
-		return instructorRepository.findById(id);
+		return resourceRepository.findById(id);
 	}
 	
 	//Update
-	public void updateAnimal(Instructor instructor)
+	public void updateResource(Resource resource)
 	{
-		Optional<Instructor> findById = instructorRepository.findById(instructor.getId());
+		Optional<Resource> findById = resourceRepository.findById(resource.getId());
 		
 		if(findById.isPresent())
 		{
-			Instructor instructorToUpdate = findById.get();
+			Resource resourceToUpdate = findById.get();
 			
-			instructorToUpdate.setFirstName(instructor.getFirstName());
-			instructorToUpdate.setLastName(instructor.getLastName());
-			instructorToUpdate.setDescription(instructor.getDescription());
+			resourceToUpdate.setName(resource.getName());
+			resourceToUpdate.setLink(resource.getLink());
+			resourceToUpdate.setDescription(resource.getDescription());
 
-			instructorRepository.save(instructorToUpdate);
+			resourceRepository.save(resourceToUpdate);
 		}
 		else
 		{
@@ -69,9 +69,9 @@ public class ResourceService {
 	}
 
 	//Delete
-	public void deleteAnimal(Long id)
+	public void deleteResource(Long id)
 	{
-		instructorRepository.deleteById(id);
+		resourceRepository.deleteById(id);
 	}
 	
 }
