@@ -20,19 +20,20 @@ public class Address implements Serializable {
 	private String streetNumber; // street number
 	@Column(name = "streetName", nullable = false, length = 50)
 	private String streetName; // street name
-	@Column(name = "suiteNo", length = 10)
+	//Is allowed to be null as you may not have a suite number
+	@Column(name = "suiteNo", nullable = true, length = 10)
 	private String suiteNo; // apartment/suite number
 	@Column(name = "township", nullable = false, length = 50)
 	private String township;
 	@Column(name = "state", nullable = false, length = 50)
 	private String state;
-	@Column(name = "ZIP", nullable = false, length = 10)
-	private String ZIP; // abbreviations are the exception to camelCase naming convention rules
+	@Column(name = "zip", nullable = false, length = 10)
+	private String zip; // abbreviations are the exception to camelCase naming convention rules
 	@Column(name = "country", nullable = false, length = 50)
 	private String country;
 	
 	public Address(Long id, String streetNumber, String streetName, String suiteNo, String township, String state,
-			String zIP, String country) {
+			String zip, String country) {
 		super();
 		this.id = id;
 		this.streetNumber = streetNumber;
@@ -40,9 +41,10 @@ public class Address implements Serializable {
 		this.suiteNo = suiteNo;
 		this.township = township;
 		this.state = state;
-		ZIP = zIP;
+		this.zip = zip;
 		this.country = country;
 	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -79,18 +81,19 @@ public class Address implements Serializable {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public String getZIP() {
-		return ZIP;
+	public String getZip() {
+		return zip;
 	}
-	public void setZIP(String zIP) {
-		ZIP = zIP;
+	public void setZip(String zip) {
+		this.zip = zip;
 	}
 	public String getCountry() {
 		return country;
 	}
 	public void setCountry(String country) {
 		this.country = country;
-	}	
-
+	}
+	
+	
 	
 }
