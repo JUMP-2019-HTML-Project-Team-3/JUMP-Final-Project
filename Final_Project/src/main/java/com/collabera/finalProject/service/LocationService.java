@@ -21,14 +21,12 @@ public class LocationService {
 	}
 
 	//Add
-	public void addLocation(Long id, String imagePath, String name, String phoneNo, Address address) {
+	public void addLocation(String imagePath, String name, String phoneNo) {
 		Location template = new Location();
 
-		template.setId(id);
 		template.setImagePath(imagePath);
 		template.setName(name);
 		template.setPhoneNo(phoneNo);
-		template.setAddress(address);
 	}
 
 	//Find By Id
@@ -50,7 +48,6 @@ public class LocationService {
 			locationUpdate.setImagePath(location.getImagePath());
 			locationUpdate.setName(location.getName());
 			locationUpdate.setPhoneNo(location.getPhoneNo());
-			location.setAddress(location.getAddress());
 		}
 		else throw new IllegalArgumentException();
 	}
