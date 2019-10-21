@@ -27,7 +27,6 @@ public class UserType implements Serializable {
 	}
 
 	public UserType() {
-		// TODO Auto-generated constructor stub
 	}
 
 	//Getters and Setters
