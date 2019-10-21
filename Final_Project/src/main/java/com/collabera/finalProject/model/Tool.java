@@ -101,10 +101,12 @@ public class Tool implements Serializable {
 	
 	public void addStudent(Student student) {
 		students.add(student);
+		student.getTools().add(this);
 	}
 	
 	public void removeStudent(Student student) {
 		students.remove(student);
+		student.getTools().remove(this);
 	}
 	
 }

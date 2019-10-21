@@ -104,4 +104,14 @@ public class Location implements Serializable {
 	public void setInstructors(Set<Instructor> instructors) {
 		this.instructors = instructors;
 	}
+	
+	public void addInstructor(Instructor instructor) {
+		instructors.add(instructor);
+		instructor.getLocations().add(this);
+	}
+	
+	public void removeInstructor(Instructor instructor) {
+		instructors.remove(instructor);
+		instructor.getLocations().remove(this);
+	}
 }
