@@ -18,7 +18,6 @@ import com.collabera.finalProject.model.User;
 import com.collabera.finalProject.service.UserService;
 
 @RestController
-@RequestMapping("/api")
 public class UserController {
 	private final UserService userService;
 	/* Initialize final field userService */

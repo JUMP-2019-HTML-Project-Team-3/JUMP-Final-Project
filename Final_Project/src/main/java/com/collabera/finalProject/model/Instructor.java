@@ -175,15 +175,38 @@ public class Instructor implements Serializable {
 		this.locations = locations;
 	}
 	
-	public void addLocation(Location location) {
-		locations.add(location);
-		location.getInstructors().add(this);
+	// Add/Remove Student
+	public void addStudent(Student s)
+	{
+		this.students.add(s);
+		s.getInstructors().add(this);
 	}
 	
-	public void removeLocation(Location location) {
-		locations.remove(location);
-		location.getInstructors().remove(this);
+	public void removeStudent(Student s)
+	{
+		this.students.remove(s);
+		s.getInstructors().remove(this);
 	}
 	
+	// Add/Remove Resource
+	public void addResource(Resource r)
+	{
+		this.resources.add(r);
+	}
 	
+	public void removeResource(Resource r)
+	{
+		this.resources.remove(r);
+	}
+	
+	// Add/Remove Tool
+	public void addTool(Tool t)
+	{
+		this.tools.add(t);
+	}
+	
+	public void removeTool(Tool t)
+	{
+		this.tools.remove(t);
+	}
 }
