@@ -28,8 +28,8 @@ public class User implements Serializable {
 	@Column(name = "email", updatable = false, nullable = false, length = 25)
 	private String email;
 	
-//	@OneToOne
-//	@JoinColumn(name = "id")
+	@OneToOne
+	@JoinColumn(name = "id")
 	private UserType userType;
 
 	//Constructor
@@ -43,7 +43,6 @@ public class User implements Serializable {
 	}
 
 	public User() {
-		// TODO Auto-generated constructor stub
 	}
 
 	//Getters and Setters
@@ -86,6 +85,4 @@ public class User implements Serializable {
 	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
-	
-
 }
