@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -36,14 +37,19 @@ public class Location implements Serializable {
 	@ColumnDefault("(×××) ×××-××××")
 	private String phoneNo; // phone number has default value as annotated
 
-	@OneToOne
-	@JoinColumn(name = "id")
+//	@OneToOne
+//	@JoinColumn(name = "id")
 	private Address address;
 
-	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-	private Set<Student> students;
+//	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+	private Set<Student> students = new HashSet<>();
 
-	@ManyToMany(mappedBy = "locations")
+//    @ManyToMany(cascade = { CascadeType.ALL })
+//    @JoinTable(
+//        name = "Instructor", 
+//        joinColumns = { @JoinColumn(name = "id") }, 
+//        inverseJoinColumns = { @JoinColumn(name = "id") }
+//    )
 	private Set<Instructor> instructors = new HashSet<>();
 
 	public Location(Long id, String imagePath, String name, String phoneNo, Address address, Set<Student> students,
