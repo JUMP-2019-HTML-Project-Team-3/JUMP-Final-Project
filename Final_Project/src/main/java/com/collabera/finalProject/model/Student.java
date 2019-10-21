@@ -21,7 +21,6 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="Student")
 public class Student implements  Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -34,13 +33,13 @@ public class Student implements  Serializable {
 	private String lastName;
 	private String description;
 	
-	@OneToOne
-	@JoinColumn(name = "id")
-	private User user;
-	
-	@OneToOne
-	@JoinColumn(name = "id")
-	private UserType userType;
+//	@OneToOne
+//	@JoinColumn(name = "id")
+//	private User user;
+//	
+//	@OneToOne
+//	@JoinColumn(name = "id")
+//	private UserType userType;
 	
 	//Instructors
 //    @ManyToMany(fetch = FetchType.LAZY,
@@ -52,7 +51,7 @@ public class Student implements  Serializable {
 //        joinColumns = { @JoinColumn(name = "student_id") }, 
 //        inverseJoinColumns = { @JoinColumn(name = "instructor_id") }
 //    )
-	private Set<Instructor> instructors = new HashSet<>();
+//	private Set<Instructor> instructors = new HashSet<>();
 
     //Clients
 	@ManyToMany
@@ -65,16 +64,16 @@ public class Student implements  Serializable {
 	
 	//Resources
 //	@OneToMany(mappedBy = "Student", cascade = CascadeType.ALL)
-	private Set<Resource> resources;
+//	private Set<Resource> resources;
 	
 	//Tools
 //	@OneToMany(mappedBy = "Student", cascade = CascadeType.ALL)
-	private Set<Tool> tools;
+//	private Set<Tool> tools;
 	
 	//Locations
 //	@ManyToOne
 //	@JoinColumn(name = "id")
-	private Location location;
+//	private Location location;
 
 	public Student(Long id, String imagePath, String firstName, String lastName, String description, User user,
 			UserType userType, Set<Instructor> instructors, Set<Client> clients, Set<Resource> resources,
@@ -85,13 +84,13 @@ public class Student implements  Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
-		this.user = user;
-		this.userType = userType;
-		this.instructors = instructors;
+//		this.user = user;
+//		this.userType = userType;
+//		this.instructors = instructors;
 		this.clients = clients;
-		this.resources = resources;
-		this.tools = tools;
-		this.location = location;
+//		this.resources = resources;
+//		this.tools = tools;
+//		this.location = location;
 	}
 
 	public Student() {
@@ -138,29 +137,29 @@ public class Student implements  Serializable {
 		this.description = description;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public UserType getUserType() {
-		return userType;
-	}
-
-	public void setUserType(UserType userType) {
-		this.userType = userType;
-	}
-
-	public Set<Instructor> getInstructors() {
-		return instructors;
-	}
-
-	public void setInstructors(Set<Instructor> instructors) {
-		this.instructors = instructors;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+//
+//	public UserType getUserType() {
+//		return userType;
+//	}
+//
+//	public void setUserType(UserType userType) {
+//		this.userType = userType;
+//	}
+//
+//	public Set<Instructor> getInstructors() {
+//		return instructors;
+//	}
+//
+//	public void setInstructors(Set<Instructor> instructors) {
+//		this.instructors = instructors;
+//	}
 
 	public Set<Client> getClients() {
 		return clients;
@@ -170,27 +169,27 @@ public class Student implements  Serializable {
 		this.clients = clients;
 	}
 
-	public Set<Resource> getResources() {
-		return resources;
-	}
-
-	public void setResources(Set<Resource> resources) {
-		this.resources = resources;
-	}
-
-	public Set<Tool> getTools() {
-		return tools;
-	}
-
-	public void setTools(Set<Tool> tools) {
-		this.tools = tools;
-	}
-
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
-	}	
+//	public Set<Resource> getResources() {
+//		return resources;
+//	}
+//
+//	public void setResources(Set<Resource> resources) {
+//		this.resources = resources;
+//	}
+//
+//	public Set<Tool> getTools() {
+//		return tools;
+//	}
+//
+//	public void setTools(Set<Tool> tools) {
+//		this.tools = tools;
+//	}
+//
+//	public Location getLocation() {
+//		return location;
+//	}
+//
+//	public void setLocation(Location location) {
+//		this.location = location;
+//	}	
 }
