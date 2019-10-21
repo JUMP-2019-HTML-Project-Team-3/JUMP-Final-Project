@@ -41,8 +41,8 @@ public class Client implements  Serializable {
 //	@JoinColumn(name = "id")
 //	private Address address;
 	
-//	@ManyToMany(mappedBy = "clients")
-//	private Set<Student> students = new HashSet<>();
+	@ManyToMany(mappedBy = "clients")
+	private Set<Student> students = new HashSet<>();
 
 	//Constructor
 	public Client(Long id, String imagePath, String name, String phone, String description, Address address, Set<Student> students) {
