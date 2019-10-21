@@ -4,17 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+
 
 import org.hibernate.annotations.ColumnDefault;
 
@@ -34,15 +25,15 @@ public class Location implements Serializable {
 	private String name;
 	
 	@Column(name = "phoneNo", nullable = true, length = 14)
-	@ColumnDefault("(×××) ×××-××××")
+	//@ColumnDefault("(×××) ×××-××××")
 	private String phoneNo; // phone number has default value as annotated
 
 //	@OneToOne
 //	@JoinColumn(name = "id")
-	private Address address;
+//	private Address address;
 
 //	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-	private Set<Student> students = new HashSet<>();
+	//private Set<Student> students = new HashSet<>();
 
 //    @ManyToMany(cascade = { CascadeType.ALL })
 //    @JoinTable(
@@ -50,7 +41,7 @@ public class Location implements Serializable {
 //        joinColumns = { @JoinColumn(name = "id") }, 
 //        inverseJoinColumns = { @JoinColumn(name = "id") }
 //    )
-	private Set<Instructor> instructors = new HashSet<>();
+	//private Set<Instructor> instructors = new HashSet<Instructor>();
 
 	public Location(Long id, String imagePath, String name, String phoneNo, Address address, Set<Student> students,
 			Set<Instructor> instructors) {
@@ -59,9 +50,9 @@ public class Location implements Serializable {
 		this.imagePath = imagePath;
 		this.name = name;
 		this.phoneNo = phoneNo;
-		this.address = address;
-		this.students = students;
-		this.instructors = instructors;
+//		this.address = address;
+		//this.students = students;
+		//this.instructors = instructors;
 	}
 
 	public Location() {
@@ -100,29 +91,29 @@ public class Location implements Serializable {
 		this.phoneNo = phoneNo;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
+//	public Address getAddress() {
+//		return address;
+//	}
+//
+//	public void setAddress(Address address) {
+//		this.address = address;
+//	}
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+//	public Set<Student> getStudents() {
+//		return students;
+//	}
+//
+//	public void setStudents(Set<Student> students) {
+//		this.students = students;
+//	}
 
-	public Set<Student> getStudents() {
-		return students;
-	}
+//	public Set<Instructor> getInstructors() {
+//		return instructors;
+//	}
 
-	public void setStudents(Set<Student> students) {
-		this.students = students;
-	}
-
-	public Set<Instructor> getInstructors() {
-		return instructors;
-	}
-
-	public void setInstructors(Set<Instructor> instructors) {
-		this.instructors = instructors;
-	}
+//	public void setInstructors(Set<Instructor> instructors) {
+//		this.instructors = instructors;
+//	}
 	
 	
 }
