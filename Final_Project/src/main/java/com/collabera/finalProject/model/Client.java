@@ -33,22 +33,23 @@ public class Client implements  Serializable {
 	
 	@ManyToMany(mappedBy = "clients")
 	private Set<Student> students = new HashSet<>();
+	
+	public Client () {
+		
+	}
 
-	//Constructor
-	public Client(Long id, String imagePath, String name, String phone, String description, Address address, Set<Student> students) {
+	public Client(Long id, String imagePath, String name, String phone, String description, Address address,
+			Set<Student> students) {
+		super();
 		this.id = id;
 		this.imagePath = imagePath;
 		this.name = name;
 		this.phone = phone;
 		this.description = description;
-//		this.address = address;
+		this.address = address;
+		this.students = students;
 	}
 
-	public Client() {
-		// TODO Auto-generated constructor stub
-	}
-
-	//Getters and Setters
 	public Long getId() {
 		return id;
 	}
@@ -89,14 +90,27 @@ public class Client implements  Serializable {
 		this.description = description;
 	}
 
-//	public Address getAddress() {
-//		return address;
-//	}
-//
-//	public void setAddress(Address address) {
-//		this.address = address;
-//	}
+	public Address getAddress() {
+		return address;
+	}
 
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
 	
-
+	 public void addStudent(Student student) {
+	        students.add(student);
+	    }
+	 
+	 public void removeStudent(Student student) {
+		 students.remove(student);
+	 }
 }
