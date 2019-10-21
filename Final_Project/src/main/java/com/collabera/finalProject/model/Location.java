@@ -42,7 +42,7 @@ public class Location implements Serializable {
 	private Address address;
 
 //	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-	private Set<Student> students = new HashSet<>();
+	//private Set<Student> students = new HashSet<>();
 
 //    @ManyToMany(cascade = { CascadeType.ALL })
 //    @JoinTable(
@@ -50,7 +50,7 @@ public class Location implements Serializable {
 //        joinColumns = { @JoinColumn(name = "id") }, 
 //        inverseJoinColumns = { @JoinColumn(name = "id") }
 //    )
-	private Set<Instructor> instructors = new HashSet<>();
+	//private Set<Instructor> instructors = new HashSet<Instructor>();
 
 	public Location(Long id, String imagePath, String name, String phoneNo, Address address, Set<Student> students,
 			Set<Instructor> instructors) {
@@ -60,8 +60,8 @@ public class Location implements Serializable {
 		this.name = name;
 		this.phoneNo = phoneNo;
 		this.address = address;
-		this.students = students;
-		this.instructors = instructors;
+		//this.students = students;
+		//this.instructors = instructors;
 	}
 
 	public Location() {
@@ -108,21 +108,21 @@ public class Location implements Serializable {
 		this.address = address;
 	}
 
-	public Set<Student> getStudents() {
-		return students;
-	}
+//	public Set<Student> getStudents() {
+//		return students;
+//	}
+//
+//	public void setStudents(Set<Student> students) {
+//		this.students = students;
+//	}
 
-	public void setStudents(Set<Student> students) {
-		this.students = students;
-	}
+//	public Set<Instructor> getInstructors() {
+//		return instructors;
+//	}
 
-	public Set<Instructor> getInstructors() {
-		return instructors;
-	}
-
-	public void setInstructors(Set<Instructor> instructors) {
-		this.instructors = instructors;
-	}
+//	public void setInstructors(Set<Instructor> instructors) {
+//		this.instructors = instructors;
+//	}
 	
 	
 }

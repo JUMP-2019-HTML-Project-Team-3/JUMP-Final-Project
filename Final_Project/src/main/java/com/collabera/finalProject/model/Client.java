@@ -37,12 +37,12 @@ public class Client implements  Serializable {
 	@Column(name = "description", nullable = true, length = 250)
 	private String description;
 	
-	@OneToOne
-	@JoinColumn(name = "id")
-	private Address address;
+//	@OneToOne
+//	@JoinColumn(name = "id")
+//	private Address address;
 	
-	@ManyToMany(mappedBy = "clients")
-	private Set<Student> students = new HashSet<>();
+//	@ManyToMany(mappedBy = "clients")
+//	private Set<Student> students = new HashSet<>();
 
 	//Constructor
 	public Client(Long id, String imagePath, String name, String phone, String description, Address address, Set<Student> students) {
@@ -51,7 +51,7 @@ public class Client implements  Serializable {
 		this.name = name;
 		this.phone = phone;
 		this.description = description;
-		this.address = address;
+//		this.address = address;
 	}
 
 	public Client() {
@@ -99,13 +99,13 @@ public class Client implements  Serializable {
 		this.description = description;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+//	public Address getAddress() {
+//		return address;
+//	}
+//
+//	public void setAddress(Address address) {
+//		this.address = address;
+//	}
 
 	
 
