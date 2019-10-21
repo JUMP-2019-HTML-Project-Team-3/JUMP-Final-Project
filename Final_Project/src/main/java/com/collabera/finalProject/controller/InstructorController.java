@@ -18,7 +18,6 @@ import com.collabera.finalProject.model.Instructor;
 import com.collabera.finalProject.service.InstructorService;
 
 @RestController
-@RequestMapping("/api")
 public class InstructorController {
 	private final InstructorService instructorService;
 	/* Initialize final field instructorService */
@@ -26,7 +25,7 @@ public class InstructorController {
 		this.instructorService = instructorService;
 	}
 
-	@PostMapping("/addinstructors")
+	@PostMapping("/addinstructor")
 	public @ResponseBody String addNewInstructor(@RequestBody @Valid Instructor aInstructor)
 	{
 		instructorService.addInstructor(
