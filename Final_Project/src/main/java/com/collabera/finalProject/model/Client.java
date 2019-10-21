@@ -37,9 +37,9 @@ public class Client implements  Serializable {
 	@Column(name = "description", nullable = true, length = 250)
 	private String description;
 	
-//	@OneToOne
-//	@JoinColumn(name = "id")
-//	private Address address;
+	@OneToOne
+	@JoinColumn(name = "id")
+	private Address address;
 	
 	@ManyToMany(mappedBy = "clients")
 	private Set<Student> students = new HashSet<>();

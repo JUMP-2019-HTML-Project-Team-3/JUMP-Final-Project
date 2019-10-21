@@ -26,30 +26,29 @@ public class Instructor implements Serializable {
 	private String description;
 	
 	//FK to User
-//	@OneToOne
-//	@JoinColumn(name = "id")
-//	private User user;
+	@OneToOne
+	@JoinColumn(name = "id")
+	private User user;
 	
 	//FK to UserType
-//	@OneToOne
-//	@JoinColumn(name = "id")
-//	private UserType userType;
+	@OneToOne
+	@JoinColumn(name = "id")
+	private UserType userType;
 	
 	//FK to Student
-//    @ManyToMany(fetch = FetchType.LAZY,
-//    		cascade = {
-//    				CascadeType.PERSIST,
-//    				CascadeType.MERGE
-//    		},mappedBy = "instructor")
-//	private Set<Student> students = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "instructor_student",
+    joinColumns = { @JoinColumn(name = "fk_instructor") },
+    inverseJoinColumns = { @JoinColumn(name = "fk_student") })
+	private Set<Student> students = new HashSet<>();
     
     //FK to Resource
-//    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-//	private Set<Resource> resources;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+	private Set<Resource> resources;
     
     //FK to Tool
-//    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-//	private Set<Tool> tools;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+	private Set<Tool> tools;
     
     //FK to Location
 //    @ManyToMany(mappedBy = "instructors")
