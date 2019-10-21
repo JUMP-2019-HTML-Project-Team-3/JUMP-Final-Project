@@ -28,8 +28,8 @@ public class User implements Serializable {
 	@Column(name = "email", updatable = false, nullable = false, length = 25)
 	private String email;
 	
-	@OneToOne
-	@JoinColumn(name = "id")
+//	@OneToOne
+//	@JoinColumn(name = "id")
 	private UserType userType;
 
 	//Constructor

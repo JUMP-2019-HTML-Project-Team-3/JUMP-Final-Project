@@ -1,19 +1,10 @@
 package com.collabera.finalProject.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-
+import javax.persistence.*;
 
 @Entity
 public class Instructor implements Serializable {
@@ -45,16 +36,24 @@ public class Instructor implements Serializable {
 	private UserType userType;
 	
 	//FK to Student
-    @OneToMany(mappedBy = "instructor")
-	private Set<Student> students;
+//    @ManyToMany(fetch = FetchType.LAZY,
+//    		cascade = {
+//    				CascadeType.PERSIST,
+//    				CascadeType.MERGE
+//    		},mappedBy = "instructor")
+	private Set<Student> students = new HashSet<>();
     
     //FK to Resource
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
 	private Set<Resource> resources;
     
     //FK to Tool
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+//    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
 	private Set<Tool> tools;
+    
+    //FK to Location
+//    @ManyToMany(mappedBy = "instructors")
+    private Set<Location> locations = new HashSet<>();
 
     //Constructor Using Fields
 	public Instructor(Long id, String firstName, String lastName, String description, User user, UserType userType,
@@ -165,6 +164,16 @@ public class Instructor implements Serializable {
 
 	public Instructor() {
 		// TODO Auto-generated constructor stub
+	}
+
+
+	public Set<Location> getLocations() {
+		return locations;
+	}
+
+
+	public void setLocations(Set<Location> locations) {
+		this.locations = locations;
 	}
 	
 	

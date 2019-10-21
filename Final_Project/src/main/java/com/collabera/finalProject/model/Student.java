@@ -7,17 +7,21 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name="Student")
 public class Student implements  Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -38,20 +42,38 @@ public class Student implements  Serializable {
 	@JoinColumn(name = "id")
 	private UserType userType;
 	
-	@OneToMany(mappedBy = "student")
-	private Set<Instructor> instructors;
+	//Instructors
+//    @ManyToMany(fetch = FetchType.LAZY,
+//    		cascade = { 
+//    				CascadeType.PERSIST,
+//    				CascadeType.MERGE})
+//    @JoinTable(
+//        name = "student_instructor", 
+//        joinColumns = { @JoinColumn(name = "student_id") }, 
+//        inverseJoinColumns = { @JoinColumn(name = "instructor_id") }
+//    )
+	private Set<Instructor> instructors = new HashSet<>();
 
-	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-	private Set<Client> clients;
+    //Clients
+	@ManyToMany
+	@JoinTable(
+		name = "student_client",
+		joinColumns = { @JoinColumn(name = "fk_student")},
+		inverseJoinColumns = { @JoinColumn(name = "fk_client") } 
+	)
+	private Set<Client> clients = new HashSet<Client>();
 	
-	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+	//Resources
+//	@OneToMany(mappedBy = "Student", cascade = CascadeType.ALL)
 	private Set<Resource> resources;
 	
-	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+	//Tools
+//	@OneToMany(mappedBy = "Student", cascade = CascadeType.ALL)
 	private Set<Tool> tools;
 	
-	@ManyToOne
-	@JoinColumn(name = "id")
+	//Locations
+//	@ManyToOne
+//	@JoinColumn(name = "id")
 	private Location location;
 
 	public Student(Long id, String imagePath, String firstName, String lastName, String description, User user,
