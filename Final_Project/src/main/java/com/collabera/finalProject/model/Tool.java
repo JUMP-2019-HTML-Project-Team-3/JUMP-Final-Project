@@ -1,12 +1,15 @@
 package com.collabera.finalProject.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Tool implements Serializable {
@@ -30,6 +33,9 @@ public class Tool implements Serializable {
 	@Column(name = "description", nullable = true, length = 250)
 	private String description;
 	
+	@ManyToMany(mappedBy = "tools")
+	private Set<Student> students = new HashSet<>();
+	
 	//Constructor with Fields
 	public Tool(Long id, String name, String linkDownLoad, String linkDocumentation) {
 		super();
@@ -40,7 +46,6 @@ public class Tool implements Serializable {
 	}
 
 	public Tool() {
-		// TODO Auto-generated constructor stub
 	}
 
 	//Getters and Setters
@@ -82,6 +87,16 @@ public class Tool implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Set<Student> getStudents()
+	{
+		return students;
+	}
+
+	public void setStudents(Set<Student> students)
+	{
+		this.students = students;
 	}
 	
 }

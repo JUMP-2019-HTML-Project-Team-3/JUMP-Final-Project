@@ -36,10 +36,7 @@ public class Instructor implements Serializable {
 	private UserType userType;
 	
 	//FK to Student
-    @ManyToMany
-    @JoinTable(name = "instructor_student",
-    joinColumns = { @JoinColumn(name = "fk_instructor") },
-    inverseJoinColumns = { @JoinColumn(name = "fk_student") })
+	@ManyToMany(mappedBy = "instructors")
 	private Set<Student> students = new HashSet<>();
     
     //FK to Resource
@@ -51,8 +48,12 @@ public class Instructor implements Serializable {
 	private Set<Tool> tools;
     
     //FK to Location
-//    @ManyToMany(mappedBy = "instructors")
-//    private Set<Location> locations = new HashSet<>();
+	@ManyToMany
+	@JoinTable(
+		name = "instructor_location",
+		joinColumns = { @JoinColumn(name = "fk_instructor")},
+		inverseJoinColumns = { @JoinColumn(name = "fk_location") } )
+    private Set<Location> locations = new HashSet<>();
 
     //Constructor Using Fields
 	public Instructor(Long id, String firstName, String lastName, String description, User user, UserType userType,
@@ -62,11 +63,11 @@ public class Instructor implements Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
-//		this.user = user;
-//		this.userType = userType;
-//		this.students = students;
-//		this.resources = resources;
-//		this.tools = tools;
+		this.user = user;
+		this.userType = userType;
+		this.students = students;
+		this.resources = resources;
+		this.tools = tools;
 	}
 
 
@@ -111,69 +112,68 @@ public class Instructor implements Serializable {
 	}
 
 
-//	public User getUser() {
-//		return user;
-//	}
-//
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
-//
-//
-//	public UserType getUserType() {
-//		return userType;
-//	}
-//
-//
-//	public void setUserType(UserType userType) {
-//		this.userType = userType;
-//	}
-//
-//
-//	public Set<Student> getStudents() {
-//		return students;
-//	}
-//
-//
-//	public void setStudents(Set<Student> students) {
-//		this.students = students;
-//	}
-
-
-//	public Set<Resource> getResources() {
-//		return resources;
-//	}
-//
-//
-//	public void setResources(Set<Resource> resources) {
-//		this.resources = resources;
-//	}
-
-
-//	public Set<Tool> getTools() {
-//		return tools;
-//	}
-//
-//
-//	public void setTools(Set<Tool> tools) {
-//		this.tools = tools;
-//	}
-
-
-	public Instructor() {
-		// TODO Auto-generated constructor stub
+	public User getUser() {
+		return user;
 	}
 
 
-//	public Set<Location> getLocations() {
-//		return locations;
-//	}
-//
-//
-//	public void setLocations(Set<Location> locations) {
-//		this.locations = locations;
-//	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public UserType getUserType() {
+		return userType;
+	}
+
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
+
+
+	public Set<Resource> getResources() {
+		return resources;
+	}
+
+
+	public void setResources(Set<Resource> resources) {
+		this.resources = resources;
+	}
+
+
+	public Set<Tool> getTools() {
+		return tools;
+	}
+
+
+	public void setTools(Set<Tool> tools) {
+		this.tools = tools;
+	}
+
+
+	public Instructor() {
+	}
+
+
+	public Set<Location> getLocations() {
+		return locations;
+	}
+
+
+	public void setLocations(Set<Location> locations) {
+		this.locations = locations;
+	}
 	
 	
 }

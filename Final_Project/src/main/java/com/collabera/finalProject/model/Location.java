@@ -6,9 +6,6 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-
-import org.hibernate.annotations.ColumnDefault;
-
 @Entity
 public class Location implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -31,16 +28,11 @@ public class Location implements Serializable {
 	@JoinColumn(name = "id")
 	private Address address;
 
-	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-	private Set<Student> students = new HashSet<>();
+	@OneToMany(mappedBy = "location")
+	private Set<Student> students = new HashSet<Student>();
 
-//    @ManyToMany(cascade = { CascadeType.ALL })
-//    @JoinTable(
-//        name = "Instructor", 
-//        joinColumns = { @JoinColumn(name = "id") }, 
-//        inverseJoinColumns = { @JoinColumn(name = "id") }
-//    )
-	//private Set<Instructor> instructors = new HashSet<Instructor>();
+    @ManyToMany(mappedBy = "locations")
+	private Set<Instructor> instructors = new HashSet<Instructor>();
 
 	public Location(Long id, String imagePath, String name, String phoneNo, Address address, Set<Student> students,
 			Set<Instructor> instructors) {
@@ -49,13 +41,12 @@ public class Location implements Serializable {
 		this.imagePath = imagePath;
 		this.name = name;
 		this.phoneNo = phoneNo;
-//		this.address = address;
-		//this.students = students;
-		//this.instructors = instructors;
+		this.address = address;
+		this.students = students;
+		this.instructors = instructors;
 	}
 
 	public Location() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Long getId() {
@@ -90,29 +81,27 @@ public class Location implements Serializable {
 		this.phoneNo = phoneNo;
 	}
 
-//	public Address getAddress() {
-//		return address;
-//	}
-//
-//	public void setAddress(Address address) {
-//		this.address = address;
-//	}
+	public Address getAddress() {
+		return address;
+	}
 
-//	public Set<Student> getStudents() {
-//		return students;
-//	}
-//
-//	public void setStudents(Set<Student> students) {
-//		this.students = students;
-//	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
-//	public Set<Instructor> getInstructors() {
-//		return instructors;
-//	}
+	public Set<Student> getStudents() {
+		return students;
+	}
 
-//	public void setInstructors(Set<Instructor> instructors) {
-//		this.instructors = instructors;
-//	}
-	
-	
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
+
+	public Set<Instructor> getInstructors() {
+		return instructors;
+	}
+
+	public void setInstructors(Set<Instructor> instructors) {
+		this.instructors = instructors;
+	}
 }
