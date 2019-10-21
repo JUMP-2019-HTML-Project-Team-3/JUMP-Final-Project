@@ -163,6 +163,14 @@ public class Student implements  Serializable {
 	public void setResources(Set<Resource> resources) {
 		this.resources = resources;
 	}
+	
+	public void addResource(Resource resource) {
+		resources.add(resource);
+	}
+	
+	public void removeResource(Resource resource) {
+		resources.remove(resource);
+	}
 
 	public Set<Tool> getTools() {
 		return tools;
@@ -171,6 +179,14 @@ public class Student implements  Serializable {
 	public void setTools(Set<Tool> tools) {
 		this.tools = tools;
 	}
+	
+	public void addTool(Tool tool) {
+		tools.add(tool);
+	}
+	
+	public void removeTool(Tool tool) {
+		tools.remove(tool);
+	}
 
 	public Location getLocation() {
 		return location;
@@ -178,5 +194,6 @@ public class Student implements  Serializable {
 
 	public void setLocation(Location location) {
 		this.location = location;
-	}	
+	}
+		
 }
