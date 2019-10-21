@@ -25,15 +25,14 @@ public class Location implements Serializable {
 	private String name;
 	
 	@Column(name = "phoneNo", nullable = true, length = 14)
-	//@ColumnDefault("(×××) ×××-××××")
 	private String phoneNo; // phone number has default value as annotated
 
-//	@OneToOne
-//	@JoinColumn(name = "id")
-//	private Address address;
+	@OneToOne
+	@JoinColumn(name = "id")
+	private Address address;
 
-//	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-	//private Set<Student> students = new HashSet<>();
+	@OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+	private Set<Student> students = new HashSet<>();
 
 //    @ManyToMany(cascade = { CascadeType.ALL })
 //    @JoinTable(
