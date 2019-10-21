@@ -161,9 +161,9 @@ public class Student implements  Serializable {
 		client.getStudents().add(this);
 	}
 	
-	public void removeClient(Resource resource) {
-		resources.remove(resource);
-		resource.getStudents().remove(this);
+	public void removeClient(Client client) {
+		clients.remove(client);
+		client.getStudents().remove(this);
 	}
 
 	public Set<Resource> getResources() {
@@ -194,10 +194,12 @@ public class Student implements  Serializable {
 	
 	public void addTool(Tool tool) {
 		tools.add(tool);
+		tool.getStudents().add(this);
 	}
 	
 	public void removeTool(Tool tool) {
 		tools.remove(tool);
+		tool.getStudents().remove(this);
 	}
 
 	public Location getLocation() {

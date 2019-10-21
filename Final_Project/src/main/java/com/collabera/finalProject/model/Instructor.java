@@ -175,5 +175,15 @@ public class Instructor implements Serializable {
 		this.locations = locations;
 	}
 	
+	public void addLocation(Location location) {
+		locations.add(location);
+		location.getInstructors().add(this);
+	}
+	
+	public void removeLocation(Location location) {
+		locations.remove(location);
+		location.getInstructors().remove(this);
+	}
+	
 	
 }
