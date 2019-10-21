@@ -18,7 +18,6 @@ import com.collabera.finalProject.model.Location;
 import com.collabera.finalProject.service.LocationService;
 
 @RestController
-@RequestMapping("/api")
 public class LocationController {
 	private final LocationService locationService;
 	/* Initialize final field locationService */
