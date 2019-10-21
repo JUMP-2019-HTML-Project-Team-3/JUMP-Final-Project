@@ -99,4 +99,12 @@ public class Tool implements Serializable {
 		this.students = students;
 	}
 	
+	public void addStudent(Student student) {
+		students.add(student);
+	}
+	
+	public void removeStudent(Student student) {
+		students.remove(student);
+	}
+	
 }

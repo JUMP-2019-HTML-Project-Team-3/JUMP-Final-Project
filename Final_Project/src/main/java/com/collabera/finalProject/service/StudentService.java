@@ -22,7 +22,7 @@ public class StudentService {
 		this.studentRepository = studentRepository;
 	}
 	
-	//Add
+	//Add Student
 	public void addStudent(String imagePath, String firstName, String lastName, String description) {
 		
 		Student tempStudent = new Student();
@@ -31,6 +31,19 @@ public class StudentService {
 		tempStudent.setLastName(lastName);
 		tempStudent.setDescription(description);
 	}
+	
+	//Add Instructor to Student
+	public void addInstructor() {
+		
+	}
+	
+	//Add Location to Student
+	
+	//Add Client to Student
+	
+	//Add Resource to Student
+	
+	//Add Tool to Student
 	
 	//Find All
 	public List<Student> findAll()
