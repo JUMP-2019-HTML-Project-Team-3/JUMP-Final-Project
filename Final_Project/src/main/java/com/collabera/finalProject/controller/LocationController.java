@@ -24,9 +24,9 @@ public class LocationController {
 	/* Initialize final field locationService */
 	public LocationController (LocationService locationService) {
 		this.locationService = locationService;
-	}
-
-	@PostMapping("/addlocations")
+	}	
+	
+	@PostMapping(path = "/addlocation")
 	public @ResponseBody String addNewLocation(@RequestBody @Valid Location aLocation)
 	{
 		locationService.addLocation(
