@@ -155,6 +155,16 @@ public class Student implements  Serializable {
 	public void setClients(Set<Client> clients) {
 		this.clients = clients;
 	}
+	
+	public void addClient(Client client) {
+		clients.add(client);
+		client.getStudents().add(this);
+	}
+	
+	public void removeClient(Resource resource) {
+		resources.remove(resource);
+		resource.getStudents().remove(this);
+	}
 
 	public Set<Resource> getResources() {
 		return resources;
@@ -166,10 +176,12 @@ public class Student implements  Serializable {
 	
 	public void addResource(Resource resource) {
 		resources.add(resource);
+		resource.getStudents().add(this);
 	}
 	
 	public void removeResource(Resource resource) {
 		resources.remove(resource);
+		resource.getStudents().remove(this);
 	}
 
 	public Set<Tool> getTools() {
