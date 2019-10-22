@@ -10,7 +10,10 @@ import { UserType } from './userType.model';
 import { HttpClient, HttpResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
-
+/* import { StaticDataSource } from "./static.datasource";
+When Angular needs to create a new instance of the repository,
+it will inspect the class and see that it needs a StaticDataSourceobject
+to invoke the Repository constructor and create a new object. */
 
 const API_ENDPOINT = 'http://localhost:8080/api';
 const addressesUrl = API_ENDPOINT + '/addresses';
@@ -186,7 +189,6 @@ export class Repository {
 
 }
 
-/*
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
