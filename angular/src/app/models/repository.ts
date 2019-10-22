@@ -66,10 +66,13 @@ export class Repository {
           .subscribe(response => this.address = response);
       }
 
-      getAddresses() {
+    getAddresses() {
         this.http.get(addressesUrl)
         .subscribe(response => this.addresses = response);
-        };
+        
+        //this.movieListFetched.next(true);
+
+     };
 
     //Stuff for Client
     subscribeToClientFetch(): Subject<boolean> {
