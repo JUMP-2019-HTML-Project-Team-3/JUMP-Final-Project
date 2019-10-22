@@ -71,7 +71,6 @@ export class Repository {
         return this.addressListFetched;
       }
 
-
     //Get one Address
     getAddress(id: number) {
         this.http.get(addressesUrl + '/' + id)
@@ -121,6 +120,39 @@ export class Repository {
         this.http.get(clientsUrl)
         .subscribe(response => this.client = response);
         };
+
+    //Create New Client
+    createClient(newClient: Client) {
+      this.http.post<Client>(clientsUrl, newClient).subscribe(response => {
+          newClient.id = response.id;
+          this.clients.push(newClient);
+        });
+      }
+
+      /*
+         createAddress(newAddress: Address) {
+      this.http.post<Address>(addressesUrl, newAddress).subscribe(response => {
+          newAddress.id = response.id;
+          this.addresses.push(newAddress);
+        });
+      }
+      */
+
+    //Update Address
+    /*replaceAddress(address1: Address) {
+      const data = {
+      streetNumber: address1.streetNumber, streetName: address1.streetName, suiteNo: address1.suiteNo,
+      township: address1.township, zip: address1.zip, country: address1.country
+    };
+    this.http.put(addressesUrl + '/' + address1.id, data ).subscribe(response => this.getAddresses());
+  }
+
+    //Delete Address
+    deleteAddress(id: number) {
+      this.http.delete(addressesUrl + '/' + id)
+    .subscribe(response => this.getAddresses());
+  }
+  */
 
     //Stuff for Instructor
     subscribeToInstructorFetch(): Subject<boolean> {

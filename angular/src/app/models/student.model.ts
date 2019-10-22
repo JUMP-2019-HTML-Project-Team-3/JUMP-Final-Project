@@ -8,18 +8,18 @@ import { Location } from "./location.model";
 
 export class Student {
     constructor (
-        private id?: number,
-        private imagePath?: string,
-        private firstName?: string,
-        private lastName?: string,
-        private description?: string,
-        private user?: User,
-        private userType?: UserType,
-        private instructors?: Instructor,
-        private clients?: Client,
-        private resources?: Resource,
-        private tool?: Tool,
-        private location?: Location
+        public id?: number,
+        public imagePath?: string,
+        public firstName?: string,
+        public lastName?: string,
+        public description?: string,
+        public user?: User,
+        public userType?: UserType,
+        public instructors?: Instructor,
+        public clients?: Client,
+        public resources?: Resource,
+        public tool?: Tool,
+        public location?: Location
 
 
     ) {}
