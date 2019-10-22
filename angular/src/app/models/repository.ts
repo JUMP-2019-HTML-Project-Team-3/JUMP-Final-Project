@@ -21,6 +21,48 @@ const toolsUrl = API_ENDPOINT + '/tools';
 const usersUrl = API_ENDPOINT + '/users';
 const userTypesUrl = API_ENDPOINT + '/userTypes';
 
+@Injectable()
+export class Repository {
+    address: Address;
+    addresses: Address[];
+    client: Client;
+    clients: Client[];
+    instructor: Instructor;
+    instructors: Instructor[];
+    location: Location;
+    locations: Location[];
+    resource: Resource;
+    resources: Resource[];
+    student: Student;
+    students: Student[];
+    tool: Tool;
+    tools: Tool[];
+    user: User;
+    users: User[];
+    userType: UserType;
+    userTypes; UserType[];
+
+    //Stuff for Address
+
+    //Stuff for Client
+
+    //Stuff for Instructor
+
+    //Stuff for Location
+
+    //Stuff for Resource
+
+    //Stuff for Student
+
+    //Stuff for Tool
+
+    //Stuff for User
+
+    //Stuff for UserType
+
+
+}
+
 /*
 
 import { Observable } from 'rxjs/Observable';
