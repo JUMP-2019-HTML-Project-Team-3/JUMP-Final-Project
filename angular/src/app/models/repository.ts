@@ -57,6 +57,9 @@ export class Repository {
     http: any;
 
     //Stuff for Address
+    subscribeToAddressFetch(): Subject<boolean> {
+        return this.addressListFetched;
+      }
 
     getAddress(id: number) {
         this.http.get(addressesUrl + '/' + id)
@@ -69,6 +72,9 @@ export class Repository {
         };
 
     //Stuff for Client
+    subscribeToClientFetch(): Subject<boolean> {
+        return this.clientListFetched;
+      }
 
     getClient(id: number) {
         this.http.get(clientsUrl + '/' + id)
@@ -81,6 +87,9 @@ export class Repository {
         };
 
     //Stuff for Instructor
+    subscribeToInstructorFetch(): Subject<boolean> {
+        return this.instructorListFetched;
+      }
 
     getInstructor(id: number) {
         this.http.get(instructorsUrl + '/' + id)
@@ -88,6 +97,9 @@ export class Repository {
       }
 
     //Stuff for Location
+    subscribeToLocationFetch(): Subject<boolean> {
+        return this.locationListFetched;
+      }
 
     getLocations(id: number) {
         this.http.get(locationsUrl + '/' + id)
@@ -95,6 +107,9 @@ export class Repository {
       }
 
     //Stuff for Resource
+    subscribeToResourceFetch(): Subject<boolean> {
+        return this.resourceListFetched;
+      }
 
     getResources(id: number) {
         this.http.get(resourcesUrl + '/' + id)
@@ -102,12 +117,24 @@ export class Repository {
       }
 
     //Stuff for Student
+    subscribeToStudentFetch(): Subject<boolean> {
+        return this.studentListFetched;
+      }
 
     //Stuff for Tool
+    subscribeToToolFetch(): Subject<boolean> {
+        return this.toolListFetched;
+      }
 
     //Stuff for User
+    subscribeToUserFetch(): Subject<boolean> {
+        return this.userListFetched;
+      }
 
     //Stuff for UserType
+    subscribeToUserTypeFetch(): Subject<boolean> {
+        return this.userTypeListFetched;
+      }
 
 
 }
