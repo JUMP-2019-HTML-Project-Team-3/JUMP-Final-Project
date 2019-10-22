@@ -58,9 +58,9 @@ export class Repository {
     constructor(private http: HttpClient) {
     this.getAddresses();
     this.getClients();
-    this.getInstructors();
-    this.getLocations();
-    this.getResources();
+    //this.getInstructors();
+    //this.getLocations();
+    //this.getResources();
   }
 
     //Stuff for Address
@@ -68,16 +68,20 @@ export class Repository {
         return this.addressListFetched;
       }
 
+
+    //Get one Address
     getAddress(id: number) {
         this.http.get(addressesUrl + '/' + id)
           .subscribe(response => this.address = response);
       }
 
+    //Get All Addresses
     getAddresses() {
         this.http.get(addressesUrl)
         .subscribe(response => this.address = response);
     }
-        
+      
+    //Create New Address
     createAddress(newAddress: Address) {
       this.http.post<Address>(addressesUrl, newAddress).subscribe(response => {
           newAddress.id = response.id;
@@ -85,14 +89,20 @@ export class Repository {
         });
       }
 
-      /*
-       createMovie(mov: Movie) {
-        this.http.post<Movie>(moviesUrl, mov, { withCredentials: true }).subscribe(response => {
-        mov.movieId = response.movieId;
-        this.movies.push(mov);
-      });
+    //Update Address
+    replaceAddress(address1: Address) {
+      const data = {
+      streetNumber: address1.streetNumber, streetName: address1.streetName, suiteNo: address1.suiteNo,
+      township: address1.township, zip: address1.zip, country: address1.country
+    };
+    this.http.put(addressesUrl + '/' + address1.id, data ).subscribe(response => this.getAddresses());
   }
-      */
+
+    //Delete Address
+    deleteAddress(id: number) {
+      this.http.delete(addressesUrl + '/' + id)
+    .subscribe(response => this.getAddresses());
+  }
 
     //Stuff for Client
     subscribeToClientFetch(): Subject<boolean> {
