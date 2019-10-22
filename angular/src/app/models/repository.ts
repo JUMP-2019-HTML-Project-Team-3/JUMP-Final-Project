@@ -54,7 +54,14 @@ export class Repository {
     users: User[];
     userType: UserType;
     userTypes: UserType[];
-    http: any;
+
+    constructor(private http: HttpClient) {
+    this.getAddresses();
+    this.getClients();
+    this.getInstructors();
+    this.getLocations();
+    this.getResources();
+  }
 
     //Stuff for Address
     subscribeToAddressFetch(): Subject<boolean> {
@@ -68,11 +75,24 @@ export class Repository {
 
     getAddresses() {
         this.http.get(addressesUrl)
-        .subscribe(response => this.addresses = response);
+        .subscribe(response => this.address = response);
+    }
         
-        //this.movieListFetched.next(true);
+    createAddress(newAddress: Address) {
+      this.http.post<Address>(addressesUrl, newAddress).subscribe(response => {
+          newAddress.id = response.id;
+          this.addresses.push(newAddress);
+        });
+      }
 
-     };
+      /*
+       createMovie(mov: Movie) {
+        this.http.post<Movie>(moviesUrl, mov, { withCredentials: true }).subscribe(response => {
+        mov.movieId = response.movieId;
+        this.movies.push(mov);
+      });
+  }
+      */
 
     //Stuff for Client
     subscribeToClientFetch(): Subject<boolean> {
@@ -86,7 +106,7 @@ export class Repository {
 
     getClients() {
         this.http.get(clientsUrl)
-        .subscribe(response => this.clients = response);
+        .subscribe(response => this.client = response);
         };
 
     //Stuff for Instructor

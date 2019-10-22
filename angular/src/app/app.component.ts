@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Repository } from './models/repository';
-import { address}  from './models/address.model';
-import { client}  from './models/client.model';
-import { instructor}  from './models/instructor.model';
-import { location}  from './models/location.model';
-import { resource}  from './models/resource.model';
-import { student}  from './models/student.model';
-import { tool}  from './models/tool.model';
-import { user}  from './models/user.model';
-import { userType}  from './models/userType.model';
+import { Address}  from './models/address.model';
+import { Client}  from './models/client.model';
+import { Instructor}  from './models/instructor.model';
+import { Location}  from './models/location.model';
+import { Resource}  from './models/resource.model';
+import { Student}  from './models/student.model';
+import { Tool}  from './models/tool.model';
+import { User}  from './models/user.model';
+import { UserType}  from './models/userType.model';
 
 @Component({
   selector: 'app-root',
@@ -17,33 +17,33 @@ import { userType}  from './models/userType.model';
 })
 export class AppComponent {
   title = 'Collabera Web Development';
-  constructor(private repo: repository) {}//.ts file is currently empty
+  constructor(private repo: Repository) {}//.ts file is currently empty
 
   get address(): Address {
-    this.repo.address; }
+    return this.repo.address; }
 
   get client(): Client {
-    this.repo.address; }
+    return this.repo.client; }
 
   get instructor(): Instructor {
-    this.repo.address; }
+    return this.repo.instructor; }
 
   get location(): Location {
-    this.repo.address; }
+    return this.repo.location; }
 
   get resource(): Resource {
-    this.repo.address; }
+   return this.repo.resource; }
 
   get student(): Student {
-    this.repo.address; }
+    return this.repo.student; }
 
   get tool(): Tool {
-    this.repo.address; }
+   return this.repo.tool; }
 
   get user(): User {
-    this.repo.address; }
+    return this.repo.user; }
 
   get usertype(): UserType {
-    this.repo.address; }
+    return this.repo.userType; }
 // Have yet to do create, replace, update, or delete
 }
