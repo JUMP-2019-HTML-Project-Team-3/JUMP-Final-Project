@@ -110,12 +110,14 @@ export class Repository {
     subscribeToClientFetch(): Subject<boolean> {
         return this.clientListFetched;
       }
-
+    
+    //Get One Client
     getClient(id: number) {
         this.http.get(clientsUrl + '/' + id)
           .subscribe(response => this.client = response);
       }
-
+    
+    //Get All Clients
     getClients() {
         this.http.get(clientsUrl)
         .subscribe(response => this.client = response);
@@ -129,36 +131,29 @@ export class Repository {
         });
       }
 
-      /*
-         createAddress(newAddress: Address) {
-      this.http.post<Address>(addressesUrl, newAddress).subscribe(response => {
-          newAddress.id = response.id;
-          this.addresses.push(newAddress);
-        });
-      }
-      */
-
-    //Update Address
-    /*replaceAddress(address1: Address) {
+    //Update Client
+    replaceClient(client1: Client) {
       const data = {
-      streetNumber: address1.streetNumber, streetName: address1.streetName, suiteNo: address1.suiteNo,
-      township: address1.township, zip: address1.zip, country: address1.country
+      imagePath: client1.imagePath, name: client1.name, phone: client1.phone,
+      description: client1.description, address: client1.address
     };
-    this.http.put(addressesUrl + '/' + address1.id, data ).subscribe(response => this.getAddresses());
+    this.http.put(addressesUrl + '/' + client1.id, data ).subscribe(response => this.getClients());
   }
 
-    //Delete Address
-    deleteAddress(id: number) {
-      this.http.delete(addressesUrl + '/' + id)
-    .subscribe(response => this.getAddresses());
+    //Delete Client
+    deleteClient(id: number) {
+      this.http.delete(clientsUrl + '/' + id)
+    .subscribe(response => this.getClients());
   }
-  */
+  
 
     //Stuff for Instructor
     subscribeToInstructorFetch(): Subject<boolean> {
         return this.instructorListFetched;
       }
 
+
+    //Get One Instructor
     getInstructor(id: number) {
         this.http.get(instructorsUrl + '/' + id)
           .subscribe(response => this.instructor = response);
@@ -169,6 +164,7 @@ export class Repository {
         return this.locationListFetched;
       }
 
+    //Get One Location
     getLocations(id: number) {
         this.http.get(locationsUrl + '/' + id)
           .subscribe(response => this.location = response);
@@ -178,7 +174,8 @@ export class Repository {
     subscribeToResourceFetch(): Subject<boolean> {
         return this.resourceListFetched;
       }
-
+    
+    //Get One Resource
     getResources(id: number) {
         this.http.get(resourcesUrl + '/' + id)
           .subscribe(response => this.resource = response);
