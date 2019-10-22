@@ -40,17 +40,43 @@ export class Repository {
     user: User;
     users: User[];
     userType: UserType;
-    userTypes; UserType[];
+    userTypes: UserType[];
+    http: any;
 
     //Stuff for Address
 
+    getAddress(id: number) {
+        this.http.get(addressesUrl + '/' + id)
+          .subscribe(response => this.address = response);
+      }
+
     //Stuff for Client
+
+    getClient(id: number) {
+        this.http.get(clientsUrl + '/' + id)
+          .subscribe(response => this.client = response);
+      }
 
     //Stuff for Instructor
 
+    getInstructor(id: number) {
+        this.http.get(instructorsUrl + '/' + id)
+          .subscribe(response => this.instructor = response);
+      }
+
     //Stuff for Location
 
+    getLocations(id: number) {
+        this.http.get(locationsUrl + '/' + id)
+          .subscribe(response => this.location = response);
+      }
+
     //Stuff for Resource
+
+    getResources(id: number) {
+        this.http.get(resourcesUrl + '/' + id)
+          .subscribe(response => this.resource = response);
+      }
 
     //Stuff for Student
 
