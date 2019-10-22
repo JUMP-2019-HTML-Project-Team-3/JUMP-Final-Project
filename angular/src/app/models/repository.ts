@@ -9,6 +9,8 @@ import { User } from './user.model';
 import { UserType } from './userType.model';
 import { HttpClient, HttpResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
+
 
 const API_ENDPOINT = 'http://localhost:8080/api';
 const addressesUrl = API_ENDPOINT + '/addresses';
@@ -23,6 +25,17 @@ const userTypesUrl = API_ENDPOINT + '/userTypes';
 
 @Injectable()
 export class Repository {
+
+    addressListFetched: Subject<boolean> = new Subject();
+    clientListFetched: Subject<boolean> = new Subject();
+    instructorListFetched: Subject<boolean> = new Subject();
+    locationListFetched: Subject<boolean> = new Subject();
+    resourceListFetched: Subject<boolean> = new Subject();
+    studentListFetched: Subject<boolean> = new Subject();
+    toolListFetched: Subject<boolean> = new Subject();
+    userListFetched: Subject<boolean> = new Subject();
+    userTypeListFetched: Subject<boolean> = new Subject();
+
     address: Address;
     addresses: Address[];
     client: Client;
@@ -50,12 +63,22 @@ export class Repository {
           .subscribe(response => this.address = response);
       }
 
+      getAddresses() {
+        this.http.get(addressesUrl)
+        .subscribe(response => this.addresses = response);
+        };
+
     //Stuff for Client
 
     getClient(id: number) {
         this.http.get(clientsUrl + '/' + id)
           .subscribe(response => this.client = response);
       }
+
+    getClients() {
+        this.http.get(clientsUrl)
+        .subscribe(response => this.clients = response);
+        };
 
     //Stuff for Instructor
 
