@@ -120,6 +120,20 @@ export class Repository {
     subscribeToStudentFetch(): Subject<boolean> {
         return this.studentListFetched;
       }
+    getStudent(id: number) {
+        this.http.get(studentsUrl + '/' + id)
+        .subscribe(response => this.student = response);
+      }
+    getStudents() {
+        this.http.get(studentsUrl)
+        .subscribe(response => this.students = response);
+      }
+    createStudent(id: number) {
+      this.http.post(studentsUrl, id, { withCredentials: true }).subscribe(response => {
+        id = response.student;
+        this.students.push(id);
+      });
+    }
 
     //Stuff for Tool
     subscribeToToolFetch(): Subject<boolean> {
