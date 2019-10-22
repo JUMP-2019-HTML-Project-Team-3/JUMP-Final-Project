@@ -6,6 +6,6 @@ export class User {
         private username?: string,
         private password?: string,
         private email?: string,
-        private userType?: UserType;
+        private userType?: UserType,
     ) {}
 }
