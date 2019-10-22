@@ -162,11 +162,11 @@ export class Repository {
       }
     getStudents() {
         this.http.get(studentsUrl)
-        .subscribe(response => this.students = response);
+        .subscribe(response => this.student = response);
       }
     createStudent(id: number) {
       this.http.post(studentsUrl, id, { withCredentials: true }).subscribe(response => {
-        id = response.student;
+        id = response.id;
         this.students.push(id);
       });
     }
