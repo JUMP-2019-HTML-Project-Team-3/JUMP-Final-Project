@@ -2,10 +2,10 @@ import { UserType } from "./userType.model";
 
 export class User {
     constructor (
-        private id?: number,
-        private username?: string,
-        private password?: string,
-        private email?: string,
-        private userType?: UserType,
+        public id?: number,
+        public username?: string,
+        public password?: string,
+        public email?: string,
+        public userType?: UserType,
     ) {}
 }

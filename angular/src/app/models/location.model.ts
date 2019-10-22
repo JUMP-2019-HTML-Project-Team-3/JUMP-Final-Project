@@ -4,13 +4,13 @@ import { Instructor } from "./instructor.model"
 
 export class Location {
     constructor (
-        private id?: number,
-        private imagePath?: string,
-        private name?: string,
-        private phoneNo?: string,
-        private address?: Address,
-        private students?: Student,
-        private instructors?: Instructor
+        public id?: number,
+        public imagePath?: string,
+        public name?: string,
+        public phoneNo?: string,
+        public address?: Address,
+        public students?: Student,
+        public instructors?: Instructor
     
 
     ) {}
