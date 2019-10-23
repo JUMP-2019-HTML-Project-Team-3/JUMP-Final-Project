@@ -40,12 +40,20 @@ public class Instructor implements Serializable {
 	private Set<Student> students = new HashSet<>();
     
     //FK to Resource
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-	private Set<Resource> resources;
+	@ManyToMany
+	@JoinTable(
+		name = "instructor_resource",
+		joinColumns = { @JoinColumn(name = "fk_instructor")},
+		inverseJoinColumns = { @JoinColumn(name = "fk_resource") } )
+	private Set<Resource> resources = new HashSet<>();
     
     //FK to Tool
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-	private Set<Tool> tools;
+	@ManyToMany
+	@JoinTable(
+		name = "instructor_tool",
+		joinColumns = { @JoinColumn(name = "fk_instructor")},
+		inverseJoinColumns = { @JoinColumn(name = "fk_tool") } )
+	private Set<Tool> tools = new HashSet<>();
     
     //FK to Location
 	@ManyToMany

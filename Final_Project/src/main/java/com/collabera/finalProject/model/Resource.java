@@ -30,8 +30,13 @@ public class Resource implements Serializable {
 	@Column(name = "description", nullable = true, length = 250)
 	private String description;
 	
+	//Fk to Students
 	@ManyToMany(mappedBy = "resources")
 	private Set<Student> students = new HashSet<>();
+	
+	//FK to Instructors
+	@ManyToMany(mappedBy = "resources")
+	private Set<Student> instructors = new HashSet<>();
 	
 	//Constructor with Fields
 	public Resource(Long id, String name, String link, String description) {

@@ -1,22 +1,11 @@
+import { RoutingConfig } from './app.routing';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
-
-// import { AppRoutingModule } from './app-routing.module';
-// import { InstructorModule } from './View/InstructorLoggedIn/instructor.module';
+import { InstructorModule } from './View/InstructorLoggedIn/instructor.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {UserLoginComponent} from './View/userLogin.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {RouterModule, Routes} from '@angular/router';
-import {Student} from './models/student.model';
-import { InstructorHomeComponent } from './View/InstructorLoggedIn/instructorHome.component';
-
-const appRoutes: Routes = [
-  { path: '', redirectTo: '/instructor', pathMatch: 'full' },
-  { path: 'instructor', component: InstructorHomeComponent},
-  { path: 'student', component: Student },
-  { path: 'login', component: UserLoginComponent}
-];
 
 @NgModule({
   schemas: [
@@ -26,13 +15,12 @@ const appRoutes: Routes = [
     AppComponent,
     NavbarComponent,
     UserLoginComponent,
-    InstructorHomeComponent
   ],
   imports: [
+    RoutingConfig,
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
-    // InstructorModule
+    InstructorModule
   ],
   providers: [
 
