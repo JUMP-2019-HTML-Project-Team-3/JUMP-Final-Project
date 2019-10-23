@@ -4,9 +4,8 @@ import { InstructorHomeComponent } from './View/InstructorLoggedIn/instructorHom
 import {Student} from './models/student.model';
 
 const routes: Routes = [
-  {
-    path: 'student', component: Student
-    path: '', component: InstructorHomeComponent
-  }];
+  { path: 'student', component: Student },
+  { path: 'login', component: UserLoginComponent}
+  ];
 
 export const RoutingConfig = RouterModule.forRoot(routes);

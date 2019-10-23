@@ -17,7 +17,13 @@ import { UserType}  from './models/userType.model';
 })
 export class AppComponent {
   title = 'Collabera Web Development';
-  constructor(private repo: Repository) {}//.ts file is currently empty
+  loadedFeature = '';
+
+  onNavigate(feature: string) {
+    this.loadedFeature = feature;
+  }
+
+  constructor(private repo: Repository) {}
 
   get address(): Address {
     return this.repo.address; }
