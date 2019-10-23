@@ -1,10 +1,10 @@
 export class Resource {
     constructor (
 
-        private id?: number,
-        private name?: string,
-        private link?: string,
-        private description?: string
+        public id?: number,
+        public name?: string,
+        public link?: string,
+        public description?: string
 
     ) {}
 }

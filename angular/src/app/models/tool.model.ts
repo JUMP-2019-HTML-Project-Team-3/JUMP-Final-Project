@@ -1,8 +1,8 @@
 export class Tool {
     constructor (
-        private id?: number,
-        private name?: string,
-        private linkDownLoad?: string,
-        private linkDocumentation?: string
+        public id?: number,
+        public name?: string,
+        public linkDownLoad?: string,
+        public linkDocumentation?: string
     ) {}
 }
