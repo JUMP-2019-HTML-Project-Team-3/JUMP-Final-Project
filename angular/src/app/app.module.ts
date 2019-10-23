@@ -1,12 +1,12 @@
+import { RoutingConfig } from './app.routing';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
-
-// import { AppRoutingModule } from './app-routing.module';
-// import { InstructorModule } from './View/InstructorLoggedIn/instructor.module';
+import { InstructorModule } from './View/InstructorLoggedIn/instructor.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {UserLoginComponent} from './View/userLogin.component';
 import {ReactiveFormsModule} from '@angular/forms';
+
 import {RouterModule, Routes} from '@angular/router';
 import { LogoutComponent } from './logout/logout.component';
 import { CheckComponent } from './check/check.component';
@@ -37,8 +37,10 @@ const appRoutes: Routes = [
     InstructorHomeComponent
   ],
   imports: [
+    RoutingConfig,
     BrowserModule,
     ReactiveFormsModule,
+    InstructorModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],

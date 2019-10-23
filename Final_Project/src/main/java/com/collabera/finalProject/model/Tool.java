@@ -33,8 +33,13 @@ public class Tool implements Serializable {
 	@Column(name = "description", nullable = true, length = 250)
 	private String description;
 	
+	//FK to Students
 	@ManyToMany(mappedBy = "tools")
 	private Set<Student> students = new HashSet<>();
+	
+	//Fk to Instructors
+	@ManyToMany(mappedBy = "tools")
+	private Set<Student> instructors = new HashSet<>();
 	
 	//Constructor with Fields
 	public Tool(Long id, String name, String linkDownLoad, String linkDocumentation) {

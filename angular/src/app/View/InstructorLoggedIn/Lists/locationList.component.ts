@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '../../../models/location.model';
 
 @Component({
@@ -7,5 +7,5 @@ import { Location } from '../../../models/location.model';
 })
 
 export class LocationListComponent {
-  constructor(public location: Location) { }
+  constructor() { }
 }

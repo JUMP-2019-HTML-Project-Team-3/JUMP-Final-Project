@@ -5,10 +5,6 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './instructorHome.component.html'
 })
 
-export class InstructorHomeComponent implements OnInit {
-  ngOnInit(): void {
-    // tslint:disable-next-line: quotemark
-    throw new Error("Method not implemented.");
-  }
+export class InstructorHomeComponent {
 
 }
