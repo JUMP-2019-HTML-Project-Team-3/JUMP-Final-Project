@@ -23,12 +23,11 @@ public class AddressService {
 	}
 
 	//Add
-	public void addAddress(Long id, String streetNumber, String streetName, String suiteNo, 
+	public void addAddress(String streetNumber, String streetName, String suiteNo, 
 			String township, String state, String zip, String country) {
 
 		Address template = new Address();
 
-		template.setId(id);
 		template.setStreetNumber(streetNumber);
 		template.setStreetName(streetName);
 		template.setSuiteNo(suiteNo);
