@@ -7,27 +7,33 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {UserLoginComponent} from './View/userLogin.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-import {Student} from './models/student.model';
+import { LogoutComponent } from './logout/logout.component';
+import { CheckComponent } from './check/check.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {User} from './models/user.model';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'student', component: Student },
-  { path: 'login', component: UserLoginComponent}
+  { path: '', redirectTo: '/check', pathMatch: 'full' },
+  { path: 'login', component: UserLoginComponent },
+  { path: 'logout', component: LogoutComponent },
+  { path: 'check', component: CheckComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    LogoutComponent,
+    CheckComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [
-
   ],
   bootstrap: [
     AppComponent

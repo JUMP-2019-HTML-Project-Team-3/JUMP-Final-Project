@@ -7,17 +7,68 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.collabera.finalProject.model.User;
+import com.collabera.finalProject.model.UserType;
 import com.collabera.finalProject.repository.UserRepository;
+import com.collabera.finalProject.repository.UserTypeRepository;
 
 @Service
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private UserTypeRepository userTypeRepository;
+	
 	//Constructor
 	public UserService(UserRepository userRepository)
 	{
 		this.userRepository = userRepository;
+	}
+	
+	public boolean checkUserExist(String username)
+	{
+		if(userRepository.findByUsername(username).isEmpty())
+			return false;
+		
+		return true;
+	}
+	
+	public boolean checkValidLogin(String username, String password)
+	{
+		List<User> users = userRepository.findByUsername(username);
+		
+		if(users.isEmpty())
+			return false;
+		
+		if(users.get(0).getUsername().equals(username) && users.get(0).getPassword().equals(password))
+			return true;
+		
+		return false;
+	}
+	
+	public boolean createUser(String username, String password, String email, String userType)
+	{
+		List<User> users = userRepository.findByUsername(username);
+		
+		if(users.isEmpty())
+		{
+			UserType useType = new UserType();
+			useType.setName(userType);
+			
+			userTypeRepository.save(useType);
+			
+			User tempUser = new User();
+			
+			tempUser.setUsername(username);
+			tempUser.setPassword(password);
+			tempUser.setEmail(email);
+			tempUser.setUserType(useType);
+			
+			userRepository.save(tempUser);
+			return true;
+		}
+		
+		return false;
 	}
 	
 	//Add
