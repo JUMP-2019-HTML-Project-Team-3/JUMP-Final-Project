@@ -25,7 +25,21 @@
             class="form-control">
             <span
               *ngIf="!signInForm.get('userData.username').valid && signInForm.get('userData.username').touched"
-              class="help-block"></span>
+              class="help-block">
+              <span *ngIf="signInForm.get('userData.username').errors['required']">This field is required!</span>
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password"
+            id="password"
+            formControlName="password"
+            class="form-control">
+            <span
+              *ngIf="!signInForm.get('userData.password').valid && signInForm.get('userData.password').touched"
+              class="help-block">
+              <span *ngIf="signInForm.get('userData.password').errors['required']">This field is required!</span>
+            </span>
           </div>
         </div>
       </form>
