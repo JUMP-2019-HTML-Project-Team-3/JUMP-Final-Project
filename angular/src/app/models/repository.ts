@@ -77,7 +77,7 @@ export class Repository {
         this.http.get(addressesUrl)
         .subscribe(response => this.address = response);
     }
-        
+
     createAddress(newAddress: Address) {
       this.http.post<Address>(addressesUrl, newAddress).subscribe(response => {
           newAddress.id = response.id;
@@ -265,7 +265,7 @@ export class Repository {
     return this.http.get(sessionsUrl + '/' + dataType, { withCredentials: true });
   }
 
-  /** admin screen functions 
+  /** admin screen functions
 
   getStudios() {
     this.http.get<Studio[]>(studiosUrl)
