@@ -65,9 +65,9 @@ export class Repository {
     this.getLocations();
     this.getResources();
     this.getStudents();
-    //this.getTools();
-    //this.getUsers();
-    //this.getUserTypes();
+    this.getTools();
+    this.getUsers();
+    this.getUserTypes();
   }
 
     //Stuff for Address
@@ -267,47 +267,157 @@ export class Repository {
     this.http.put(resourcesUrl + '/' + resource1.id, data ).subscribe(response => this.getResources());
   }
 
-    //Delete Location
+    //Delete Resource
     deleteResource(id: number) {
       this.http.delete(resourcesUrl + '/' + id)
     .subscribe(response => this.getResources());
   }
 
-    //Stuff for Student
+
+
+
+    // Stuff for Student
     subscribeToStudentFetch(): Subject<boolean> {
         return this.studentListFetched;
       }
+    // Get Student
     getStudent(id: number) {
         this.http.get(studentsUrl + '/' + id)
         .subscribe(response => this.student = response);
       }
+    // Get all Students
     getStudents() {
         this.http.get(studentsUrl)
         .subscribe(response => this.student = response);
       }
-    createStudent(id: number) {
-      this.http.post(studentsUrl, id, { withCredentials: true }).subscribe(response => {
-        id = response.id;
-        this.students.push(id);
-      });
+    // Create Student
+    createStudent(newStudent: Student) {
+      this.http.post<Student>(studentsUrl, newStudent).subscribe(response => {
+        newStudent.id = response.id;
+        this.students.push(newStudent);});
+      }
+    // Update Student
+    replaceStudent(studentUpd: Student) {
+      const data = {
+      imagePath: studentUpd.imagePath, firstName: studentUpd.firstName,
+      lastName: studentUpd.lastName, description: studentUpd.description,
+      user: studentUpd.user, userType: studentUpd.userType, instructors: studentUpd.instructors,
+      clients: studentUpd.clients, resources: studentUpd.resources,
+      tool: studentUpd.tool, location: studentUpd.location
+        };
+    this.http.put(studentsUrl + '/' + studentUpd.id, data ).subscribe(response => this.getStudents());
+    }
+    // Delete Student
+    deleteStudent(id: number) {
+        this.http.delete(studentsUrl + '/' + id)
+        .subscribe(response => this.getStudents());
     }
 
-    //Stuff for Tool
+
+
+
+    // Stuff for Tool
     subscribeToToolFetch(): Subject<boolean> {
         return this.toolListFetched;
       }
+    // Get Tool
+    getTool(id: number) {
+      this.http.get(toolsUrl + '/' + id)
+      .subscribe(response => this.tool = response);
+    }
+    // Get all Tools
+    getTools() {
+      this.http.get(toolsUrl)
+      .subscribe(response => this.tool = response);
+    }
+    // Create Tool
+    createTool(newTool: Tool) {
+    this.http.post<Tool>(toolsUrl, newTool).subscribe(response => {
+      newTool.id = response.id;
+      this.tools.push(newTool);});
+    }
+  // Update Tool
+    replaceTool(toolUpd: Tool) {
+    const data = {
+    name: toolUpd.name, linkDownLoad: toolUpd.linkDownLoad,
+    linkDocumentation: toolUpd.linkDocumentation
+      };
+  this.http.put(toolsUrl + '/' + toolUpd.id, data ).subscribe(response => this.getTools());
+    }
+  // Delete Tool
+    deleteTool(id: number) {
+      this.http.delete(toolsUrl + '/' + id)
+      .subscribe(response => this.getTools());
+    }
+
+
+
 
     //Stuff for User
     subscribeToUserFetch(): Subject<boolean> {
         return this.userListFetched;
       }
+  // Get User
+  getUser(id: number) {
+    this.http.get(usersUrl + '/' + id)
+    .subscribe(response => this.user = response);
+  }
+  // Get all Users
+  getUsers() {
+    this.http.get(usersUrl)
+    .subscribe(response => this.user = response);
+  }
+  // Create User
+  createUser(newUser: User) {
+  this.http.post<User>(usersUrl, newUser).subscribe(response => {
+    newUser.id = response.id;
+    this.users.push(newUser);});
+  }
+// Update User
+  replaceUser(userUpd: User) {
+  const data = {
+  username: userUpd.username, password: userUpd.password, email: userUpd.email, userType: userUpd.userType
+    };
+this.http.put(usersUrl + '/' + userUpd.id, data ).subscribe(response => this.getUsers());
+  }
+// Delete User
+  deleteUser(id: number) {
+    this.http.delete(usersUrl + '/' + id)
+    .subscribe(response => this.getUsers());
+  }
 
     //Stuff for UserType
     subscribeToUserTypeFetch(): Subject<boolean> {
         return this.userTypeListFetched;
       }
-
-
+  // Get UserType
+  getUserType(id: number) {
+    this.http.get(userTypesUrl + '/' + id)
+    .subscribe(response => this.userType = response);
+  }
+  // Get all UserTypes
+  getUserTypes() {
+    this.http.get(userTypesUrl)
+    .subscribe(response => this.userType = response);
+  }
+  // Create UserType
+  createUserType(newUserType: UserType) {
+  this.http.post<UserType>(userTypesUrl, newUserType).subscribe(response => {
+    newUserType.id = response.id;
+    this.userTypes.push(newUserType);});
+  }
+// Update UserType
+  replaceUserType(userTypeUpd: UserType) {
+  const data = {
+  name: userTypeUpd.name
+    };
+this.http.put(userTypesUrl + '/' + userTypeUpd.id, data ).subscribe(response => this.getUserTypes());
+  }
+// Delete UserType
+  deleteUserType(id: number) {
+    this.http.delete(userTypesUrl + '/' + id)
+    .subscribe(response => this.getUserTypes());
+  }
 }
 
 /*
