@@ -1,8 +1,10 @@
+import { NavbarComponent } from './../../navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InstructorHomeComponent } from './instructorHome.component';
+import { LocationListComponent } from './Lists/locationList.component';
 
 @NgModule({
     imports: [
@@ -11,7 +13,9 @@ import { InstructorHomeComponent } from './instructorHome.component';
       FormsModule
     ],
     declarations: [
-      InstructorHomeComponent
+      InstructorHomeComponent,
+      LocationListComponent,
+      NavbarComponent
     ],
     providers: [
 
