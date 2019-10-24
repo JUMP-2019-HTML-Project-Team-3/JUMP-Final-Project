@@ -19,6 +19,7 @@ import com.collabera.finalProject.model.User;
 import com.collabera.finalProject.service.UserService;
 
 @RestController
+@RequestMapping("/cognixia")
 public class UserController {
 	private final UserService userService;
 	/* Initialize final field userService */
