@@ -57,7 +57,9 @@ public class UserController {
 		userService.addUser(
 				aUser.getUsername(),
 				aUser.getPassword(),
-				aUser.getEmail()
+				aUser.getEmail(),
+				aUser.getUserType(),
+				aUser.getUserType().getId()
 				);
 		return "Saved";
   	}
