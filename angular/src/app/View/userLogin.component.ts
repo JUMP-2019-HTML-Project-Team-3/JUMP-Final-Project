@@ -38,8 +38,12 @@ export class UserLoginComponent implements OnInit {
       new UserType(0, 'temp'));
 
     const aResponse = this.http.post('http://localhost:8080/login', this.repo.user)
-      .subscribe((data) => {
-        console.log(data);
+      .subscribe((data: User) => {
+        if (data.id == null) {
+          console.log('Error');
+        } else {
+          console.log(data.username);
+        }
       });
 
     // if (stringify(aResponse) === 's') {
