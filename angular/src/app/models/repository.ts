@@ -59,15 +59,15 @@ export class Repository {
     userTypes: UserType[];
 
     constructor(private http: HttpClient) {
-    this.getAddresses();
-    this.getClients();
-    this.getInstructors();
-    this.getLocations();
-    this.getResources();
-    this.getStudents();
-    this.getTools();
-    this.getUsers();
-    this.getUserTypes();
+    // this.getAddresses();
+    // this.getClients();
+    // this.getInstructors();
+    // this.getLocations();
+    // this.getResources();
+    // this.getStudents();
+    // this.getTools();
+    // this.getUsers();
+    // this.getUserTypes();
   }
 
     // Stuff for Address

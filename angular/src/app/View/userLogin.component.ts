@@ -38,16 +38,5 @@ export class UserLoginComponent implements OnInit {
       new UserType(0, 'temp'));
 
     this.loginservice.authenticate();
-
-    // const aResponse = this.http.post('http://localhost:8080/login', this.repo.user)
-    //   .subscribe((data: User) => {
-    //     if (data.id == null) {
-    //       console.log('Error');
-    //     } else {
-    //       console.log(data.username);
-    //     }
-    //   });
-
-    console.log('DOne');
   }
 }

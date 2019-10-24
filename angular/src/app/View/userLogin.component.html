@@ -30,7 +30,7 @@
           </div>
         </div>
         <span
-          *ngIf="!signInForm.valid && signInForm.touched"
+          *ngIf="signInForm.touched && !loginservice.isUserLoggedIn()"
           class="help-block">Please enter valid username and password!</span>
         <hr>
         <button class="btn btn-primary" type="submit">Submit</button>
