@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,31 @@ public class UserController {
 	/* Initialize final field userService */
 	public UserController (UserService userService) {
 		this.userService = userService;
+	}
+	
+	@PostMapping("/login")
+	public @ResponseBody String loginUser(@RequestBody String jsonSTR)
+	{
+		JSONObject jsonObject = new JSONObject(jsonSTR);
+		
+		if(userService.checkUserExist(jsonObject.getString("user")))
+		{
+			if(userService.checkValidLogin(jsonObject.getString("user"), jsonObject.getString("pass")))
+			{
+				return "s";
+			}
+		}
+		
+		return "f";
+	}
+	
+	@GetMapping("/check/{user}")
+	public @ResponseBody String registerUser(@PathVariable String user)
+	{
+		if(userService.checkUserExist(user))
+			return "e";
+		else
+			return "n";
 	}
 
 	@PostMapping("/addusers")

@@ -1,11 +1,11 @@
-import { UserType } from "./userType.model";
+import { UserType } from './userType.model';
 
 export class User {
-    constructor (
+    constructor(
         public id?: number,
         public username?: string,
         public password?: string,
         public email?: string,
-        public userType?: UserType,
+        public userType?: UserType
     ) {}
 }
