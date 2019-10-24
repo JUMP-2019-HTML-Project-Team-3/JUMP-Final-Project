@@ -12,7 +12,7 @@ public class Location implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false, nullable = false) // establishes column value id as final and never null
+	@Column(name = "location_id", updatable = false, nullable = false) // establishes column value id as final and never null
 	private Long id;
 	
 	@Column(name = "imagePath", nullable = false, length = 100)
@@ -25,7 +25,7 @@ public class Location implements Serializable {
 	private String phoneNo; // phone number has default value as annotated
 
 	@OneToOne
-	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	@JoinColumn(name = "address_id", referencedColumnName = "address_id")
 	private Address address;
 
 	@OneToMany(mappedBy = "location")

@@ -12,7 +12,7 @@ public class Client implements  Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false, nullable = false)
+	@Column(name = "client_id", updatable = false, nullable = false)
 	private Long id;
 	
 	@Column(name = "imagePath", nullable = true, length = 100)
@@ -28,7 +28,7 @@ public class Client implements  Serializable {
 	private String description;
 	
 	@OneToOne
-	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	@JoinColumn(name = "address_id", referencedColumnName = "address_id")
 	private Address address;
 	
 	@ManyToMany(mappedBy = "clients")
