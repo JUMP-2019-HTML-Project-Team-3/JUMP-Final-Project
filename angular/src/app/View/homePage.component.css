@@ -1,0 +1,21 @@
+.inline-image-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inline-center {
+    text-align: center; 
+}
+
+.set-down {
+    padding-top: 60px
+}
+
+.heading-color {
+    color: blue
+}
+
+.heading2-color {
+    color: lightseagreen
+}

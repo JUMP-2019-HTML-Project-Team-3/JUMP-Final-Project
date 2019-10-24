@@ -37,22 +37,16 @@ export class UserLoginComponent implements OnInit {
       'N/A',
       new UserType(0, 'temp'));
 
-    const aResponse = this.http.post('http://localhost:8080/login', this.repo.user)
-      .subscribe((data: User) => {
-        if (data.id == null) {
-          console.log('Error');
-        } else {
-          console.log(data.username);
-        }
-      });
+    this.loginservice.authenticate();
 
-    // if (stringify(aResponse) === 's') {
-    //   this.router.navigate(['./check']);
-    //   this.invalidLogin = false;
-    // } else {
-    //   this.invalidLogin = true;
-    //   console.log(stringify(aResponse));
-    // }
+    // const aResponse = this.http.post('http://localhost:8080/login', this.repo.user)
+    //   .subscribe((data: User) => {
+    //     if (data.id == null) {
+    //       console.log('Error');
+    //     } else {
+    //       console.log(data.username);
+    //     }
+    //   });
 
     console.log('DOne');
   }
