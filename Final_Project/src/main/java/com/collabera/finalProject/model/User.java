@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 
@@ -29,7 +30,7 @@ public class User implements Serializable {
 	@Column(name = "email", updatable = false, nullable = false, length = 25)
 	private String email;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "userType_id", referencedColumnName = "id")
 	private UserType userType;
 	
