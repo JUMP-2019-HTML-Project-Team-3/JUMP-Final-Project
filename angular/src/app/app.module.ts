@@ -14,6 +14,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {User} from './models/user.model';
 import {Student} from './models/student.model';
 import { InstructorHomeComponent } from './View/InstructorLoggedIn/instructorHome.component';
+import {Repository} from './models/repository';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/instructor', pathMatch: 'full' },
@@ -33,8 +34,7 @@ const appRoutes: Routes = [
     NavbarComponent,
     UserLoginComponent,
     LogoutComponent,
-    CheckComponent,
-    InstructorHomeComponent
+    CheckComponent
   ],
   imports: [
     RoutingConfig,
@@ -45,6 +45,7 @@ const appRoutes: Routes = [
     HttpClientModule
   ],
   providers: [
+    Repository
   ],
   bootstrap: [
     AppComponent
