@@ -7,13 +7,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { RoutingConfig } from './app.routing';
 // Custom Module Imports
 import { InstructorModule } from './View/InstructorLoggedIn/instructor.module';
+import { CardCarouselModule } from './View/cards/cardCarousel.module';
 // Component Imports
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import {UserLoginComponent} from './View/userLogin.component';
+import { UserLoginComponent } from './View/userLogin.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CheckComponent } from './check/check.component';
-import {Repository} from './models/repository';
+import { Repository } from './models/repository';
 
 @NgModule({
   schemas: [
@@ -31,7 +32,8 @@ import {Repository} from './models/repository';
     BrowserModule,
     ReactiveFormsModule,
     InstructorModule,
-    HttpClientModule
+    HttpClientModule,
+    CardCarouselModule
   ],
   providers: [
     Repository
