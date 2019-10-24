@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserLoginComponent } from './View/userLogin.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CheckComponent } from './check/check.component';
+import { HomePageComponent } from './View/homePage.component';
 import { Repository } from './models/repository';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { Repository } from './models/repository';
     AppComponent,
     NavbarComponent,
     UserLoginComponent,
+    HomePageComponent,
     LogoutComponent,
     CheckComponent
   ],
@@ -36,7 +38,7 @@ import { Repository } from './models/repository';
     CardCarouselModule
   ],
   providers: [
-    Repository
+    //Repository
   ],
   bootstrap: [
     AppComponent
