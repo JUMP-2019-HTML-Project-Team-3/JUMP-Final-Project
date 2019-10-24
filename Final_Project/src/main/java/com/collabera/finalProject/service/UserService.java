@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.collabera.finalProject.model.User;
+import com.collabera.finalProject.model.UserType;
 import com.collabera.finalProject.repository.UserRepository;
 
 @Service
@@ -21,13 +22,14 @@ public class UserService {
 	}
 	
 	//Add
-	public void addUser(String username, String password, String email)
+	public void addUser(String username, String password, String email, UserType userType, Long long1)
 	{
 		User tempUser = new User();
 		
 		tempUser.setUsername(username);
 		tempUser.setPassword(password);
 		tempUser.setEmail(email);
+		tempUser.setUserType(userType);
 	}
 	
 	//Find All
@@ -54,6 +56,7 @@ public class UserService {
 			userToUpdate.setUsername(user.getUsername());
 			userToUpdate.setPassword(user.getPassword());
 			userToUpdate.setEmail(user.getEmail());
+			userToUpdate.setUserType(user.getUserType());
 			
 			userRepository.save(userToUpdate);
 			
