@@ -15,7 +15,7 @@ When Angular needs to create a new instance of the repository,
 it will inspect the class and see that it needs a StaticDataSourceobject
 to invoke the Repository constructor and create a new object. */
 
-const API_ENDPOINT = 'http://localhost:8080/api';
+const API_ENDPOINT = 'http://localhost:8080';
 const addressesUrl = API_ENDPOINT + '/addresses';
 const clientsUrl = API_ENDPOINT + '/clients';
 const instructorsUrl = API_ENDPOINT + '/instructors';
