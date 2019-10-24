@@ -27,19 +27,9 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public @ResponseBody String loginUser(@RequestBody String jsonSTR)
+	public @ResponseBody User loginUser(@RequestBody User aUser)
 	{
-		JSONObject jsonObject = new JSONObject(jsonSTR);
-		
-		if(userService.checkUserExist(jsonObject.getString("username")))
-		{
-			if(userService.checkValidLogin(jsonObject.getString("username"), jsonObject.getString("password")))
-			{
-				return "s";
-			}
-		}
-		
-		return "f";
+		return userService.checkValidLogin(aUser);
 	}
 	
 	@GetMapping("/check/{user}")
