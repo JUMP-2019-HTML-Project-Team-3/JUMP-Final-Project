@@ -25,7 +25,7 @@ public class Location implements Serializable {
 	private String phoneNo; // phone number has default value as annotated
 
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	private Address address;
 
 	@OneToMany(mappedBy = "location")

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Address implements Serializable {
@@ -38,6 +39,13 @@ public class Address implements Serializable {
 	
 	@Column(name = "country", nullable = false, length = 50)
 	private String country;
+	
+	//FK LINKS
+	@OneToOne(mappedBy = "address")
+	private Location location;
+	
+	@OneToOne(mappedBy = "address")
+	private Client client;
 
 	//Constructor
 	public Address(Long id, String streetNumber, String streetName, String suiteNo, String township, String state,
