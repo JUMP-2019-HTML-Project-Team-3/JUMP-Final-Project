@@ -38,7 +38,7 @@ import { Repository } from './models/repository';
     CardCarouselModule
   ],
   providers: [
-    //Repository
+    Repository
   ],
   bootstrap: [
     AppComponent
