@@ -31,9 +31,9 @@ public class UserController {
 	{
 		JSONObject jsonObject = new JSONObject(jsonSTR);
 		
-		if(userService.checkUserExist(jsonObject.getString("user")))
+		if(userService.checkUserExist(jsonObject.getString("username")))
 		{
-			if(userService.checkValidLogin(jsonObject.getString("user"), jsonObject.getString("pass")))
+			if(userService.checkValidLogin(jsonObject.getString("username"), jsonObject.getString("password")))
 			{
 				return "s";
 			}

@@ -31,7 +31,9 @@ public class ClientController {
 				aClient.getImagePath(), 
 				aClient.getName(), 
 				aClient.getPhone(), 
-				aClient.getDescription());
+				aClient.getDescription(),
+				aClient.getAddress(),
+				aClient.getAddress().getId());
 		
 		return "Saved";
 	}

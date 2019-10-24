@@ -21,12 +21,13 @@ public class LocationService {
 	}
 
 	//Add
-	public void addLocation(String imagePath, String name, String phoneNo) {
+	public void addLocation(String imagePath, String name, String phoneNo, Address address, Long long1) {
 		Location template = new Location();
 
 		template.setImagePath(imagePath);
 		template.setName(name);
 		template.setPhoneNo(phoneNo);
+		template.setAddress(address);
 	}
 
 	//Find By Id
