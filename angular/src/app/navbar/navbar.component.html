@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-md bg-info navbar-light fixed-top">
     <!-- Brand -->
-    <a class="navbar-brand font-weight-bold" href="#">Cognixia JUMP Portal</a>
+    <a class="navbar-brand font-weight-bold" href="home">Cognixia JUMP Portal</a>
     <!-- Links -->
     <ul class="navbar-nav">
         <!-- Create Dropdown -->
@@ -18,6 +18,6 @@
         </div>
         </li>
     </ul>
-    <a class="navbar-text font-weight-bold navbar-nav ml-auto" href="login">Login/Signup Here</a>
+    <a *ngIf="!loginservice.isUserLoggedIn()" class="navbar-text font-weight-bold navbar-nav ml-auto" href="login">Login/Signup Here</a>
 
 </nav>
