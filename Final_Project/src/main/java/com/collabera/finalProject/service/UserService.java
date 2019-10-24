@@ -33,17 +33,20 @@ public class UserService {
 		return true;
 	}
 	
-	public boolean checkValidLogin(String username, String password)
+	public User checkValidLogin(User aUser)
 	{
+		String username = aUser.getUsername();
+		String password = aUser.getPassword();
+		
 		List<User> users = userRepository.findByUsername(username);
 		
 		if(users.isEmpty())
-			return false;
+			return new User();
 		
 		if(users.get(0).getUsername().equals(username) && users.get(0).getPassword().equals(password))
-			return true;
+			return users.get(0);
 		
-		return false;
+		return new User();
 	}
 	
 	public boolean createUser(String username, String password, String email, String userType)

@@ -31,7 +31,7 @@ public class Instructor implements Serializable {
 	private User user;
 	
 	//FK to UserType
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "userType_id", referencedColumnName = "id")
 	private UserType userType;
 	

@@ -24,7 +24,7 @@ public class Student implements  Serializable {
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "userType_id", referencedColumnName = "id")
 	private UserType userType;
 	

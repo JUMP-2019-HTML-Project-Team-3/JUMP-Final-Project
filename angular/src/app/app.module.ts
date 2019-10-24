@@ -14,6 +14,7 @@ import {UserLoginComponent} from './View/userLogin.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CheckComponent } from './check/check.component';
 import { HomePageComponent } from './View/homePage.component';
+import {Repository} from './models/repository';
 
 @NgModule({
   schemas: [

@@ -1,13 +1,15 @@
 package com.collabera.finalProject.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class UserType implements Serializable {
@@ -21,14 +23,14 @@ public class UserType implements Serializable {
 	@Column(name = "name", updatable = false, nullable = false)
 	private String name;
 	
-	@OneToOne(mappedBy = "userType")
-	private User user;
+	@OneToMany(mappedBy = "userType")
+	private Set<User> users = new HashSet<>();
 	
-	@OneToOne(mappedBy = "userType")
-	private Instructor instructor;
+	@OneToMany(mappedBy = "userType")
+	private Set<Instructor> instructors = new HashSet<>();
 	
-	@OneToOne(mappedBy = "userType")
-	private Student student;
+	@OneToMany(mappedBy = "userType")
+	private Set<Student> students = new HashSet<>();
 	
 	//Constructor
 	public UserType(Long id, String name) {
