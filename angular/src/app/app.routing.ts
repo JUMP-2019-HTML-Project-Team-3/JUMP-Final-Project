@@ -4,7 +4,7 @@ import { InstructorHomeComponent } from './View/InstructorLoggedIn/instructorHom
 import { UserLoginComponent } from './View/userLogin.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/instructor', pathMatch: 'full' },
+  { path: '', redirectTo: 'instructor', pathMatch: 'full' },
   { path: 'instructor', component: InstructorHomeComponent},
   { path: 'student', component: Student },
   { path: 'login', component: UserLoginComponent}
