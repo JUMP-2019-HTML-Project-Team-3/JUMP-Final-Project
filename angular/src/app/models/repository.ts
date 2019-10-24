@@ -70,24 +70,24 @@ export class Repository {
     this.getUserTypes();
   }
 
-    //Stuff for Address
+    // Stuff for Address
     subscribeToAddressFetch(): Subject<boolean> {
         return this.addressListFetched;
       }
 
-    //Get one Address
+    // Get one Address
     getAddress(id: number) {
         this.http.get(addressesUrl + '/' + id)
           .subscribe(response => this.address = response);
       }
 
-    //Get All Addresses
+    // Get All Addresses
     getAddresses() {
         this.http.get(addressesUrl)
         .subscribe(response => this.address = response);
     }
 
-    //Create New Address
+    // Create New Address
     createAddress(newAddress: Address) {
       this.http.post<Address>(addressesUrl, newAddress).subscribe(response => {
           newAddress.id = response.id;
@@ -95,39 +95,39 @@ export class Repository {
         });
       }
 
-    //Update Address
+    // Update Address
     replaceAddress(address1: Address) {
       const data = {
       streetNumber: address1.streetNumber, streetName: address1.streetName, suiteNo: address1.suiteNo,
       township: address1.township, zip: address1.zip, country: address1.country
     };
-    this.http.put(addressesUrl + '/' + address1.id, data ).subscribe(response => this.getAddresses());
+      this.http.put(addressesUrl + '/' + address1.id, data ).subscribe(response => this.getAddresses());
   }
 
-    //Delete Address
+    // Delete Address
     deleteAddress(id: number) {
       this.http.delete(addressesUrl + '/' + id)
     .subscribe(response => this.getAddresses());
   }
 
-    //Stuff for Client
+    // Stuff for Client
     subscribeToClientFetch(): Subject<boolean> {
         return this.clientListFetched;
       }
-    
-    //Get One Client
+
+    // Get One Client
     getClient(id: number) {
         this.http.get(clientsUrl + '/' + id)
           .subscribe(response => this.client = response);
       }
-    
-    //Get All Clients
+
+    // Get All Clients
     getClients() {
         this.http.get(clientsUrl)
         .subscribe(response => this.client = response);
-        };
+        }
 
-    //Create New Client
+    // Create New Client
     createClient(newClient: Client) {
       this.http.post<Client>(clientsUrl, newClient).subscribe(response => {
           newClient.id = response.id;
@@ -135,42 +135,42 @@ export class Repository {
         });
       }
 
-    //Update Client
+    // Update Client
     replaceClient(client1: Client) {
       const data = {
       imagePath: client1.imagePath, name: client1.name, phone: client1.phone,
       description: client1.description, address: client1.address
     };
-    this.http.put(clientsUrl + '/' + client1.id, data ).subscribe(response => this.getClients());
+      this.http.put(clientsUrl + '/' + client1.id, data ).subscribe(response => this.getClients());
   }
 
-    //Delete Client
+    // Delete Client
     deleteClient(id: number) {
       this.http.delete(clientsUrl + '/' + id)
     .subscribe(response => this.getClients());
   }
-  
 
-    //Stuff for Instructor
+
+    // Stuff for Instructor
     subscribeToInstructorFetch(): Subject<boolean> {
         return this.instructorListFetched;
       }
 
 
-    //Get One Instructor
+    // Get One Instructor
     getInstructor(id: number) {
         this.http.get(instructorsUrl + '/' + id)
           .subscribe(response => this.instructor = response);
       }
 
-    
-    //Get All Instructors
+
+    // Get All Instructors
     getInstructors() {
         this.http.get(instructorsUrl)
         .subscribe(response => this.instructor = response);
         };
 
-    //Create New Instructor
+    // Create New Instructor
     createInstructors(newInstructor: Instructor) {
       this.http.post<Instructor>(instructorsUrl, newInstructor).subscribe(response => {
           newInstructor.id = response.id;
@@ -178,80 +178,80 @@ export class Repository {
         });
       }
 
-    //Update Instructor
+    // Update Instructor
     replaceInstructor(instructor1: Instructor) {
       const data = {
       imagePath: instructor1.imagePath, firstName: instructor1.firstName, lastName: instructor1.lastName,
       description: instructor1.description, user: instructor1.user, userType: instructor1.userType,
       students: instructor1.students, resources: instructor1.resources, tools: instructor1.tools
     };
-    this.http.put(instructorsUrl + '/' + instructor1.id, data ).subscribe(response => this.getInstructors());
+      this.http.put(instructorsUrl + '/' + instructor1.id, data ).subscribe(response => this.getInstructors());
   }
 
-    //Delete Instructor
+    // Delete Instructor
     deleteInstructor(id: number) {
       this.http.delete(instructorsUrl + '/' + id)
     .subscribe(response => this.getInstructors());
   }
 
-    //Stuff for Location
+    // Stuff for Location
     subscribeToLocationFetch(): Subject<boolean> {
         return this.locationListFetched;
       }
 
-    //Get One Location
+    // Get One Location
     getLocation(id: number) {
         this.http.get(locationsUrl + '/' + id)
           .subscribe(response => this.location = response);
       }
 
-    //Get All Locations
+    // Get All Locations
     getLocations() {
         this.http.get(locationsUrl)
         .subscribe(response => this.location = response);
-        };
+        }
 
-    //Create New Location
+    // Create New Location
     createLocation(newLocation: Location) {
       this.http.post<Location>(locationsUrl, newLocation).subscribe(response => {
           newLocation.id = response.id;
           this.locations.push(newLocation);
         });
       }
-      
-    //Update Location
+
+    // Update Location
     replaceLocation(location1: Location) {
       const data = {
       imagePath: location1.imagePath, name: location1.name, phoneNo: location1.phoneNo,
       address: location1.address, students: location1.students, instructors: location1.instructors
         };
-    this.http.put(locationsUrl + '/' + location1.id, data ).subscribe(response => this.getLocations());
+      this.http.put(locationsUrl + '/' + location1.id, data ).subscribe(response => this.getLocations());
   }
 
-    //Delete Location
+    // Delete Location
     deleteLocation(id: number) {
       this.http.delete(locationsUrl + '/' + id)
     .subscribe(response => this.getLocations());
   }
 
-    //Stuff for Resource
+    // Stuff for Resource
     subscribeToResourceFetch(): Subject<boolean> {
         return this.resourceListFetched;
       }
-    
-    //Get One Resource
+
+    // Get One Resource
     getResource(id: number) {
         this.http.get(resourcesUrl + '/' + id)
           .subscribe(response => this.resource = response);
       }
 
-    //Get All Resource
+    // Get All Resource
     getResources() {
         this.http.get(resourcesUrl)
         .subscribe(response => this.resource = response);
-        };
+        }
 
-    //Create New Resource
+    // Create New Resource
     createResource(newResource: Resource) {
       this.http.post<Resource>(resourcesUrl, newResource).subscribe(response => {
           newResource.id = response.id;
@@ -259,15 +259,15 @@ export class Repository {
         });
       }
 
-    //Update Resource
+    // Update Resource
     replaceResource(resource1: Resource) {
       const data = {
       name: resource1.name, link: resource1.link, description: resource1.description
         };
-    this.http.put(resourcesUrl + '/' + resource1.id, data ).subscribe(response => this.getResources());
+      this.http.put(resourcesUrl + '/' + resource1.id, data ).subscribe(response => this.getResources());
   }
 
-    //Delete Resource
+    // Delete Resource
     deleteResource(id: number) {
       this.http.delete(resourcesUrl + '/' + id)
     .subscribe(response => this.getResources());
@@ -305,7 +305,7 @@ export class Repository {
       clients: studentUpd.clients, resources: studentUpd.resources,
       tool: studentUpd.tool, location: studentUpd.location
         };
-    this.http.put(studentsUrl + '/' + studentUpd.id, data ).subscribe(response => this.getStudents());
+      this.http.put(studentsUrl + '/' + studentUpd.id, data ).subscribe(response => this.getStudents());
     }
     // Delete Student
     deleteStudent(id: number) {
@@ -342,7 +342,7 @@ export class Repository {
     name: toolUpd.name, linkDownLoad: toolUpd.linkDownLoad,
     linkDocumentation: toolUpd.linkDocumentation
       };
-  this.http.put(toolsUrl + '/' + toolUpd.id, data ).subscribe(response => this.getTools());
+    this.http.put(toolsUrl + '/' + toolUpd.id, data ).subscribe(response => this.getTools());
     }
   // Delete Tool
     deleteTool(id: number) {
@@ -353,7 +353,7 @@ export class Repository {
 
 
 
-    //Stuff for User
+    // Stuff for User
     subscribeToUserFetch(): Subject<boolean> {
         return this.userListFetched;
       }
@@ -378,7 +378,7 @@ export class Repository {
   const data = {
   username: userUpd.username, password: userUpd.password, email: userUpd.email, userType: userUpd.userType
     };
-this.http.put(usersUrl + '/' + userUpd.id, data ).subscribe(response => this.getUsers());
+  this.http.put(usersUrl + '/' + userUpd.id, data ).subscribe(response => this.getUsers());
   }
 // Delete User
   deleteUser(id: number) {
@@ -386,7 +386,7 @@ this.http.put(usersUrl + '/' + userUpd.id, data ).subscribe(response => this.get
     .subscribe(response => this.getUsers());
   }
 
-    //Stuff for UserType
+    // Stuff for UserType
     subscribeToUserTypeFetch(): Subject<boolean> {
         return this.userTypeListFetched;
       }
@@ -411,7 +411,7 @@ this.http.put(usersUrl + '/' + userUpd.id, data ).subscribe(response => this.get
   const data = {
   name: userTypeUpd.name
     };
-this.http.put(userTypesUrl + '/' + userTypeUpd.id, data ).subscribe(response => this.getUserTypes());
+  this.http.put(userTypesUrl + '/' + userTypeUpd.id, data ).subscribe(response => this.getUserTypes());
   }
 // Delete UserType
   deleteUserType(id: number) {
