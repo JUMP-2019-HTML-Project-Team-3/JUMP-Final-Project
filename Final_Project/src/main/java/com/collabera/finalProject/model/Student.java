@@ -21,11 +21,11 @@ public class Student implements  Serializable {
 	private String description;
 	
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 	
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "userType_id", referencedColumnName = "id")
 	private UserType userType;
 	
 	//Instructors

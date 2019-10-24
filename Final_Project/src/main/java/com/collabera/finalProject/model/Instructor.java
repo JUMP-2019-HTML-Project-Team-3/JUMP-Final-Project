@@ -27,12 +27,12 @@ public class Instructor implements Serializable {
 	
 	//FK to User
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 	
 	//FK to UserType
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "userType_id", referencedColumnName = "id")
 	private UserType userType;
 	
 	//FK to Student

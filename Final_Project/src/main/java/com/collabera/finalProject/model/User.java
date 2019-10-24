@@ -30,8 +30,14 @@ public class User implements Serializable {
 	private String email;
 	
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "userType_id", referencedColumnName = "id")
 	private UserType userType;
+	
+	@OneToOne(mappedBy = "user")
+	private Student student;
+	
+	@OneToOne(mappedBy = "user")
+	private Instructor instructor;
 
 	//Constructor
 	public User(Long id, String username, String password, String email, UserType userType) {

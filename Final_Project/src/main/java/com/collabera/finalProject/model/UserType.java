@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class UserType implements Serializable {
@@ -19,6 +20,15 @@ public class UserType implements Serializable {
 	
 	@Column(name = "name", updatable = false, nullable = false)
 	private String name;
+	
+	@OneToOne(mappedBy = "userType")
+	private User user;
+	
+	@OneToOne(mappedBy = "userType")
+	private Instructor instructor;
+	
+	@OneToOne(mappedBy = "userType")
+	private Student student;
 	
 	//Constructor
 	public UserType(Long id, String name) {

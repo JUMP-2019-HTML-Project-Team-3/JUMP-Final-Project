@@ -28,7 +28,7 @@ public class Client implements  Serializable {
 	private String description;
 	
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	private Address address;
 	
 	@ManyToMany(mappedBy = "clients")
