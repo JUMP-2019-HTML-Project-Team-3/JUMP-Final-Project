@@ -13,7 +13,7 @@ public class Student implements  Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false, nullable = false)
+	@Column(name = "student_id", updatable = false, nullable = false)
 	private Long id;
 	private String imagePath;
 	private String firstName;
@@ -21,41 +21,53 @@ public class Student implements  Serializable {
 	private String description;
 	
 	@OneToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name = "userType_id", referencedColumnName = "id")
+	@JoinColumn(name = "userType_id", referencedColumnName = "userType_id")
 	private UserType userType;
 	
 	//Instructors
-    @ManyToMany
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+        })
     @JoinTable(name = "student_instructor",
-    joinColumns = { @JoinColumn(name = "fk_student") },
-    inverseJoinColumns = { @JoinColumn(name = "fk_instructor") })
+    joinColumns = { @JoinColumn(name = "student_id") },
+    inverseJoinColumns = { @JoinColumn(name = "instructor_id") })
 	private Set<Instructor> instructors = new HashSet<Instructor>();
 
     //Clients
-	@ManyToMany
+	@ManyToMany(cascade = {
+	        CascadeType.PERSIST,
+	        CascadeType.MERGE
+	    })
 	@JoinTable(
 		name = "student_client",
-		joinColumns = { @JoinColumn(name = "fk_student")},
-		inverseJoinColumns = { @JoinColumn(name = "fk_client") } )
+		joinColumns = { @JoinColumn(name = "student_id")},
+		inverseJoinColumns = { @JoinColumn(name = "client_id") } )
 	private Set<Client> clients = new HashSet<Client>();
 	
 	//Resources
-	@ManyToMany
+	@ManyToMany(cascade = {
+	        CascadeType.PERSIST,
+	        CascadeType.MERGE
+	    })
 	@JoinTable(
 		name = "student_resource",
-		joinColumns = { @JoinColumn(name = "fk_student")},
-		inverseJoinColumns = { @JoinColumn(name = "fk_resource") } )
+		joinColumns = { @JoinColumn(name = "student_id")},
+		inverseJoinColumns = { @JoinColumn(name = "resource_id") } )
 	private Set<Resource> resources = new HashSet<Resource>();
 	
 	//Tools
-	@ManyToMany
+	@ManyToMany(cascade = {
+	        CascadeType.PERSIST,
+	        CascadeType.MERGE
+	    })
 	@JoinTable(name = "student_tool",
-	joinColumns = { @JoinColumn(name = "fk_student") },
-	inverseJoinColumns =  { @JoinColumn(name = "fk_tool") })
+	joinColumns = { @JoinColumn(name = "student_id") },
+	inverseJoinColumns =  { @JoinColumn(name = "tool_id") })
 	private Set<Tool> tools = new HashSet<Tool>();
 	
 	//Locations

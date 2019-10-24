@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-cardCarousel',
+    selector: 'app-cardcarousel',
     templateUrl: './cardCarousel.component.html'
 })
 
