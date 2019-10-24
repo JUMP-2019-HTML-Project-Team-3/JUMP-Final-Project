@@ -33,6 +33,7 @@ import { CheckComponent } from './check/check.component';
     HttpClientModule
   ],
   providers: [
+    Repository
   ],
   bootstrap: [
     AppComponent

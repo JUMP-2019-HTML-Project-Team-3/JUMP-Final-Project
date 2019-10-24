@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.collabera.finalProject.model.Student;
+import com.collabera.finalProject.model.UserType;
 import com.collabera.finalProject.repository.StudentRepository;
 
 
@@ -23,13 +24,14 @@ public class StudentService {
 	}
 	
 	//Add Student
-	public void addStudent(String imagePath, String firstName, String lastName, String description) {
+	public void addStudent(String imagePath, String firstName, String lastName, String description, UserType userType, Long long1) {
 		
 		Student tempStudent = new Student();
 		tempStudent.setImagePath(imagePath);
 		tempStudent.setFirstName(firstName);
 		tempStudent.setLastName(lastName);
 		tempStudent.setDescription(description);
+		tempStudent.setUserType(userType);
 	}
 	
 	//Add Instructor to Student
@@ -70,7 +72,7 @@ public class StudentService {
 			studentToUpdate.setFirstName(student.getFirstName());
 			studentToUpdate.setLastName(student.getLastName());
 			studentToUpdate.setDescription(student.getDescription());
-			
+			studentToUpdate.setUserType(student.getUserType());
 			studentRepository.save(studentToUpdate);
 		}
 		else 

@@ -31,7 +31,10 @@ public class LocationController {
 		locationService.addLocation(
 				aLocation.getName(), 
 				aLocation.getImagePath(),
-				aLocation.getPhoneNo()
+				aLocation.getPhoneNo(),
+				aLocation.getAddress(),
+				aLocation.getAddress().getId()
+
 				);
 		return "Saved";
   	}

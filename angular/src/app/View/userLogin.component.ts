@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {AuthenticationService} from '../service/authentication.service';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-// import { User } from '../models/user.model';
-import {stringify} from 'querystring';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../service/authentication.service';
+import { HttpClient } from '@angular/common/http';
+import { stringify } from 'querystring';
+import { Repository } from '../models/repository';
+import {User} from '../models/user.model';
+import {UserType} from '../models/userType.model';
 @Component({
     templateUrl: './userLogin.component.html',
     styleUrls: ['./userLogin.component.css']
@@ -15,7 +17,8 @@ export class UserLoginComponent implements OnInit {
 
   constructor(private router: Router,
               private loginservice: AuthenticationService,
-              private http: HttpClient) {}
+              private repo: Repository,
+              private http: HttpClient) { }
 
   ngOnInit() {
 
@@ -28,11 +31,17 @@ export class UserLoginComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.user.username = this.signInForm.get('userData.username').value;
-    // this.user.password = this.signInForm.get('userData.password').value;
-    //
-    // const aResponse = this.http.post('http://localhost:8080/login', this.user);
-    //
+    this.repo.user = new User(0,
+      this.signInForm.get('userData.username').value,
+      this.signInForm.get('userData.password').value,
+      'N/A',
+      new UserType(0, 'temp'));
+
+    const aResponse = this.http.post('http://localhost:8080/login', this.repo.user)
+      .subscribe((data) => {
+        console.log(data);
+      });
+
     // if (stringify(aResponse) === 's') {
     //   this.router.navigate(['./check']);
     //   this.invalidLogin = false;
@@ -40,7 +49,7 @@ export class UserLoginComponent implements OnInit {
     //   this.invalidLogin = true;
     //   console.log(stringify(aResponse));
     // }
-    //
-    // console.log('DOne');
+
+    console.log('DOne');
   }
 }

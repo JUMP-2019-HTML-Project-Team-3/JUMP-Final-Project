@@ -1,7 +1,6 @@
 export class UserType {
-    constructor (
+    constructor(
         public id?: number,
         public name?: string
     ) {}
-
 }

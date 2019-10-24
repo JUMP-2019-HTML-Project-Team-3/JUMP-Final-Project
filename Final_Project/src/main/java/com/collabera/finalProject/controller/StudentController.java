@@ -31,7 +31,9 @@ public class StudentController {
 				aStudent.getImagePath(), 
 				aStudent.getFirstName(), 
 				aStudent.getLastName(), 
-				aStudent.getDescription());
+				aStudent.getDescription(),
+				aStudent.getUserType(),
+				aStudent.getUserType().getId());
 		
 		return "Saved";
 	}
