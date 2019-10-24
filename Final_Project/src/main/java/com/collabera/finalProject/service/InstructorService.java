@@ -12,6 +12,7 @@ import com.collabera.finalProject.model.Location;
 import com.collabera.finalProject.model.Resource;
 import com.collabera.finalProject.model.Student;
 import com.collabera.finalProject.model.Tool;
+import com.collabera.finalProject.model.UserType;
 import com.collabera.finalProject.repository.InstructorRepository;
 
 
@@ -28,14 +29,14 @@ public class InstructorService {
 	}
 	
 	// Create Instructor
-	public void addInstructor(String firstName, String lastName, String description)
+	public void addInstructor(String firstName, String lastName, String description, UserType userType, Long long1)
 	{
 		Instructor tempInstructor = new Instructor();
 		
 		tempInstructor.setFirstName(firstName);
 		tempInstructor.setLastName(lastName);
 		tempInstructor.setDescription(description);
-	
+		tempInstructor.setUserType(userType);
 		instructorRepository. save(tempInstructor);
 	}
 	

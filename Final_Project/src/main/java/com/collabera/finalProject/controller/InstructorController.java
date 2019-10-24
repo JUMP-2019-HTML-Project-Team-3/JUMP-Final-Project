@@ -31,7 +31,9 @@ public class InstructorController {
 		instructorService.addInstructor(
 				aInstructor.getFirstName(),
 				aInstructor.getLastName(),
-				aInstructor.getDescription()
+				aInstructor.getDescription(),
+				aInstructor.getUserType(),
+				aInstructor.getUserType().getId()
 				);
 		return "Saved";
   	}

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.collabera.finalProject.model.Address;
 import com.collabera.finalProject.model.Client;
 import com.collabera.finalProject.repository.ClientRepository;
 
@@ -22,7 +23,7 @@ public class ClientService {
 	}
 	
 	//Add
-	public void addClient(String imagePath, String name, String phone, String description)
+	public void addClient(String imagePath, String name, String phone, String description, Address address, Long long1)
 	{
 		Client tempClient = new Client();
 		
@@ -30,6 +31,7 @@ public class ClientService {
 		tempClient.setName(name);
 		tempClient.setPhone(phone);
 		tempClient.setDescription(description);
+		tempClient.setAddress(address);
 	
 		clientRepository.save(tempClient);
 	}
@@ -59,7 +61,7 @@ public class ClientService {
 			clientToUpdate.setName(clientToUpdate.getName());
 			clientToUpdate.setPhone(clientToUpdate.getPhone());
 			clientToUpdate.setDescription(clientToUpdate.getDescription());
-
+			clientToUpdate.setAddress(clientToUpdate.getAddress());
 			clientRepository.save(clientToUpdate);
 		}
 		else
@@ -73,5 +75,6 @@ public class ClientService {
 	{
 		clientRepository.deleteById(id);
 	}
+
 	
 }
