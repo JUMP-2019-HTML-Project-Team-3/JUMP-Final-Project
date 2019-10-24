@@ -18,7 +18,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false, nullable = false)
+	@Column(name = "user_id", updatable = false, nullable = false)
 	private Long id;
 	
 	@Column(name = "username", updatable = false, nullable = false, length = 25)
@@ -31,7 +31,7 @@ public class User implements Serializable {
 	private String email;
 	
 	@ManyToOne
-	@JoinColumn(name = "userType_id", referencedColumnName = "id")
+	@JoinColumn(name = "userType_id", referencedColumnName = "userType_id")
 	private UserType userType;
 	
 	@OneToOne(mappedBy = "user")

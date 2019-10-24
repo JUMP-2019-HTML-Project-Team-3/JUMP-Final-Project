@@ -13,7 +13,7 @@ public class Instructor implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false, nullable = false)
+	@Column(name = "instructor_id", updatable = false, nullable = false)
 	private Long id;
 	
 	@Column(name = "firstName", nullable = false, length = 25)
@@ -27,12 +27,12 @@ public class Instructor implements Serializable {
 	
 	//FK to User
 	@OneToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
 	
 	//FK to UserType
 	@ManyToOne
-	@JoinColumn(name = "userType_id", referencedColumnName = "id")
+	@JoinColumn(name = "userType_id", referencedColumnName = "userType_id")
 	private UserType userType;
 	
 	//FK to Student
@@ -40,27 +40,36 @@ public class Instructor implements Serializable {
 	private Set<Student> students = new HashSet<>();
     
     //FK to Resource
-	@ManyToMany
+	@ManyToMany(cascade = {
+	        CascadeType.PERSIST,
+	        CascadeType.MERGE
+	    })
 	@JoinTable(
 		name = "instructor_resource",
-		joinColumns = { @JoinColumn(name = "fk_instructor")},
-		inverseJoinColumns = { @JoinColumn(name = "fk_resource") } )
-	private Set<Resource> resources = new HashSet<>();
+		joinColumns = { @JoinColumn(name = "instructor_id", referencedColumnName = "instructor_id")},
+		inverseJoinColumns = { @JoinColumn(name = "resource_id", referencedColumnName = "resource_id") } )
+	private Set<Resource> resources;
     
     //FK to Tool
-	@ManyToMany
+	@ManyToMany(cascade = {
+	        CascadeType.PERSIST,
+	        CascadeType.MERGE
+	    })
 	@JoinTable(
 		name = "instructor_tool",
-		joinColumns = { @JoinColumn(name = "fk_instructor")},
-		inverseJoinColumns = { @JoinColumn(name = "fk_tool") } )
+		joinColumns = { @JoinColumn(name = "instructor_id")},
+		inverseJoinColumns = { @JoinColumn(name = "tool_id") } )
 	private Set<Tool> tools = new HashSet<>();
     
     //FK to Location
-	@ManyToMany
+	@ManyToMany(cascade = {
+	        CascadeType.PERSIST,
+	        CascadeType.MERGE
+	    })
 	@JoinTable(
 		name = "instructor_location",
-		joinColumns = { @JoinColumn(name = "fk_instructor")},
-		inverseJoinColumns = { @JoinColumn(name = "fk_location") } )
+		joinColumns = { @JoinColumn(name = "instructor_id")},
+		inverseJoinColumns = { @JoinColumn(name = "location_id") } )
     private Set<Location> locations = new HashSet<>();
 
     //Constructor Using Fields

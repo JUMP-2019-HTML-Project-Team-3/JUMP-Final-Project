@@ -18,6 +18,7 @@ import com.collabera.finalProject.model.Instructor;
 import com.collabera.finalProject.service.InstructorService;
 
 @RestController
+@RequestMapping("/cognixia")
 public class InstructorController {
 	private final InstructorService instructorService;
 	/* Initialize final field instructorService */

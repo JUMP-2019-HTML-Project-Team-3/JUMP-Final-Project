@@ -18,7 +18,7 @@ public class Resource implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", updatable = false, nullable = false)
+	@Column(name = "resource_id", updatable = false, nullable = false)
 	private Long id;
 	
 	@Column(name = "name", nullable = false, length = 50)
@@ -36,14 +36,16 @@ public class Resource implements Serializable {
 	
 	//FK to Instructors
 	@ManyToMany(mappedBy = "resources")
-	private Set<Student> instructors = new HashSet<>();
+	private Set<Instructor> instructors;
 	
 	//Constructor with Fields
-	public Resource(Long id, String name, String link, String description) {
+	public Resource(Long id, String name, String link, String description, Set<Student> students, Set<Instructor> instructors) {
 		this.id = id;
 		this.name = name;
 		this.link = link;
 		this.description = description;
+		this.students = students;
+		this.instructors = instructors;
 	}
 
 	public Resource() {

@@ -1,0 +1,17 @@
+.inline-image-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inline-center {
+    text-align: center; 
+}
+
+.heading-color {
+    color: blue
+}
+
+.heading2-color {
+    color: lightseagreen
+}
