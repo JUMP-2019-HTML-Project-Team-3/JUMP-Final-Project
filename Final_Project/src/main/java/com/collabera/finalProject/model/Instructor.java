@@ -46,9 +46,9 @@ public class Instructor implements Serializable {
 	    })
 	@JoinTable(
 		name = "instructor_resource",
-		joinColumns = { @JoinColumn(name = "instructor_id")},
-		inverseJoinColumns = { @JoinColumn(name = "resource_id") } )
-	private Set<Resource> resources = new HashSet<>();
+		joinColumns = { @JoinColumn(name = "instructor_id", referencedColumnName = "instructor_id")},
+		inverseJoinColumns = { @JoinColumn(name = "resource_id", referencedColumnName = "resource_id") } )
+	private Set<Resource> resources;
     
     //FK to Tool
 	@ManyToMany(cascade = {
