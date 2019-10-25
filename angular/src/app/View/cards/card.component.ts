@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import { Location } from '../../models/location.model';
 
 @Component({
     selector: 'app-card',
     templateUrl: './card.component.html'
 })
 
-export class CardComponent { }
+export class CardComponent {
+  @Input() location: Location;
+}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Location } from '../../../models/location.model';
+import {Repository} from '../../../models/repository';
 
 @Component({
     selector: 'app-instructor-locations',
@@ -7,5 +7,5 @@ import { Location } from '../../../models/location.model';
 })
 
 export class LocationListComponent {
-  constructor() { }
+  constructor(private repo: Repository) { }
 }
