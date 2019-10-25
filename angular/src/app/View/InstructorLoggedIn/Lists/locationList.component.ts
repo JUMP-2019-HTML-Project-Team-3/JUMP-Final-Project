@@ -7,5 +7,10 @@ import {Repository} from '../../../models/repository';
 })
 
 export class LocationListComponent {
-  constructor(private repo: Repository) { }
+  locations;
+
+  constructor(private repo: Repository) {
+    this.locations = this.repo.locations;
+    // console.log(this.repo.locations.length);
+  }
 }
