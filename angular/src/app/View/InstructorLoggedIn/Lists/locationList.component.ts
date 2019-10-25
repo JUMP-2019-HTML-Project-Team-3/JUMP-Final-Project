@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Repository} from '../../../models/repository';
 
 @Component({
@@ -7,10 +7,8 @@ import {Repository} from '../../../models/repository';
 })
 
 export class LocationListComponent {
-  locations;
 
   constructor(private repo: Repository) {
-    this.locations = this.repo.locations;
-    // console.log(this.repo.locations.length);
+    // this.locations = this.repo.locations;
   }
 }

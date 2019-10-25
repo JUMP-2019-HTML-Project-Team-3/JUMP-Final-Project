@@ -207,8 +207,8 @@ export class Repository {
 
     // Get All Locations
     getLocations() {
-        this.http.get(locationsUrl)
-        .subscribe(response => this.location = response);
+        this.http.get<Location[]>(locationsUrl)
+        .subscribe(response => this.locations = response);
         }
 
     // Create New Location
