@@ -16,8 +16,7 @@ import {CardCarouselModule} from '../cards/cardCarousel.module';
     CardCarouselModule
   ],
     declarations: [
-      StudentHomeComponent,
-      // NavbarComponent
+      StudentHomeComponent
     ],
     providers: [
 

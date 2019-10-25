@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Repository} from '../../../models/repository';
 
 @Component({
@@ -7,5 +7,8 @@ import {Repository} from '../../../models/repository';
 })
 
 export class LocationListComponent {
-  constructor(private repo: Repository) { }
+
+  constructor(private repo: Repository) {
+    // this.locations = this.repo.locations;
+  }
 }

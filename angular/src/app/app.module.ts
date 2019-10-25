@@ -32,7 +32,7 @@ import { Repository } from './models/repository';
   ],
   imports: [
     RoutingConfig,
-    BrowserModule, 
+    BrowserModule,
     ReactiveFormsModule,
     InstructorModule,
     StudentModule,
@@ -40,7 +40,7 @@ import { Repository } from './models/repository';
     CardCarouselModule
   ],
   providers: [
-    Repository 
+    Repository
   ],
   bootstrap: [
     AppComponent

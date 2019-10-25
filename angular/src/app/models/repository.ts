@@ -19,7 +19,7 @@ const API_ENDPOINT = 'http://localhost:8080';
 const addressesUrl = API_ENDPOINT + '/addresses';
 const clientsUrl = API_ENDPOINT + '/clients';
 const instructorsUrl = API_ENDPOINT + '/instructors';
-const locationsUrl = API_ENDPOINT + '/locations';
+const locationsUrl = API_ENDPOINT + '/cognixia/alllocations';
 const resourcesUrl = API_ENDPOINT + '/resources';
 const studentsUrl = API_ENDPOINT + '/students';
 const toolsUrl = API_ENDPOINT + '/tools';
@@ -62,7 +62,7 @@ export class Repository {
     // this.getAddresses();
     // this.getClients();
     // this.getInstructors();
-    // this.getLocations();
+    this.getLocations();
     // this.getResources();
     // this.getStudents();
     // this.getTools();
@@ -207,8 +207,8 @@ export class Repository {
 
     // Get All Locations
     getLocations() {
-        this.http.get(locationsUrl)
-        .subscribe(response => this.location = response);
+        this.http.get<Location[]>(locationsUrl)
+        .subscribe(response => this.locations = response);
         }
 
     // Create New Location
