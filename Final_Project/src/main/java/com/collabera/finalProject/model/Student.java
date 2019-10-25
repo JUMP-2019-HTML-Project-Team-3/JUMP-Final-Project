@@ -32,6 +32,7 @@ public class Student implements  Serializable {
 	private UserType userType;
 	
 	//Instructors
+	@JsonManagedReference
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
