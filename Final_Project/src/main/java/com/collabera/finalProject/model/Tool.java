@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Tool implements Serializable {
 
@@ -34,10 +37,12 @@ public class Tool implements Serializable {
 	private String description;
 	
 	//FK to Students
+	@JsonBackReference
 	@ManyToMany(mappedBy = "tools")
 	private Set<Student> students = new HashSet<>();
 	
 	//Fk to Instructors
+	@JsonBackReference
 	@ManyToMany(mappedBy = "tools")
 	private Set<Student> instructors = new HashSet<>();
 	
