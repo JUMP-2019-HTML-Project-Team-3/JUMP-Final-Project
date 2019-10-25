@@ -6,6 +6,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Client implements  Serializable {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +34,7 @@ public class Client implements  Serializable {
 	@JoinColumn(name = "address_id", referencedColumnName = "address_id")
 	private Address address;
 	
+	@JsonBackReference
 	@ManyToMany(mappedBy = "clients")
 	private Set<Student> students = new HashSet<>();
 	

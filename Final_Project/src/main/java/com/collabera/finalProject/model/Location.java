@@ -35,6 +35,7 @@ public class Location implements Serializable {
 	@OneToMany(mappedBy = "location", targetEntity = Student.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Student> students = new HashSet<Student>();
 
+	@JsonBackReference
     @ManyToMany(mappedBy = "locations")
 	private Set<Instructor> instructors = new HashSet<Instructor>();
 

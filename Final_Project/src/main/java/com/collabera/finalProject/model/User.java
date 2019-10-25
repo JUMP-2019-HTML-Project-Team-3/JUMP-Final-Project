@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class User implements Serializable {
@@ -30,6 +32,7 @@ public class User implements Serializable {
 	@Column(name = "email", updatable = false, nullable = false, length = 25)
 	private String email;
 	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "userType_id", referencedColumnName = "userType_id")
 	private UserType userType;

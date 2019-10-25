@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Instructor implements Serializable {
@@ -43,6 +44,7 @@ public class Instructor implements Serializable {
 	private Set<Student> students = new HashSet<>();
     
     //FK to Resource
+	@JsonManagedReference
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
@@ -54,6 +56,7 @@ public class Instructor implements Serializable {
 	private Set<Resource> resources;
     
     //FK to Tool
+	@JsonManagedReference
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
@@ -65,6 +68,7 @@ public class Instructor implements Serializable {
 	private Set<Tool> tools = new HashSet<>();
     
     //FK to Location
+	@JsonManagedReference
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
