@@ -8,4 +8,8 @@ import { Location } from '../../models/location.model';
 
 export class CardComponent {
   @Input() location: Location;
+
+  constructor() {
+
+  }
 }
