@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InstructorHomeComponent } from './instructorHome.component';
 import { LocationListComponent } from './Lists/locationList.component';
-import {CardCarouselModule} from '../cards/cardCarousel.module';
+import { CardCarouselModule } from '../cards/cardCarousel.module';
 
 @NgModule({
     schemas: [
