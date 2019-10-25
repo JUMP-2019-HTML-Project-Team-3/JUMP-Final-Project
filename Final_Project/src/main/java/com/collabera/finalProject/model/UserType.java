@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class UserType implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -23,12 +25,15 @@ public class UserType implements Serializable {
 	@Column(name = "name", updatable = false, nullable = false)
 	private String name;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "userType")
 	private Set<User> users = new HashSet<>();
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "userType")
 	private Set<Instructor> instructors = new HashSet<>();
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "userType")
 	private Set<Student> students = new HashSet<>();
 	
