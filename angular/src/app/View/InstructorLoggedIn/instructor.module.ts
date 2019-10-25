@@ -1,11 +1,14 @@
-// import { NavbarComponent } from './../../navbar/navbar.component';
+// Module Imports
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import {CardCarouselModule} from '../cards/cardCarousel.module';
+// Component Imports
 import { InstructorHomeComponent } from './instructorHome.component';
 import { LocationListComponent } from './Lists/locationList.component';
-import { CardCarouselModule } from '../cards/cardCarousel.module';
+import { ResourceListComponent } from './Lists/resourceList.component';
+
 
 @NgModule({
     schemas: [
@@ -19,8 +22,8 @@ import { CardCarouselModule } from '../cards/cardCarousel.module';
   ],
     declarations: [
       InstructorHomeComponent,
-      LocationListComponent
-      // NavbarComponent
+      LocationListComponent,
+      ResourceListComponent
     ],
     providers: [
 
