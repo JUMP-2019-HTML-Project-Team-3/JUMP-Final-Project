@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -30,7 +31,7 @@ public class Location implements Serializable {
 	@JoinColumn(name = "address_id", referencedColumnName = "address_id")
 	private Address address;
 
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(mappedBy = "location", targetEntity = Student.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Student> students = new HashSet<Student>();
 
