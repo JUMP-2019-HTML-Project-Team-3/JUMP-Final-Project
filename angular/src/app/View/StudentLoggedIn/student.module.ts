@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { StudentHomeComponent } from './studentHome.component';
-import {CardCarouselModule} from '../cards/cardCarousel.module';
+import { CardCarouselModule } from '../cards/cardCarousel.module';
 
 @NgModule({
     schemas: [
