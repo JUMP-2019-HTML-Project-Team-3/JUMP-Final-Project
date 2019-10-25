@@ -1,9 +1,9 @@
-import { Address } from "./address.model";
-import { Student } from "./student.model";
-import { Instructor } from "./instructor.model"
+import { Address } from './address.model';
+import { Student } from './student.model';
+import { Instructor } from './instructor.model';
 
 export class Location {
-    constructor (
+    constructor(
         public id?: number,
         public imagePath?: string,
         public name?: string,
@@ -11,7 +11,7 @@ export class Location {
         public address?: Address,
         public students?: Student,
         public instructors?: Instructor
-    
+
 
     ) {}
 }

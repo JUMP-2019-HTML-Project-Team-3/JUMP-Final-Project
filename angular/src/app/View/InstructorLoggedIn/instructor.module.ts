@@ -4,11 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {CardCarouselModule} from '../cards/cardCarousel.module';
-// Component Imports
+// Component Imports 
 import { InstructorHomeComponent } from './instructorHome.component';
 import { LocationListComponent } from './Lists/locationList.component';
-import { ResourceListComponent } from './Lists/resourceList.component';
-
+//import { ResourceListComponent } from './Lists/resourceList.component';
+ 
 
 @NgModule({
     schemas: [
@@ -18,12 +18,12 @@ import { ResourceListComponent } from './Lists/resourceList.component';
     BrowserModule,
     RouterModule,
     FormsModule,
-    CardCarouselModule
+    CardCarouselModule 
   ],
     declarations: [
       InstructorHomeComponent,
-      LocationListComponent,
-      ResourceListComponent
+      LocationListComponent
+      //ResourceListComponent
     ],
     providers: [
 
