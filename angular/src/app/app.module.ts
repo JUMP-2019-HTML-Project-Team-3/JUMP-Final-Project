@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RoutingConfig } from './app.routing';
 // Custom Module Imports
 import { InstructorModule } from './View/InstructorLoggedIn/instructor.module';
+import { StudentModule } from './View/StudentLoggedIn/student.module';
 import { CardCarouselModule } from './View/cards/cardCarousel.module';
 // Component Imports
 import { AppComponent } from './app.component';
@@ -31,14 +32,15 @@ import { Repository } from './models/repository';
   ],
   imports: [
     RoutingConfig,
-    BrowserModule,
+    BrowserModule, 
     ReactiveFormsModule,
     InstructorModule,
+    StudentModule,
     HttpClientModule,
     CardCarouselModule
   ],
   providers: [
-    Repository
+    Repository 
   ],
   bootstrap: [
     AppComponent
