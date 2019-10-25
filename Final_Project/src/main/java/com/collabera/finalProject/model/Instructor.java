@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Instructor implements Serializable {
 
@@ -36,6 +38,7 @@ public class Instructor implements Serializable {
 	private UserType userType;
 	
 	//FK to Student
+	@JsonBackReference
 	@ManyToMany(mappedBy = "instructors")
 	private Set<Student> students = new HashSet<>();
     
