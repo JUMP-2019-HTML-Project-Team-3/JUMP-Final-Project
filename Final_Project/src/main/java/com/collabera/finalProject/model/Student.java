@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 public class Student implements  Serializable {
@@ -71,6 +73,7 @@ public class Student implements  Serializable {
 	private Set<Tool> tools = new HashSet<Tool>();
 	
 	//Locations
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;

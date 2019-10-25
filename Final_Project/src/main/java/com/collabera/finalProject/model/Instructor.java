@@ -40,7 +40,7 @@ public class Instructor implements Serializable {
 	private Set<Student> students = new HashSet<>();
     
     //FK to Resource
-	@ManyToMany(cascade = {
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
 	    })
@@ -51,7 +51,7 @@ public class Instructor implements Serializable {
 	private Set<Resource> resources;
     
     //FK to Tool
-	@ManyToMany(cascade = {
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
 	    })
@@ -62,7 +62,7 @@ public class Instructor implements Serializable {
 	private Set<Tool> tools = new HashSet<>();
     
     //FK to Location
-	@ManyToMany(cascade = {
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
 	    })
