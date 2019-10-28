@@ -273,9 +273,6 @@ export class Repository {
     .subscribe(response => this.getResources());
   }
 
-
-
-
     // Stuff for Student
     subscribeToStudentFetch(): Subject<boolean> {
         return this.studentListFetched;
