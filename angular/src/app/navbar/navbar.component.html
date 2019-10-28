@@ -6,17 +6,17 @@
     <!-- Links -->
     <ul class="navbar-nav">
         <!-- Create Dropdown -->
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" routerLink="#" id="navbardrop" data-toggle="dropdown">
-            Add to Our Site
-        </a>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" routerLink="#">Add an Animal</a>
-            <a class="dropdown-item" routerLink="#">Add a Shelter</a>
-            <a class="dropdown-item" routerLink="#">Add Staff</a>
-            <a class="dropdown-item" routerLink="#">Add Foster</a>
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle" routerLink="#" id="navbardrop" data-toggle="dropdown">
+              Add to Our Site
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" routerLink="#">Add an Animal</a>
+              <a class="dropdown-item" routerLink="#">Add a Shelter</a>
+              <a class="dropdown-item" routerLink="#">Add Staff</a>
+              <a class="dropdown-item" routerLink="#">Add Foster</a>
+          </div>
         </div>
-        </li>
     </ul>
     <a *ngIf="!loginservice.isUserLoggedIn()" class="navbar-text font-weight-bold navbar-nav ml-auto" routerLink="/login">Login/Signup Here</a>
 
