@@ -2,22 +2,22 @@
 
 <nav class="navbar navbar-expand-md bg-info navbar-light fixed-top">
     <!-- Brand -->
-    <a href="home"><img src="https://i.imgur.com/3MeOVob.png" class="navbar-brand font-weight-bold"></a>
+    <a routerLink="/home"><img src="https://i.imgur.com/3MeOVob.png" class="navbar-brand font-weight-bold"></a>
     <!-- Links -->
     <ul class="navbar-nav">
         <!-- Create Dropdown -->
         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        <a class="nav-link dropdown-toggle" routerLink="#" id="navbardrop" data-toggle="dropdown">
             Add to Our Site
         </a>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Add an Animal</a>
-            <a class="dropdown-item" href="#">Add a Shelter</a>
-            <a class="dropdown-item" href="#">Add Staff</a>
-            <a class="dropdown-item" href="#">Add Foster</a>
+            <a class="dropdown-item" routerLink="#">Add an Animal</a>
+            <a class="dropdown-item" routerLink="#">Add a Shelter</a>
+            <a class="dropdown-item" routerLink="#">Add Staff</a>
+            <a class="dropdown-item" routerLink="#">Add Foster</a>
         </div>
         </li>
     </ul>
-    <a *ngIf="!loginservice.isUserLoggedIn()" class="navbar-text font-weight-bold navbar-nav ml-auto" href="login">Login/Signup Here</a>
+    <a *ngIf="!loginservice.isUserLoggedIn()" class="navbar-text font-weight-bold navbar-nav ml-auto" routerLink="/login">Login/Signup Here</a>
 
 </nav>
