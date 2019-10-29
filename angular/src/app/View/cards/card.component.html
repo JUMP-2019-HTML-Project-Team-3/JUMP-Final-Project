@@ -6,4 +6,13 @@
     <p class="card-text">{{ location.address.streetName }}</p>
     <a class="btn btn-primary">Button</a>
   </div>
+
+  <img class="card-img-top"
+  src="{{ student.imagePath }}" alt="Card image cap">
+<div class="card-body">
+  <h4 class="card-title">{{ student.firstName + " " + student.lastName }}</h4>
+  <p class="card-text">{{ student.description }}</p>
+  <a class="btn btn-primary">Button</a>
+</div>
+
 </div>

@@ -5,13 +5,18 @@ import { Location } from '../../models/location.model';
 
 
 @Component({
-    selector: 'app-instructor-home',
+    //selector: 'app-instructor-home',
     templateUrl: './instructorHome.component.html'
-})
+})  
 
-export class InstructorHomeComponent {
+export class InstructorHomeComponent { 
     constructor(private repo: Repository) { }
+    students: Student[] = [];       
+    studentJSON: getStudent(id: number);
+    //this.getStudent(id: number) or this.repo.students?
+    //JSONParse one of those?
     
-    students: Student[] = [];        
     locations: Location[] = [];
+
+
 }

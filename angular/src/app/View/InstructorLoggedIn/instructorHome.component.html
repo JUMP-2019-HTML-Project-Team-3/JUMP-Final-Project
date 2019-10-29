@@ -3,31 +3,50 @@
 <div>
   <h3>Your Students</h3>
   {{students}}
+  <!-- {{JSON.parse(this.getStudents())}} -->
   <!-- <app-students></app-students> -->
+  <app-card
+*ngFor="let someA of this.repo.students"
+[student]="someA"></app-card>
 </div>
 
 <div>
   <h3>Your Locations</h3>
   {{locations}}
   <!-- <app-instructor-locations></app-instructor-locations> -->
+  <app-card
+  *ngFor="let someA of this.repo.locations"
+  [location]="someA"></app-card>
 </div>
  
 <div>
   <h3>Your Colleagues</h3>
   <!-- <app-instructors></app-instructors> -->
+  <app-card
+  *ngFor="let someA of this.repo.instructors"
+  [instructor]="someA"></app-card>
 </div>
 
-<div>
+<!--
+  <div>
   <h3>Your Clients</h3>
-  <!-- <app-clients></app-clients> -->
-</div>
+  <app-clients></app-clients> 
+  *ngFor="let someA of this.repo.locations"
+  [location]="someA"></app-card>
+</div> -->
 
 <div>
   <h3>Your Resources</h3>
   <app-instructor-resources></app-instructor-resources>
+  <app-card
+  *ngFor="let someA of this.repo.resources"
+  [resource]="someA"></app-card>
 </div>
 
 <div>
   <h3>Your Tools</h3>
   <!-- <app-tools></app-tools> -->
+  <app-card
+  *ngFor="let someA of this.repo.tools"
+  [tool]="someA"></app-card>
 </div>

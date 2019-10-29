@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Location } from '../../models/location.model';
+import { Student } from '../../models/student.model'
 
 @Component({
     selector: 'app-card',
@@ -8,6 +9,7 @@ import { Location } from '../../models/location.model';
 
 export class CardComponent {
   @Input() location: Location;
+  @Input() student: Student;
 
   constructor() {
 
