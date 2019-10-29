@@ -65,7 +65,7 @@ export class Repository {
     this.getLocations();
     // this.getResources();
     this.getStudents();
-    //this.getStudent(number);
+    //this.getStudent(id);
     // this.getTools();
     // this.getUsers();
     // this.getUserTypes();
@@ -276,6 +276,8 @@ export class Repository {
 
     // Stuff for Student
     subscribeToStudentFetch(): Subject<boolean> {
+        console.log("this.studentListFetched ");
+        console.log(this.studentListFetched);
         return this.studentListFetched;
       }
     // Get Student

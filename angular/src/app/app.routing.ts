@@ -7,7 +7,7 @@ import {CheckComponent} from './check/check.component';
 import {LogoutComponent} from './logout/logout.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'instructor', pathMatch: 'full' },
+  { path: '', redirectTo: 'instructor', pathMatch: 'full' }, 
   { path: 'home', component: HomePageComponent },
   { path: 'instructor', component: InstructorHomeComponent},
   { path: 'student', component: StudentHomeComponent },

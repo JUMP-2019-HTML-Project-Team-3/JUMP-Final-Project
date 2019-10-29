@@ -9,14 +9,23 @@ import { Location } from '../../models/location.model';
     templateUrl: './instructorHome.component.html'
 })  
 
-export class InstructorHomeComponent { 
-    constructor(private repo: Repository) { }
-    students: Student[] = [];       
-    studentJSON: getStudent(id: number);
-    //this.getStudent(id: number) or this.repo.students?
-    //JSONParse one of those?
-    
-    locations: Location[] = [];
+export class InstructorHomeComponent implements OnInit { 
+    constructor(private repo: Repository ) { }
+
+    students: Student[] = [];
+   
+    ngOnInit() {
+        console.log('init called');
+        this.repo.subscribeToStudentFetch().subscribe(resp => {
+            if (this.repo.students != null && this.repo.students.length > 0) {
+                this.students = this.repo.students;
+                console.log("this.students");
+                console.log(this.students);
+              }});
+      }
+
+    //this.repo.students 
+    //locations: Location[] = [];
 
 
 }
