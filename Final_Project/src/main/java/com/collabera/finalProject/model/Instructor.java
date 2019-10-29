@@ -189,7 +189,8 @@ public class Instructor implements Serializable {
 	public Instructor() {
 	}
 
-
+	
+	// Locations
 	public Set<Location> getLocations() {
 		return locations;
 	}
@@ -197,6 +198,11 @@ public class Instructor implements Serializable {
 
 	public void setLocations(Set<Location> locations) {
 		this.locations = locations;
+	}
+	
+	public void addLocation(Location location) {
+		this.locations.add(location);
+		location.getInstructors().add(this);	
 	}
 	
 	// Add/Remove Student
@@ -233,4 +239,7 @@ public class Instructor implements Serializable {
 	{
 		this.tools.remove(t);
 	}
+
+
+
 }
