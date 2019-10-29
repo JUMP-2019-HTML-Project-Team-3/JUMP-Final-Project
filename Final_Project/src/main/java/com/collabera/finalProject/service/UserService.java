@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.collabera.finalProject.model.Login;
 import com.collabera.finalProject.model.User;
 import com.collabera.finalProject.model.UserType;
 import com.collabera.finalProject.repository.UserRepository;
@@ -33,7 +34,7 @@ public class UserService {
 		return true;
 	}
 	
-	public User checkValidLogin(User aUser)
+	public User checkValidLogin(Login aUser)
 	{
 		String username = aUser.getUsername();
 		String password = aUser.getPassword();
