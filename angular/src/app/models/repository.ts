@@ -10,6 +10,7 @@ import { UserType } from './userType.model';
 import { HttpClient, HttpResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
+import { Login } from './login.model';
 /* import { StaticDataSource } from "./static.datasource";
 When Angular needs to create a new instance of the repository,
 it will inspect the class and see that it needs a StaticDataSourceobject
@@ -54,6 +55,7 @@ export class Repository {
     tool: Tool;
     tools: Tool[];
     user: User;
+    login: Login;
     users: User[];
     userType: UserType;
     userTypes: UserType[];

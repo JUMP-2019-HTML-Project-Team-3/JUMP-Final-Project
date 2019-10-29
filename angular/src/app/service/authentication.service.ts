@@ -16,7 +16,7 @@ export class AuthenticationService {
   }
 
   authenticate() {
-    const aResponse = this.http.post('http://localhost:8080/cognixia/login', this.repo.user)
+    const aResponse = this.http.post('http://localhost:8080/cognixia/login', this.repo.login)
       .subscribe((data: User) => {
         if (data.id == null) {
           return false;

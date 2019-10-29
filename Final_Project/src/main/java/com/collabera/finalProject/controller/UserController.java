@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.collabera.finalProject.model.Login;
 import com.collabera.finalProject.model.User;
 import com.collabera.finalProject.service.UserService;
 
@@ -28,7 +29,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public @ResponseBody User loginUser(@RequestBody User aUser)
+	public @ResponseBody User loginUser(@RequestBody Login aUser)
 	{
 		return userService.checkValidLogin(aUser);
 	}

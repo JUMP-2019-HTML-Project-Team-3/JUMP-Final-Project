@@ -1,4 +1,6 @@
 import { UserType } from './userType.model';
+import {Student} from './student.model';
+import {Instructor} from './instructor.model';
 
 export class User {
     constructor(
@@ -6,6 +8,8 @@ export class User {
         public username?: string,
         public password?: string,
         public email?: string,
-        public userType?: UserType
+        public userType?: UserType,
+        public student?: Student,
+        public instructor?: Instructor
     ) {}
 }
