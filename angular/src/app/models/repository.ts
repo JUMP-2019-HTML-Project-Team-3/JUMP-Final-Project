@@ -61,14 +61,15 @@ export class Repository {
     userTypes: UserType[];
 
     constructor(private http: HttpClient) {
+      this.getStudents();
+      this.getLocations();
+      this.getInstructors();
+      this.getResources();
+      this.getTools();
+
     // this.getAddresses();
     // this.getClients();
-    // this.getInstructors();
-    this.getLocations();
-    // this.getResources();
-    this.getStudents();
     //this.getStudent(id);
-    // this.getTools();
     // this.getUsers();
     // this.getUserTypes();
   }
@@ -169,9 +170,9 @@ export class Repository {
 
     // Get All Instructors
     getInstructors() {
-        this.http.get<Instructor[]>(instructorsUrl)
+      this.http.get<Instructor[]>(instructorsUrl)
         .subscribe(response => this.instructors = response);
-        };
+    }
 
     // Create New Instructor
     createInstructors(newInstructor: Instructor) {
@@ -250,9 +251,9 @@ export class Repository {
 
     // Get All Resource
     getResources() {
-        this.http.get(resourcesUrl)
-        .subscribe(response => this.resource = response);
-        }
+      this.http.get<Resource[]>(resourcesUrl)
+      .subscribe(response => this.resources = response);
+  }
 
     // Create New Resource
     createResource(newResource: Resource) {
@@ -324,9 +325,6 @@ export class Repository {
         .subscribe(response => this.getStudents());
     }
 
-
-
-
     // Stuff for Tool
     subscribeToToolFetch(): Subject<boolean> {
         return this.toolListFetched;
@@ -338,8 +336,9 @@ export class Repository {
     }
     // Get all Tools
     getTools() {
-      this.http.get(toolsUrl)
-      .subscribe(response => this.tool = response);
+      this.http.get<Tool[]>(toolsUrl)
+        .subscribe(response => this.tools = response);
+
     }
     // Create Tool
     createTool(newTool: Tool) {

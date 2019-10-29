@@ -26,6 +26,34 @@
             <a class="btn btn-primary">Button</a>
           </div>
         </ng-template>
+ 
+        <!--If Instructor-->
+        <ng-template [ngIf]='instructor'>
+            <img class="card-img-top" src="{{ instructor.imagePath }}" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">{{ instructor.firstName + " " + instructor.lastName }}</h4>
+              <p class="card-text">{{ instructor.description }}</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </ng-template>
+
+           <!--If Resource-->
+        <ng-template [ngIf]='resource'>
+            <div class="card-body">
+              <h4 class="card-title">{{ resource.name}}</h4>
+              <p class="card-text">{{ resource.description }}</p>
+              <a class="btn btn-primary">Button</a>
+            </div>
+          </ng-template>
+
+          <!--If Tool-->
+          <ng-template [ngIf]='tool'>
+              <div class="card-body">
+                <h4 class="card-title">{{ tool.name}}</h4>
+                <p class="card-text">{{ tool.linkDocumentation }}</p>
+                <a class="btn btn-primary">Button</a>
+              </div>
+            </ng-template>
       </div>
     </div>
   </div>
