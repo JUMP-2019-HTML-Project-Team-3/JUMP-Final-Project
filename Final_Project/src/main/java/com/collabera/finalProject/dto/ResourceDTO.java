@@ -1,4 +1,4 @@
-package com.collabera.finalProject.model;
+package com.collabera.finalProject.dto;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -14,37 +14,26 @@ import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity
-public class Resource implements Serializable {
+public class ResourceDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "resource_id", updatable = false, nullable = false)
 	private Long id;
 	
-	@Column(name = "name", nullable = false, length = 50)
 	private String name;
 	
-	@Column(name = "link", nullable = false, length = 100)
 	private String link;
 	
-	@Column(name = "description", nullable = true, length = 250)
 	private String description;
 	
 	//Fk to Students
-	@JsonBackReference
-	@ManyToMany(mappedBy = "resources")
-	private Set<Student> students = new HashSet<>();
+	private Set<StudentDTO> students = new HashSet<>();
 	
 	//FK to Instructors
-	@JsonBackReference
-	@ManyToMany(mappedBy = "resources")
-	private Set<Instructor> instructors;
+	private Set<InstructorDTO> instructors;
 	
 	//Constructor with Fields
-	public Resource(Long id, String name, String link, String description, Set<Student> students, Set<Instructor> instructors) {
+	public ResourceDTO(Long id, String name, String link, String description, Set<StudentDTO> students, Set<InstructorDTO> instructors) {
 		this.id = id;
 		this.name = name;
 		this.link = link;
@@ -53,7 +42,7 @@ public class Resource implements Serializable {
 		this.instructors = instructors;
 	}
 
-	public Resource() {
+	public ResourceDTO() {
 	}
 
 	//Getters and Setters
@@ -89,35 +78,35 @@ public class Resource implements Serializable {
 		this.description = description;
 	}
 
-	public Set<Student> getStudents()
+	public Set<StudentDTO> getStudents()
 	{
 		return students;
 	}
 
-	public void setStudents(Set<Student> students)
+	public void setStudents(Set<StudentDTO> students)
 	{
 		this.students = students;
 	}
 	
-	public void addStudent(Student student) {
+	public void addStudent(StudentDTO student) {
 		students.add(student);
 		student.getResources().add(this);
 	}
 	
-	public void removeStudent(Student student) {
+	public void removeStudent(StudentDTO student) {
 		students.remove(student);
 		student.getResources().remove(this);
 	}
 
-	public Set<Instructor> getInstructors() {
+	public Set<InstructorDTO> getInstructors() {
 		return instructors;
 	}
 
-	public void setInstructors(Set<Instructor> instructors) {
+	public void setInstructors(Set<InstructorDTO> instructors) {
 		this.instructors = instructors;
 	}
 
-	public void addInstructor(Instructor instructor) {
+	public void addInstructor(InstructorDTO instructor) {
 		instructors.add(instructor);
 		instructor.getResources().add(this);
 	}
