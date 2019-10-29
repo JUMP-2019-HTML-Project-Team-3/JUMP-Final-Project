@@ -7,6 +7,8 @@ import { stringify } from 'querystring';
 import { Repository } from '../models/repository';
 import {User} from '../models/user.model';
 import {UserType} from '../models/userType.model';
+import {Student} from '../models/student.model';
+import {Login} from '../models/login.model';
 @Component({
     templateUrl: './userLogin.component.html',
     styleUrls: ['./userLogin.component.css']
@@ -30,12 +32,20 @@ export class UserLoginComponent implements OnInit {
     });
   }
 
+  // onSubmit() {
+  //   this.repo.user = new User(0,
+  //     this.signInForm.get('userData.username').value,
+  //     this.signInForm.get('userData.password').value,
+  //     'N/A',
+  //     new UserType(0, 'temp'));
+  //
+  //   this.loginservice.authenticate();
+  // }
+
   onSubmit() {
-    this.repo.user = new User(0,
+    this.repo.login = new Login(0,
       this.signInForm.get('userData.username').value,
-      this.signInForm.get('userData.password').value,
-      'N/A',
-      new UserType(0, 'temp'));
+      this.signInForm.get('userData.password').value);
 
     this.loginservice.authenticate();
   }
