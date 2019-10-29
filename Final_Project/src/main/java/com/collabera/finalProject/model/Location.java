@@ -101,6 +101,12 @@ public class Location implements Serializable {
 	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
+	
+	public void addStudent(Student student) {
+		students.add(student);
+		student.setLocation(this);
+		
+	}
 
 	public Set<Instructor> getInstructors() {
 		return instructors;
@@ -119,4 +125,6 @@ public class Location implements Serializable {
 		instructors.remove(instructor);
 		instructor.getLocations().remove(this);
 	}
+
+
 }

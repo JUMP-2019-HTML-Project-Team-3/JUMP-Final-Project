@@ -168,6 +168,11 @@ public class Student implements  Serializable {
 	public void setInstructors(Set<Instructor> instructors) {
 		this.instructors = instructors;
 	}
+	
+	public void addInstructor(Instructor instructor) {
+		instructors.add(instructor);
+		instructor.getStudents().add(this);
+	}
 
 	public Set<Client> getClients() {
 		return clients;
