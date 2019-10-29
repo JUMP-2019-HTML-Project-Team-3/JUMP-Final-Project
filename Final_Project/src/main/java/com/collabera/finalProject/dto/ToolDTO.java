@@ -1,4 +1,4 @@
-package com.collabera.finalProject.model;
+package com.collabera.finalProject.dto;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -11,43 +11,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.collabera.finalProject.model.Instructor;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@Entity
-public class Tool implements Serializable {
+public class ToolDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "tool_id", updatable = false, nullable = false)
 	private Long id;
 	
-	@Column(name = "name", nullable = false, length = 50)
 	private String name;
 	
-	@Column(name = "linkDownload", nullable = false, length = 100)
 	private String linkDownLoad;
 	
-	@Column(name = "linkDocumentation", nullable = true, length = 100)
 	private String linkDocumentation;
 	
-	@Column(name = "description", nullable = true, length = 250)
 	private String description;
 	
 	//FK to Students
-	@JsonBackReference
-	@ManyToMany(mappedBy = "tools")
-	private Set<Student> students = new HashSet<>();
+	private Set<StudentDTO> students = new HashSet<>();
 	
 	//FK to Instructors
-	@JsonBackReference
-	@ManyToMany(mappedBy = "tools")
-	private Set<Instructor> instructors = new HashSet<>();
+	private Set<InstructorDTO> instructors = new HashSet<>();
 	
 	//Constructor with Fields
-	public Tool(Long id, String name, String linkDownLoad, String linkDocumentation) {
+	public ToolDTO(Long id, String name, String linkDownLoad, String linkDocumentation) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -55,7 +44,7 @@ public class Tool implements Serializable {
 		this.linkDocumentation = linkDocumentation;
 	}
 
-	public Tool() {
+	public ToolDTO() {
 	}
 
 	//Getters and Setters
@@ -99,36 +88,36 @@ public class Tool implements Serializable {
 		this.description = description;
 	}
 
-	public Set<Student> getStudents()
+	public Set<StudentDTO> getStudents()
 	{
 		return students;
 	}
 
-	public void setStudents(Set<Student> students)
+	public void setStudents(Set<StudentDTO> students)
 	{
 		this.students = students;
 	}
 	
-	public void addStudent(Student student) {
+	public void addStudent(StudentDTO student) {
 		students.add(student);
 		student.getTools().add(this);
 	}
 	
-	public void removeStudent(Student student) {
+	public void removeStudent(StudentDTO student) {
 		students.remove(student);
 		student.getTools().remove(this);
 	}
 
-	public Set<Instructor> getInstructors() {
+	public Set<InstructorDTO> getInstructors() {
 		return instructors;
 	}
 
-	public void setInstructors(Set<Instructor> instructors) {
+	public void setInstructors(Set<InstructorDTO> instructors) {
 		this.instructors = instructors;
 	}
-
-	public void addInstructor(Instructor instructor) {
-		instructors.add(instructor);
+	
+	public void addInstructor(InstructorDTO instructor) {
+		this.instructors.add(instructor);
 		instructor.getTools().add(this);
 	}
 	
