@@ -19,5 +19,12 @@
         </div>
     </ul>
     <a *ngIf="!loginservice.isUserLoggedIn()" class="navbar-text font-weight-bold navbar-nav ml-auto" routerLink="/login">Login/Signup Here</a>
-
+    <div class="dropdown navbar-nav ml-auto" *ngIf="loginservice.isUserLoggedIn()">
+      <a class="nav-link dropdown-toggle" routerLink="#" id="navbardrop" data-toggle="dropdown">
+        {{ repo.user.username }}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" routerLink="/logout">Logout</a>
+      </div>
+    </div>
 </nav>

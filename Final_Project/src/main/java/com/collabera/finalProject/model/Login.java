@@ -23,6 +23,12 @@ public class Login implements Serializable
 	
 	@Column(name = "password", updatable = true, nullable = false, length = 25)
 	private String password;
+	
+	@Column(name = "email", updatable = false, nullable = false, length = 25)
+	private String email;
+	
+	@Column(name = "uType", updatable = false, nullable = false, length = 1)
+	private int uType;
 
 	public String getUsername()
 	{
@@ -42,5 +48,25 @@ public class Login implements Serializable
 	public void setPassword(String password)
 	{
 		this.password = password;
+	}
+
+	public String getEmail()
+	{
+		return email;
+	}
+
+	public void setEmail(String email)
+	{
+		this.email = email;
+	}
+
+	public int getuType()
+	{
+		return uType;
+	}
+
+	public void setuType(int uType)
+	{
+		this.uType = uType;
 	}
 }

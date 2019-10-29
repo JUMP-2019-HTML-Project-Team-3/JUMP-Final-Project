@@ -10,23 +10,27 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
+  testLogin: boolean;
+
   constructor(private http: HttpClient,
               private repo: Repository,
               private router: Router) {
   }
 
-  authenticate() {
-    const aResponse = this.http.post('http://localhost:8080/cognixia/login', this.repo.login)
+   async authenticate() {
+    const aResponse = await this.http.post('http://localhost:8080/cognixia/login', this.repo.login)
       .subscribe((data: User) => {
         if (data.id == null) {
-          return false;
+          this.testLogin = false;
         } else {
           this.repo.user = data;
           sessionStorage.setItem('username', JSON.stringify(this.repo.user));
           this.router.navigate(['']);
-          return true;
+          this.testLogin = true;
         }
       });
+
+    return this.testLogin;
   }
 
   isUserLoggedIn() {
