@@ -7,7 +7,8 @@ import {CardCarouselModule} from '../cards/cardCarousel.module';
 // Component Imports 
 import { InstructorHomeComponent } from './instructorHome.component';
 import { LocationListComponent } from './Lists/locationList.component';
-//import { ResourceListComponent } from './Lists/resourceList.component';
+import { ResourceListComponent } from './Lists/resourceList.component';
+import { StudentListComponent } from './Lists/studentList.component'; 
  
 
 @NgModule({
@@ -22,8 +23,9 @@ import { LocationListComponent } from './Lists/locationList.component';
   ],
     declarations: [
       InstructorHomeComponent,
-      LocationListComponent
+      LocationListComponent,
       //ResourceListComponent
+      StudentListComponent
     ],
     providers: [
 

@@ -3,17 +3,14 @@
 <div>
   <h3>Your Students</h3>
   {{students}}
-  <!-- {{JSON.parse(this.getStudents())}} -->
-  <!-- <app-students></app-students> -->
-  <app-card
-*ngFor="let someA of this.repo.students"
-[student]="someA"></app-card>
+  <app-cardcarousel
+*ngFor="let someA of this.repo.students" 
+[student]="someA"></app-cardcarousel>
 </div>
 
 <div>
   <h3>Your Locations</h3>
   {{locations}}
-  <!-- <app-instructor-locations></app-instructor-locations> -->
   <app-card
   *ngFor="let someA of this.repo.locations"
   [location]="someA"></app-card>

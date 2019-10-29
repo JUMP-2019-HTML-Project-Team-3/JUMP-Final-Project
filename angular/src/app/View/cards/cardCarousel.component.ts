@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Location } from '../../models/location.model';
+import { Student } from '../../models/student.model'
 
 @Component({
     selector: 'app-cardcarousel',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class CardCarouselComponent {
+  @Input() location: Location;
+  @Input() student: Student;
 
   constructor() {}
 

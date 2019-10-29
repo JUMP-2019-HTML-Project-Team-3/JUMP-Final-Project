@@ -11,7 +11,5 @@ export class CardComponent {
   @Input() location: Location;
   @Input() student: Student;
 
-  constructor() {
-
-  }
+  constructor() {}
 }
