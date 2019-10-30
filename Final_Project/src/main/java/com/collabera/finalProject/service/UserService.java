@@ -76,14 +76,30 @@ public class UserService {
 	}
 	
 	//Add
-	public void addUser(String username, String password, String email, UserType userType, Long long1)
+	public User addUser(String username, String password, String email, UserType userType)
 	{
-		User tempUser = new User();
+		List<User> users = userRepository.findByUsername(username);
 		
-		tempUser.setUsername(username);
-		tempUser.setPassword(password);
-		tempUser.setEmail(email);
-		tempUser.setUserType(userType);
+		if(users.isEmpty())
+		{
+			User tempUser = new User();
+			
+			tempUser.setUsername(username);
+			tempUser.setPassword(password);
+			tempUser.setEmail(email);
+			tempUser.setUserType(userType);
+			
+			userRepository.save(tempUser);
+			
+			users = userRepository.findByUsername(username);
+			
+			if(users.isEmpty())
+				return new User();
+			else
+				return users.get(0);
+		}
+		
+		return new User();
 	}
 	
 	//Find All

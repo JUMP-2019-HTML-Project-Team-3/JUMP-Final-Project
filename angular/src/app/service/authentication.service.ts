@@ -5,12 +5,13 @@ import { HttpClient } from '@angular/common/http';
 import { Repository } from '../models/repository';
 import { Router } from '@angular/router';
 import {SignupUser} from '../models/signupUser';
+import {Student} from '../models/student.model';
+import {Instructor} from '../models/instructor.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  signupuser: SignupUser;
   testLogin: boolean;
 
   constructor(private http: HttpClient,
@@ -48,17 +49,16 @@ export class AuthenticationService {
   }
 
   async signUp(user, pass, email, uType) {
-    this.signupuser = new SignupUser(user, pass, email, uType);
+    this.repo.user = new User(0, user, pass, email, new UserType(uType), new Student(), new Instructor());
 
-    const aResponse = await this.http.post('http://localhost:8080/cognixia/addusers', this.repo.login)
+    const aResponse = await this.http.post('http://localhost:8080/cognixia/adduser', this.repo.user)
       .subscribe((data: User) => {
         if (data.id == null) {
-          this.testLogin = false;
+
         } else {
           this.repo.user = data;
           sessionStorage.setItem('username', JSON.stringify(this.repo.user));
           this.router.navigate(['']);
-          this.testLogin = true;
         }
       });
   }
