@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.collabera.finalProject.dto.UserDTO;
+import com.collabera.finalProject.mapper.Mapper;
 import com.collabera.finalProject.model.Login;
 import com.collabera.finalProject.model.User;
 import com.collabera.finalProject.service.UserService;
@@ -22,6 +24,8 @@ import com.collabera.finalProject.service.UserService;
 @RestController
 @RequestMapping("/cognixia")
 public class UserController {
+	private Mapper mapper;
+	
 	private final UserService userService;
 	/* Initialize final field userService */
 	public UserController (UserService userService) {
@@ -43,17 +47,16 @@ public class UserController {
 			return "n";
 	}
 
-	@PostMapping("/addusers")
-	public @ResponseBody String addNewUser(@RequestBody @Valid User aUser)
+	@PostMapping("/adduser")
+	public @ResponseBody User addNewUser(@RequestBody @Valid User aUser)
 	{
-		userService.addUser(
+//		User aUser = mapper.UserToEntity(adtoUser);
+		return userService.addUser(
 				aUser.getUsername(),
 				aUser.getPassword(),
 				aUser.getEmail(),
-				aUser.getUserType(),
-				aUser.getUserType().getId()
+				aUser.getUserType()
 				);
-		return "Saved";
   	}
 
   	@GetMapping(path = "/getuser/{id}")

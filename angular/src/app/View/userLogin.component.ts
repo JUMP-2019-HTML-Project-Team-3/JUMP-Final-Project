@@ -25,6 +25,9 @@ export class UserLoginComponent implements OnInit {
               private http: HttpClient) { }
 
   ngOnInit() {
+    if (this.loginservice.isUserLoggedIn()) {
+      this.router.navigate(['']);
+    }
 
     this.signInForm = new FormGroup({
       'userData': new FormGroup({
@@ -68,13 +71,11 @@ export class UserLoginComponent implements OnInit {
   }
 
   signUpUser() {
-    // this.repo.login = new Login(0,
-    //   this.signInForm.get('userData.username').value,
-    //   this.signInForm.get('userData.password').value,
-    //   this.signInForm.get('userData.email').value,
-    //   this.signInForm.get('userData.uType').value);
     if (this.signInForm.valid) {
-      console.log(this.signInForm.get('userData.uType').value, this.signInForm.get('userData.email').value);
+      this.loginservice.signUp(this.signInForm.get('userData.username').value,
+        this.signInForm.get('userData.password').value,
+        this.signInForm.get('userData.email').value,
+        this.signInForm.get('userData.uType').value);
     }
   }
 }
