@@ -18,14 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.collabera.finalProject.model.Client;
 import com.collabera.finalProject.service.ClientService;
 
-
 @RestController
 @RequestMapping("/cognixia")
 public class ClientController {
-	
+
 	@Autowired
 	private ClientService clientService;
-	
+
 	@PostMapping(path = "/addclient")
 	public @ResponseBody String addNewClient (@RequestBody @Valid Client aClient)
 	{
@@ -36,22 +35,21 @@ public class ClientController {
 				aClient.getDescription(),
 				aClient.getAddress(),
 				aClient.getAddress().getId());
-		
 		return "Saved";
 	}
-	
-	@GetMapping(path = "/allclients")
-	public @ResponseBody Iterable<Client> getAllClients()
-	{
-		return clientService.findAll();
-	}
-	
+
 	@GetMapping(path = "/getclient/{id}")
 	public Optional<Client> getClientById(@PathVariable Long id)
 	{
 		return clientService.getClientById(id);
 	}
-	
+
+	@GetMapping(path = "/allclients")
+	public @ResponseBody Iterable<Client> getAllClients()
+	{
+		return clientService.findAll();
+	}
+
 	@PutMapping("/updateclient")
 	public String updateClient(@RequestBody @Valid Client client)
 	{
@@ -59,7 +57,7 @@ public class ClientController {
 		clientService.updateClient(client);
 		return "Updated";
 	}
-	
+
 	@DeleteMapping("/deleteclient/{id}")
 	public void deleteClient(@PathVariable String id)
 	{
