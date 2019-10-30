@@ -38,13 +38,13 @@ public class ResourceController {
 		return "Saved";
 	}
 	
-	@GetMapping(path = "allresources")
+	@GetMapping(path = "/allresources")
 	public @ResponseBody Iterable <Resource> getAllResources()
 	{
 		return resourceService.findAll();
 	}
 	
-	@GetMapping(path = "/getResource{id}")
+	@GetMapping(path = "/getresource/{id}")
 	public Optional<Resource> getResourceById(@PathVariable Long id)
 	{
 		return resourceService.getResourceById(id);
