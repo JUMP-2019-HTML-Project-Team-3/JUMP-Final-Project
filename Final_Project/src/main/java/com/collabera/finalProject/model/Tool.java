@@ -37,12 +37,10 @@ public class Tool implements Serializable {
 	private String description;
 	
 	//FK to Students
-	@JsonBackReference
 	@ManyToMany(mappedBy = "tools")
 	private Set<Student> students = new HashSet<>();
 	
 	//FK to Instructors
-	@JsonBackReference
 	@ManyToMany(mappedBy = "tools")
 	private Set<Instructor> instructors = new HashSet<>();
 	

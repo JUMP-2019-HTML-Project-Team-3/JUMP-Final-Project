@@ -34,7 +34,6 @@ public class Client implements  Serializable {
 	@JoinColumn(name = "address_id", referencedColumnName = "address_id")
 	private Address address;
 	
-	@JsonBackReference
 	@ManyToMany(mappedBy = "clients")
 	private Set<Student> students = new HashSet<>();
 	
