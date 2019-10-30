@@ -14,18 +14,16 @@ public class AddressService {
 
 	@Autowired
 	private AddressRepository addressRepository;
-	
-	
-	//Constructor
+
+
+	// Constructor
 	public AddressService(AddressRepository addressRepository) {
-		
 		this.addressRepository = addressRepository;
 	}
 
-	//Add
+	// Add
 	public void addAddress(String streetNumber, String streetName, String suiteNo, 
 			String township, String state, String zip, String country) {
-
 		Address template = new Address();
 
 		template.setStreetNumber(streetNumber);
@@ -35,25 +33,24 @@ public class AddressService {
 		template.setState(state);
 		template.setZip(zip);
 		template.setCountry(country);
-		
+
 		addressRepository.save(template);
 	}
 
-	//Find By Id
+	// Find By Id
 	public Optional<Address> getAddressById(Long id) {
-
 		return addressRepository.findById(id);
-		
 	}
 
-	//Find All
+	// Find All
 	public List<Address> findAll() {
 		return addressRepository.findAll();
 	}
 
-	//Update
+	// Update
 	public void updateAddress(Address address) {
 		Optional<Address> findById = addressRepository.findById(address.getId());
+
 		if (findById.isPresent()) {
 			Address addressUpdate = findById.get();
 
@@ -64,12 +61,12 @@ public class AddressService {
 			addressUpdate.setState(address.getState());
 			addressUpdate.setZip(address.getZip());
 			addressUpdate.setCountry(address.getCountry());
-			
+
 			addressRepository.save(addressUpdate);
 		}
 		else throw new IllegalArgumentException();
 	}
 
-	//Delete
+	// Delete
 	public void deleteAddress(Long id) { addressRepository.deleteById(id); }
 }

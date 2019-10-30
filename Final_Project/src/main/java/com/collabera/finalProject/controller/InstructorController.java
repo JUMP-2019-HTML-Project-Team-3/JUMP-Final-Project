@@ -36,6 +36,7 @@ public class InstructorController {
 				aInstructor.getUserType(),
 				aInstructor.getUserType().getId()
 				);
+
 		return "Saved";
   	}
 
