@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.collabera.finalProject.dto.StudentDTO;
 import com.collabera.finalProject.model.Student;
 import com.collabera.finalProject.service.StudentService;
 
@@ -41,13 +42,13 @@ public class StudentController {
 	}
 	
 	@GetMapping(path = "/allstudents")
-	public @ResponseBody Iterable<Student> getAllStudents()
+	public @ResponseBody Iterable<StudentDTO> getAllStudents()
 	{
 		return studentService.findAll();
 	}
 	
 	@GetMapping(path = "/getstudent/{id}")
-	public Optional<Student> getStudentById(@PathVariable Long id)
+	public Optional<StudentDTO> getStudentById(@PathVariable Long id)
 	{
 		return studentService.getStudentById(id);
 	}

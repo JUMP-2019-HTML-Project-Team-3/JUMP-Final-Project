@@ -31,11 +31,9 @@ public class Location implements Serializable {
 	@JoinColumn(name = "address_id", referencedColumnName = "address_id")
 	private Address address;
 
-	@JsonBackReference
 	@OneToMany(mappedBy = "location", targetEntity = Student.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Student> students = new HashSet<Student>();
 
-	@JsonBackReference
     @ManyToMany(mappedBy = "locations")
 	private Set<Instructor> instructors = new HashSet<Instructor>();
 

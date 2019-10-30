@@ -2,10 +2,13 @@ package com.collabera.finalProject.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.collabera.finalProject.dto.StudentDTO;
+import com.collabera.finalProject.mapper.Mapper;
 import com.collabera.finalProject.model.Student;
 import com.collabera.finalProject.model.UserType;
 import com.collabera.finalProject.repository.StudentRepository;
@@ -16,6 +19,9 @@ public class StudentService {
 	
 	@Autowired
 	private StudentRepository studentRepository;
+	
+	@Autowired
+	private Mapper mapper;
 	
 	//Constructor
 	public StudentService(StudentRepository studentRepository)
@@ -48,15 +54,20 @@ public class StudentService {
 	//Add Tool to Student
 	
 	//Find All
-	public List<Student> findAll()
+	public List<StudentDTO> findAll()
 	{
-		return studentRepository.findAll();
+		// Set the view for the Mapper
+		mapper.setStudentView(true);
+		// Retrieve data and convert to DTO
+		return studentRepository.findAll().stream().map(m -> mapper.StudentToDTO(m)).collect(Collectors.toList());
 	}
 	
 	//Find By Id
-	public Optional<Student> getStudentById(Long id)
+	public Optional<StudentDTO> getStudentById(Long id)
 	{
-		return studentRepository.findById(id);
+		mapper.setStudentView(true);
+		// Retrieve, set to Optional in order to use Repository functions, then to DTO
+		return Optional.of(mapper.StudentToDTO(studentRepository.findById(id).get()));
 	}
 	
 	//Update
@@ -72,7 +83,7 @@ public class StudentService {
 			studentToUpdate.setFirstName(student.getFirstName());
 			studentToUpdate.setLastName(student.getLastName());
 			studentToUpdate.setDescription(student.getDescription());
-			studentToUpdate.setUserType(student.getUserType());
+			studentToUpdate.setUserType((student).getUserType());
 			studentRepository.save(studentToUpdate);
 		}
 		else 

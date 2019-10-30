@@ -39,12 +39,10 @@ public class Instructor implements Serializable {
 	private UserType userType;
 	
 	//FK to Student
-	@JsonBackReference
 	@ManyToMany(mappedBy = "instructors")
 	private Set<Student> students = new HashSet<>();
     
     //FK to Resource
-	@JsonManagedReference
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
@@ -56,7 +54,6 @@ public class Instructor implements Serializable {
 	private Set<Resource> resources;
     
     //FK to Tool
-	@JsonManagedReference
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
@@ -68,7 +65,6 @@ public class Instructor implements Serializable {
 	private Set<Tool> tools = new HashSet<>();
     
     //FK to Location
-	@JsonManagedReference
 	@ManyToMany(fetch = FetchType.LAZY, cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE

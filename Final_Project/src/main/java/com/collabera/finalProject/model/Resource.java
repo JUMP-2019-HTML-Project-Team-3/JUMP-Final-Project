@@ -34,12 +34,10 @@ public class Resource implements Serializable {
 	private String description;
 	
 	//Fk to Students
-	@JsonBackReference
 	@ManyToMany(mappedBy = "resources")
 	private Set<Student> students = new HashSet<>();
 	
 	//FK to Instructors
-	@JsonBackReference
 	@ManyToMany(mappedBy = "resources")
 	private Set<Instructor> instructors;
 	
