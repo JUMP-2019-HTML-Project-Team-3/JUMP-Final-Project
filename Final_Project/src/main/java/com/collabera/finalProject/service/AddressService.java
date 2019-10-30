@@ -35,6 +35,8 @@ public class AddressService {
 		template.setState(state);
 		template.setZip(zip);
 		template.setCountry(country);
+		
+		addressRepository.save(template);
 	}
 
 	//Find By Id
@@ -62,6 +64,8 @@ public class AddressService {
 			addressUpdate.setState(address.getState());
 			addressUpdate.setZip(address.getZip());
 			addressUpdate.setCountry(address.getCountry());
+			
+			addressRepository.save(addressUpdate);
 		}
 		else throw new IllegalArgumentException();
 	}
