@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.collabera.finalProject.dto.ResourceDTO;
 import com.collabera.finalProject.model.Resource;
 import com.collabera.finalProject.service.ResourceService;
 
@@ -39,13 +40,13 @@ public class ResourceController {
 	}
 	
 	@GetMapping(path = "allresources")
-	public @ResponseBody Iterable <Resource> getAllResources()
+	public @ResponseBody Iterable <ResourceDTO> getAllResources()
 	{
 		return resourceService.findAll();
 	}
 	
-	@GetMapping(path = "/getResource{id}")
-	public Optional<Resource> getResourceById(@PathVariable Long id)
+	@GetMapping(path = "/getResource/{id}")
+	public Optional<ResourceDTO> getResourceById(@PathVariable Long id)
 	{
 		return resourceService.getResourceById(id);
 	}

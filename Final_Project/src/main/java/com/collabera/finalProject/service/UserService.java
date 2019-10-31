@@ -2,10 +2,13 @@ package com.collabera.finalProject.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.collabera.finalProject.dto.UserDTO;
+import com.collabera.finalProject.mapper.Mapper;
 import com.collabera.finalProject.model.Login;
 import com.collabera.finalProject.model.User;
 import com.collabera.finalProject.model.UserType;
@@ -19,6 +22,9 @@ public class UserService {
 	
 	@Autowired
 	private UserTypeRepository userTypeRepository;
+	
+	@Autowired
+	private Mapper mapper;
 	
 	//Constructor
 	public UserService(UserRepository userRepository)
@@ -87,15 +93,21 @@ public class UserService {
 	}
 	
 	//Find All
-	public List<User> findAll()
+	public List<UserDTO> findAll()
 	{
-		return userRepository.findAll();
+		// Set View for mapper
+		mapper.setUserView(true);
+		
+		return userRepository.findAll().stream().map(m -> mapper.UserToDTO(m)).collect(Collectors.toList());
 	}
 	
 	//Find By Id
-	public Optional<User> getUserById(Long id) 
+	public Optional<UserDTO> getUserById(Long id) 
 	{
-		return userRepository.findById(id);
+		// Set Mapper View
+		mapper.setUserView(true);
+		// Retrieve, set to Optional in order to use Repository functions, then to DTO
+		return Optional.of(mapper.UserToDTO(userRepository.findById(id).get()));
 	}
 	
 	//Update

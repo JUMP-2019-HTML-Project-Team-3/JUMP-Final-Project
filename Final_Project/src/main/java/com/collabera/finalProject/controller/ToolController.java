@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.collabera.finalProject.service.ToolService;
+import com.collabera.finalProject.dto.ToolDTO;
 import com.collabera.finalProject.model.Tool;
 
 
@@ -39,13 +40,13 @@ public class ToolController {
 	}
 	
 	@GetMapping(path = "/alltools")
-	public @ResponseBody Iterable<Tool> getAllTools()
+	public @ResponseBody Iterable<ToolDTO> getAllTools()
 	{
 		return toolService.findAll();
 	}
 	
 	@GetMapping(path = "/gettool/{id}")
-	public Optional<Tool> getToolById(@PathVariable Long id)
+	public Optional<ToolDTO> getToolById(@PathVariable Long id)
 	{
 		return toolService.getToolById(id);
 	}
