@@ -1,0 +1,28 @@
+<!-- Application ToolBar -->
+
+<nav class="navbar navbar-expand-md bg-info navbar-light fixed-top">
+    <!-- Brand -->
+    <a routerLink="/home"><img src="https://i.imgur.com/3MeOVob.png" class="navbar-brand font-weight-bold"></a>
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <!-- Create Dropdown -->
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle" routerLink="#" id="navbardrop" data-toggle="dropdown">
+              Add to your Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" routerLink="#">Link your Resources</a>
+              <a class="dropdown-item" routerLink="#">Add your Tools</a>
+          </div>
+        </div>
+    </ul>
+    <a *ngIf="!loginservice.isUserLoggedIn()" class="navbar-text font-weight-bold navbar-nav ml-auto" routerLink="/login">Login/Signup Here</a>
+    <div class="dropdown navbar-nav ml-auto" *ngIf="loginservice.isUserLoggedIn()">
+      <a class="nav-link dropdown-toggle" routerLink="#" id="navbardrop" data-toggle="dropdown">
+        {{ repo.user.username }}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" routerLink="/logout">Logout</a>
+      </div>
+    </div>
+</nav>
