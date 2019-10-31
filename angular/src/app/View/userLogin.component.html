@@ -4,6 +4,7 @@
     <div class="col-md-8">
       <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
         <div formGroupName="userData">
+
           <div class="form-group">
             <label for="username">User</label>
             <input type="text"
@@ -13,9 +14,10 @@
             <span
               *ngIf="!signInForm.get('userData.username').valid && signInForm.get('userData.username').touched"
               class="help-block">
-              <span *ngIf="signInForm.get('userData.username').errors['required']">This field is required!</span>
+              <span *ngIf="signInForm.get('userData.username').errors['required']">Username is required!</span>
             </span>
           </div>
+
           <div class="form-group">
             <label for="password">Password</label>
             <input type="password"
@@ -25,15 +27,53 @@
             <span
               *ngIf="!signInForm.get('userData.password').valid && signInForm.get('userData.password').touched"
               class="help-block">
-              <span *ngIf="signInForm.get('userData.password').errors['required']">This field is required!</span>
+              <span *ngIf="signInForm.get('userData.password').errors['required']">Password is required!</span>
+            </span>
+          </div>
+
+          <div class="form-group" *ngIf="signUp">
+            <label for="email">Email</label>
+            <input type="email"
+                   id="email"
+                   formControlName="email"
+                   class="form-control">
+            <span
+              *ngIf="!signInForm.get('userData.email').valid && signInForm.get('userData.email').touched"
+              class="help-block">
+              <span *ngIf="signInForm.get('userData.email').errors['required']">Email is required!</span>
+            </span>
+          </div>
+
+          <div class="form-group" *ngIf="signUp">
+            <input type="radio" formControlName="uType" value="1" checked=""> Student
+            <input type="radio" formControlName="uType" value="2"> Instructor
+            <span
+              *ngIf="!signInForm.get('userData.uType').valid && signInForm.get('userData.uType').touched"
+              class="help-block">
+              <span *ngIf="signInForm.get('userData.uType').errors['required']">User Type is required!</span>
             </span>
           </div>
         </div>
+
         <span
-          *ngIf="signInForm.touched && !loginservice.isUserLoggedIn()"
-          class="help-block">Please enter valid username and password!</span>
+          *ngIf="!signUp && loggedInTry"
+          class="help-block" style="color: darkred">Please enter valid username and password!</span>
         <hr>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div *ngIf="!signUp" class="btn-group mr-2" role="group" aria-label="First group">
+            <a (click)="onSubmit()" class="btn btn-primary">Login</a>
+          </div>
+          <div *ngIf="signUp" class="btn-group mr-2" role="group" aria-label="First group">
+            <a (click)="signUpUser()" class="btn btn-primary">Sign Up</a>
+          </div>
+
+          <div *ngIf="!signUp" class="btn-group mr-2" role="group" aria-label="Second group">
+            <a (click)="signUpSelect()" class="btn btn-primary">Sign Up!</a>
+          </div>
+          <div *ngIf="signUp" class="btn-group mr-2" role="group" aria-label="Second group">
+            <a (click)="signUpSelect()" class="btn btn-primary">Cancel</a>
+          </div>
+        </div>
       </form>
     </div>
   </div>

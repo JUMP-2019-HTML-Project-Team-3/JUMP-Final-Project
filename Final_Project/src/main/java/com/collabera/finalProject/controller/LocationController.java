@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.collabera.finalProject.dto.LocationDTO;
 import com.collabera.finalProject.model.Location;
 import com.collabera.finalProject.service.LocationService;
 
@@ -41,13 +42,13 @@ public class LocationController {
   	}
 
   	@GetMapping(path = "/getlocation/{id}")
-  	public Optional<Location> getLocationById(@PathVariable Long id)
+  	public Optional<LocationDTO> getLocationById(@PathVariable Long id)
 	{
 		return locationService.getLocationById(id);
 	}
 
 	@GetMapping("/alllocations")
-	public Iterable<Location> getAllLocations()
+	public Iterable<LocationDTO> getAllLocations()
 	{
 		return locationService.findAll();
 	}

@@ -2,10 +2,13 @@ package com.collabera.finalProject.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.collabera.finalProject.dto.LocationDTO;
+import com.collabera.finalProject.mapper.Mapper;
 import com.collabera.finalProject.model.Address;
 import com.collabera.finalProject.model.Location;
 import com.collabera.finalProject.repository.LocationRepository;
@@ -15,6 +18,10 @@ public class LocationService {
 
 	@Autowired
 	private LocationRepository locationRepository;
+	
+	@Autowired
+	private Mapper mapper;
+	
 	//Constructor
 	public LocationService(LocationRepository locationRepository) {
 		this.locationRepository = locationRepository;
@@ -31,13 +38,19 @@ public class LocationService {
 	}
 
 	//Find By Id
-	public Optional<Location> getLocationById(Long id) {
-		return locationRepository.findById(id);
+	public Optional<LocationDTO> getLocationById(Long id) {
+		// Set Mapper View
+		mapper.setLocationView(true);
+		// Retrieve, set to Optional in order to use Repository functions, then to DTO
+		return Optional.of(mapper.LocationToDTO(locationRepository.findById(id).get()));
 	}
 
 	//Find All
-	public List<Location> findAll() {
-		return locationRepository.findAll();
+	public List<LocationDTO> findAll() {
+		// Set View for mapper
+		mapper.setLocationView(true);
+		
+		return locationRepository.findAll().stream().map(m -> mapper.LocationToDTO(m)).collect(Collectors.toList());
 	}
 
 	//Update

@@ -2,10 +2,13 @@ package com.collabera.finalProject.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.collabera.finalProject.dto.AddressDTO;
+import com.collabera.finalProject.mapper.Mapper;
 import com.collabera.finalProject.model.Address;
 import com.collabera.finalProject.repository.AddressRepository;
 
@@ -15,17 +18,18 @@ public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
 	
+	@Autowired
+	private Mapper mapper;
 	
 	//Constructor
+
 	public AddressService(AddressRepository addressRepository) {
-		
 		this.addressRepository = addressRepository;
 	}
 
-	//Add
+	// Add
 	public void addAddress(String streetNumber, String streetName, String suiteNo, 
 			String township, String state, String zip, String country) {
-
 		Address template = new Address();
 
 		template.setStreetNumber(streetNumber);
@@ -35,23 +39,32 @@ public class AddressService {
 		template.setState(state);
 		template.setZip(zip);
 		template.setCountry(country);
+
+		addressRepository.save(template);
 	}
 
 	//Find By Id
-	public Optional<Address> getAddressById(Long id) {
+	public Optional<AddressDTO> getAddressById(Long id) {
 
-		return addressRepository.findById(id);
+		// Set Mapper View
+		mapper.setAddressView(true);
+		// Retrieve, set to Optional in order to use Repository functions, then to DTO
+		return Optional.of(mapper.AddressToDTO(addressRepository.findById(id).get()));
 		
 	}
 
 	//Find All
-	public List<Address> findAll() {
-		return addressRepository.findAll();
+	public List<AddressDTO> findAll() {
+		// Set View for mapper
+		mapper.setAddressView(true);
+		
+		return addressRepository.findAll().stream().map(m -> mapper.AddressToDTO(m)).collect(Collectors.toList());
 	}
 
-	//Update
+	// Update
 	public void updateAddress(Address address) {
 		Optional<Address> findById = addressRepository.findById(address.getId());
+
 		if (findById.isPresent()) {
 			Address addressUpdate = findById.get();
 
@@ -62,10 +75,12 @@ public class AddressService {
 			addressUpdate.setState(address.getState());
 			addressUpdate.setZip(address.getZip());
 			addressUpdate.setCountry(address.getCountry());
+
+			addressRepository.save(addressUpdate);
 		}
 		else throw new IllegalArgumentException();
 	}
 
-	//Delete
+	// Delete
 	public void deleteAddress(Long id) { addressRepository.deleteById(id); }
 }

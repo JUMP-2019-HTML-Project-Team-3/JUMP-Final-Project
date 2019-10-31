@@ -11,6 +11,91 @@ import org.springframework.stereotype.Component;
 @Component
 public class Mapper {
 	
+	// Attribute Booleans structure the data views for the service and ultimately the controller
+	
+	Boolean addressView = false;
+	Boolean studentView = false;
+	Boolean instructorView = false;
+	Boolean clientView = false;
+	Boolean resourceView = false;
+	Boolean toolView = false;
+	Boolean locationView = false;
+	Boolean userView = false;
+	Boolean userTypeView = false;
+	
+	// Getters and Setters for view types
+	public Boolean isAddressView() {
+		return addressView;
+	}
+
+	public void setAddressView(Boolean addressView) {
+		this.addressView = addressView;
+	}
+
+	public Boolean isStudentView() {
+		return studentView;
+	}
+
+	public void setStudentView(Boolean studentView) {
+		this.studentView = studentView;
+	}
+
+	public Boolean isInstructorView() {
+		return instructorView;
+	}
+
+	public void setInstructorView(Boolean instructorView) {
+		this.instructorView = instructorView;
+	}
+
+	public Boolean isClientView() {
+		return clientView;
+	}
+
+	public void setClientView(Boolean clientView) {
+		this.clientView = clientView;
+	}
+
+	public Boolean isResourceView() {
+		return resourceView;
+	}
+
+	public void setResourceView(Boolean resourceView) {
+		this.resourceView = resourceView;
+	}
+
+	public Boolean isToolView() {
+		return toolView;
+	}
+
+	public void setToolView(Boolean toolView) {
+		this.toolView = toolView;
+	}
+
+	public Boolean isLocationView() {
+		return locationView;
+	}
+
+	public void setLocationView(Boolean locationView) {
+		this.locationView = locationView;
+	}
+
+	public Boolean isUserView() {
+		return userView;
+	}
+
+	public void setUserView(Boolean userView) {
+		this.userView = userView;
+	}
+
+	public Boolean isUserTypeView() {
+		return userTypeView;
+	}
+
+	public void setUserTypeView(Boolean userTypeView) {
+		this.userTypeView = userTypeView;
+	}
+
 	// Address
 	public Address AddressToEntity(AddressDTO dto) {
 		Address address = new Address();
@@ -52,7 +137,10 @@ public class Mapper {
 		client.setImagePath(dto.getImagePath());
 		client.setDescription(dto.getDescription());
 		client.setPhone(dto.getPhone());
-		dto.getStudents().stream().iterator().forEachRemaining(s -> {client.addStudent(StudentToEntity(s));});
+		// Returning students is not necessary if not calling from client controller
+		if(clientView) {
+			client.setStudents(dto.getStudents().stream().map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
+		}
 		client.setAddress(AddressToEntity(dto.getAddress()));
 		
 		return client;
@@ -67,7 +155,10 @@ public class Mapper {
 		client.setImagePath(entity.getImagePath());
 		client.setDescription(entity.getDescription());
 		client.setPhone(entity.getPhone());
-		entity.getStudents().stream().iterator().forEachRemaining(s -> {client.addStudent(StudentToDTO(s));});
+		// Return not necessary outside of client controller
+		if(clientView) {
+			client.setStudents(entity.getStudents().stream().map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
+		}
 		client.setAddress(AddressToDTO(entity.getAddress()));
 		
 		return client;
@@ -83,10 +174,16 @@ public class Mapper {
 		instructor.setUser(UserToEntity(dto.getUser()));
 		instructor.setUserType(UserTypeToEntity(dto.getUserType()));
 		instructor.setDescription(dto.getDescription());
-		dto.getLocations().stream().iterator().forEachRemaining(s -> {instructor.addLocation(LocationToEntity(s));});
-		dto.getStudents().stream().iterator().forEachRemaining(s -> {instructor.addStudent(StudentToEntity(s));});
-		dto.getTools().stream().iterator().forEachRemaining(s -> {instructor.addTool(ToolToEntity(s));});
-		dto.getResources().stream().iterator().forEachRemaining(s -> {instructor.addResource(ResourceToEntity(s));});
+		// Only necessary from Instructor Controller
+		if(instructorView) {
+			instructor.setLocations(dto.getLocations().stream().map(s -> LocationToEntity(s)).collect(Collectors.toSet()));
+	
+			instructor.setStudents(dto.getStudents().stream().map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
+	
+			instructor.setTools(dto.getTools().stream().map(s -> ToolToEntity(s)).collect(Collectors.toSet()));
+	
+			instructor.setResources(dto.getResources().stream().map(s -> ResourceToEntity(s)).collect(Collectors.toSet()));
+		}
 		
 		return instructor;
 		
@@ -101,10 +198,16 @@ public class Mapper {
 		instructor.setUser(UserToDTO(entity.getUser()));
 		instructor.setUserType(UserTypeToDTO(entity.getUserType()));
 		instructor.setDescription(entity.getDescription());
-		entity.getLocations().stream().iterator().forEachRemaining(s -> {instructor.addLocation(LocationToDTO(s));});
-		entity.getStudents().stream().iterator().forEachRemaining(s -> {instructor.addStudent(StudentToDTO(s));});
-		entity.getTools().stream().iterator().forEachRemaining(s -> {instructor.addTool(ToolToDTO(s));});
-		entity.getResources().stream().iterator().forEachRemaining(s -> {instructor.addResource(ResourceToDTO(s));});
+		// Only necessary from constructor controller
+		if(instructorView) {
+			instructor.setLocations(entity.getLocations().stream().map(s -> LocationToDTO(s)).collect(Collectors.toSet()));
+	
+			instructor.setStudents(entity.getStudents().stream().map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
+	
+			instructor.setTools(entity.getTools().stream().map(s -> ToolToDTO(s)).collect(Collectors.toSet()));
+	
+			instructor.setResources(entity.getResources().stream().map(s -> ResourceToDTO(s)).collect(Collectors.toSet()));
+		}
 		
 		return instructor;
 	}
@@ -117,10 +220,14 @@ public class Mapper {
 		location.setName(dto.getName());
 		location.setPhoneNo(dto.getPhoneNo());
 		location.setImagePath(dto.getImagePath());
-		dto.getInstructors().stream().iterator().forEachRemaining(s -> {location.addInstructor(InstructorToEntity(s));});
-		dto.getStudents().stream().iterator().forEachRemaining(s -> {location.addStudent(StudentToEntity(s));});
 		location.setAddress(AddressToEntity(dto.getAddress()));
-		
+		// Only needed in location controller call
+		if(locationView) {
+			location.setInstructors(dto.getInstructors().stream().map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
+	
+			location.setStudents(dto.getStudents().stream().map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
+		}
+
 		return location;
 		
 	}
@@ -132,9 +239,13 @@ public class Mapper {
 		location.setName(entity.getName());
 		location.setPhoneNo(entity.getPhoneNo());
 		location.setImagePath(entity.getImagePath());
-		entity.getInstructors().stream().iterator().forEachRemaining(s -> {location.addInstructor(InstructorToDTO(s));});
-		entity.getStudents().stream().iterator().forEachRemaining(s -> {location.addStudent(StudentToDTO(s));});
 		location.setAddress(AddressToDTO(entity.getAddress()));
+		// Only needed in location view
+		if(locationView) {
+			location.setInstructors(entity.getInstructors().stream().map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
+	
+			location.setStudents(entity.getStudents().stream().map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
+		}
 		
 		return location;
 	}
@@ -147,8 +258,12 @@ public class Mapper {
 		resource.setName(dto.getName());
 		resource.setDescription(dto.getDescription());
 		resource.setLink(dto.getLink());
-		dto.getStudents().stream().iterator().forEachRemaining(s -> {resource.addStudent(StudentToEntity(s));});
-		dto.getInstructors().stream().iterator().forEachRemaining(s -> {resource.addInstructor(InstructorToEntity(s));});
+		// Only needed from Resource Controller
+		if(resourceView) {
+			resource.setStudents(dto.getStudents().stream().map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
+	
+			resource.setInstructors(dto.getInstructors().stream().map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
+		}
 		
 		return resource;
 		
@@ -161,8 +276,12 @@ public class Mapper {
 		resource.setName(entity.getName());
 		resource.setDescription(entity.getDescription());
 		resource.setLink(entity.getLink());
-		entity.getStudents().stream().iterator().forEachRemaining(s -> {resource.addStudent(StudentToDTO(s));});
-		entity.getInstructors().stream().iterator().forEachRemaining(s -> {resource.addInstructor(InstructorToDTO(s));});
+		// Only needed from Resource Controller
+		if(resourceView) {
+			resource.setStudents(entity.getStudents().stream().map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
+	
+			resource.setInstructors(entity.getInstructors().stream().map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
+		}
 		
 		return resource;
 	}
@@ -178,10 +297,16 @@ public class Mapper {
 		student.setDescription(dto.getDescription());
 		student.setUser(UserToEntity(dto.getUser()));
 		student.setUserType(UserTypeToEntity(dto.getUserType()));
-		dto.getInstructors().stream().iterator().forEachRemaining(s -> {student.addInstructor(InstructorToEntity(s));});
-		dto.getClients().stream().iterator().forEachRemaining(s -> {student.addClient(ClientToEntity(s));});
-		dto.getResources().stream().iterator().forEachRemaining(s -> {student.addResource(ResourceToEntity(s));});
-		dto.getTools().stream().iterator().forEachRemaining(s -> {student.addTool(ToolToEntity(s));});
+		// Only need from student controller
+		if(studentView) {
+			student.setInstructors(dto.getInstructors().stream().map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
+	
+			student.setClients(dto.getClients().stream().map(s -> ClientToEntity(s)).collect(Collectors.toSet()));
+	
+			student.setResources(dto.getResources().stream().map(s -> ResourceToEntity(s)).collect(Collectors.toSet()));
+	
+			student.setTools(dto.getTools().stream().map(s -> ToolToEntity(s)).collect(Collectors.toSet()));
+		}
 		
 		return student;
 		
@@ -197,10 +322,16 @@ public class Mapper {
 		student.setDescription(entity.getDescription());
 		student.setUser(UserToDTO(entity.getUser()));
 		student.setUserType(UserTypeToDTO(entity.getUserType()));
-		entity.getInstructors().stream().iterator().forEachRemaining(s -> {student.addInstructor(InstructorToDTO(s));});
-		entity.getClients().stream().iterator().forEachRemaining(s -> {student.addClient(ClientToDTO(s));});
-		entity.getResources().stream().iterator().forEachRemaining(s -> {student.addResource(ResourceToDTO(s));});
-		entity.getTools().stream().iterator().forEachRemaining(s -> {student.addTool(ToolToDTO(s));});
+		// Only needed from student controller
+		if(studentView) {
+			student.setInstructors(entity.getInstructors().stream().map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
+	
+			student.setClients(entity.getClients().stream().map(s -> ClientToDTO(s)).collect(Collectors.toSet()));
+	
+			student.setResources(entity.getResources().stream().map(s -> ResourceToDTO(s)).collect(Collectors.toSet()));
+	
+			student.setTools(entity.getTools().stream().map(s -> ToolToDTO(s)).collect(Collectors.toSet()));
+		}
 		
 		return student;
 	}
@@ -214,8 +345,12 @@ public class Mapper {
 		tool.setDescription(dto.getDescription());
 		tool.setLinkDownLoad(dto.getLinkDownLoad());
 		tool.setLinkDocumentation(dto.getLinkDocumentation());
-		dto.getInstructors().stream().iterator().forEachRemaining(s -> {tool.addInstructor(InstructorToEntity(s));});
-		dto.getStudents().stream().iterator().forEachRemaining(s -> {tool.addStudent(StudentToEntity(s));});
+		// Only needed from Tool Controller
+		if(resourceView) {
+			tool.setStudents(dto.getStudents().stream().map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
+	
+			tool.setInstructors(dto.getInstructors().stream().map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
+		}
 		
 		return tool;
 		
@@ -229,8 +364,12 @@ public class Mapper {
 		tool.setDescription(entity.getDescription());
 		tool.setLinkDownLoad(entity.getLinkDownLoad());
 		tool.setLinkDocumentation(entity.getLinkDocumentation());
-		entity.getInstructors().stream().iterator().forEachRemaining(s -> {tool.addInstructor(InstructorToDTO(s));});
-		entity.getStudents().stream().iterator().forEachRemaining(s -> {tool.addStudent(StudentToDTO(s));});
+		// Only needed from Tool Controller
+		if(resourceView) {
+			tool.setStudents(entity.getStudents().stream().map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
+	
+			tool.setInstructors(entity.getInstructors().stream().map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
+		}
 		
 		return tool;
 	}

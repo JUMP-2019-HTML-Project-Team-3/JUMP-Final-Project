@@ -27,13 +27,11 @@ public class Student implements  Serializable {
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
 	
-	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "userType_id", referencedColumnName = "userType_id")
 	private UserType userType;
 	
 	//Instructors
-	@JsonManagedReference
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
@@ -44,7 +42,6 @@ public class Student implements  Serializable {
 	private Set<Instructor> instructors = new HashSet<Instructor>();
 
     //Clients
-	@JsonManagedReference
 	@ManyToMany(cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
@@ -56,7 +53,6 @@ public class Student implements  Serializable {
 	private Set<Client> clients = new HashSet<Client>();
 	
 	//Resources
-	@JsonManagedReference
 	@ManyToMany(cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
@@ -68,7 +64,6 @@ public class Student implements  Serializable {
 	private Set<Resource> resources = new HashSet<Resource>();
 	
 	//Tools
-	@JsonManagedReference
 	@ManyToMany(cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
@@ -79,7 +74,6 @@ public class Student implements  Serializable {
 	private Set<Tool> tools = new HashSet<Tool>();
 	
 	//Locations
-	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;

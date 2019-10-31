@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.collabera.finalProject.dto.InstructorDTO;
 import com.collabera.finalProject.model.Instructor;
 import com.collabera.finalProject.service.InstructorService;
 
@@ -36,22 +37,23 @@ public class InstructorController {
 				aInstructor.getUserType(),
 				aInstructor.getUserType().getId()
 				);
+
 		return "Saved";
   	}
 
   	@GetMapping(path = "/getinstructor/{id}")
-  	public Optional<Instructor> getInstructorById(@PathVariable Long id)
+  	public Optional<InstructorDTO> getInstructorById(@PathVariable Long id)
 	{
 		return instructorService.getInstructorById(id);
 	}
 
 	@GetMapping("/allinstructors")
-	public Iterable<Instructor> getAllInstructors()
+	public Iterable<InstructorDTO> getAllInstructors()
 	{
 		return instructorService.findAll();
 	}
 
-	@PutMapping("updateinstructor/{id}")
+	@PutMapping("/updateinstructor/{id}")
 	public String updateInstructor(@RequestBody @Valid Instructor instructor)
 	{
 		System.out.println("Added Instructor");
