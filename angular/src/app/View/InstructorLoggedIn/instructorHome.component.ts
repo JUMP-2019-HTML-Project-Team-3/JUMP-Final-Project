@@ -13,11 +13,11 @@ import { Resource} from '../../models/resource.model';
 })  
 
 export class InstructorHomeComponent{ 
-    // @Input() location: Location;
-    // @Input() student: Student;
-    // @Input() instructor: Instructor;
-    // @Input() resource: Resource;
-    // @Input() tool: Tool;
+    @Input() location: Location;
+    @Input() student: Student;
+    @Input() instructor: Instructor;
+    @Input() resource: Resource;
+    @Input() tool: Tool;
   
     constructor(private repo: Repository ) { } 
 

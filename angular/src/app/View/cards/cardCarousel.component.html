@@ -6,7 +6,7 @@
     <div class="controls-top">
       <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
       <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fas fa-chevron-right"></i></a>
-    </div>
+    </div> 
     <!--/.Controls-->
 
     <!--Indicators-->
@@ -15,26 +15,14 @@
       <li data-target="#multi-item-example" data-slide-to="1"></li>
       <li data-target="#multi-item-example" data-slide-to="2"></li>
     </ol>
-    <!--/.Indicators-->
+    <!--/.Indicators-->   
     <!--Slides-->
     <div class="carousel-inner" role="listbox">
 
       <!--First slide-->
       <div class="carousel-item active">
         <div class="container-fluid card-group">
-          
-            <app-card *ngFor="let someA of this.repo.students; let i = index" [student]="someA" [id]="i">
-                <!-- <div *ngIf="i % 4 = 0; i++">
-                </div>
-                 -->
-                <!-- <div *ngIf="index < 3 || i = 3">
-                  
-
-                </div> -->
-            </app-card>
-
-            <app-card *ngFor="let someA of this.repo.locations; let i = index" [location]="someA" [id]="i"></app-card>
-
+        
 
         </div>
 

@@ -4,6 +4,7 @@ import { Student } from '../../models/student.model';
 import { Instructor } from '../../models/instructor.model';
 import { Resource } from '../../models/resource.model';
 import { Tool } from '../../models/tool.model';
+import { Repository } from '../../models/repository';
 
 @Component({
     selector: 'app-card',
@@ -18,5 +19,5 @@ export class CardComponent {
   @Input() resource: Resource;
   @Input() tool: Tool;
 
-  constructor() {}
+  constructor(private repo: Repository) {}
 }
