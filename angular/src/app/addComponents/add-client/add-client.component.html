@@ -1,0 +1,33 @@
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Input">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Textarea"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select">
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+
+
+<div class="container d-flex justify-content-center">
+    <mat-form-field [color]="primary">
+      <input matInput placeholder="Name" [(ngModel)]="name" type="text" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Phone number" [(ngModel)]="phone" type="text"
+             class="example-right-align" required>
+    </mat-form-field>
+
+  <mat-card-actions>
+    <button  mat-raised-button (click)="addClient()"  color="primary">Add</button>
+  </mat-card-actions>
+</div>
