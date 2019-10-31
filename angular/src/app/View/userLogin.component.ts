@@ -16,6 +16,8 @@ import {Login} from '../models/login.model';
 export class UserLoginComponent implements OnInit {
   signInForm: FormGroup;
   invalidLogin = false;
+  signUp: boolean;
+  loggedInTry: boolean;
 
   constructor(private router: Router,
               private loginservice: AuthenticationService,
@@ -27,9 +29,14 @@ export class UserLoginComponent implements OnInit {
     this.signInForm = new FormGroup({
       'userData': new FormGroup({
         'username': new FormControl(null, [Validators.required]),
-        'password': new FormControl(null, [Validators.required])
+        'password': new FormControl(null, [Validators.required]),
+        'email': new FormControl(null, [Validators.required]),
+        'uType': new FormControl(null, [Validators.required])
       })
     });
+
+    this.signUp = false;
+    this.loggedInTry = false;
   }
 
   // onSubmit() {
@@ -42,11 +49,32 @@ export class UserLoginComponent implements OnInit {
   //   this.loginservice.authenticate();
   // }
 
-  onSubmit() {
+  async onSubmit() {
     this.repo.login = new Login(0,
       this.signInForm.get('userData.username').value,
-      this.signInForm.get('userData.password').value);
+      this.signInForm.get('userData.password').value,
+      'N/A', 0);
 
-    this.loginservice.authenticate();
+    await (this.loginservice.authenticate());
+
+    console.log('DONE');
+    if (this.loginservice.isUserLoggedIn()) {
+      this.loggedInTry = true;
+    }
+  }
+
+  signUpSelect() {
+    this.signUp = !this.signUp;
+  }
+
+  signUpUser() {
+    // this.repo.login = new Login(0,
+    //   this.signInForm.get('userData.username').value,
+    //   this.signInForm.get('userData.password').value,
+    //   this.signInForm.get('userData.email').value,
+    //   this.signInForm.get('userData.uType').value);
+    if (this.signInForm.valid) {
+      console.log(this.signInForm.get('userData.uType').value, this.signInForm.get('userData.email').value);
+    }
   }
 }
