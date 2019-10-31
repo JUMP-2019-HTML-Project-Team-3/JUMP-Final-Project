@@ -13,6 +13,7 @@ public class Mapper {
 	
 	// Attribute Booleans structure the data views for the service and ultimately the controller
 	
+	Boolean addressView = false;
 	Boolean studentView = false;
 	Boolean instructorView = false;
 	Boolean clientView = false;
@@ -23,6 +24,14 @@ public class Mapper {
 	Boolean userTypeView = false;
 	
 	// Getters and Setters for view types
+	public Boolean isAddressView() {
+		return addressView;
+	}
+
+	public void setAddressView(Boolean addressView) {
+		this.addressView = addressView;
+	}
+
 	public Boolean isStudentView() {
 		return studentView;
 	}

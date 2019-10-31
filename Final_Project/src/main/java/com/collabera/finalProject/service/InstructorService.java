@@ -3,10 +3,13 @@ package com.collabera.finalProject.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.collabera.finalProject.dto.InstructorDTO;
+import com.collabera.finalProject.mapper.Mapper;
 import com.collabera.finalProject.model.Instructor;
 import com.collabera.finalProject.model.Location;
 import com.collabera.finalProject.model.Resource;
@@ -21,7 +24,10 @@ public class InstructorService {
 
 	@Autowired
 	private InstructorRepository instructorRepository;
-
+	
+	@Autowired
+	private Mapper mapper;
+	
 	//Constructor
 	public InstructorService(InstructorRepository instructorRepository)
 	{
@@ -102,7 +108,25 @@ public class InstructorService {
 		i.removeTool(t);
 		instructorRepository.save(i);
 	}
-
+	
+	//Find All
+	public List<InstructorDTO> findAll()
+	{
+		// Set View for mapper
+		mapper.setInstructorView(true);
+		
+		return instructorRepository.findAll().stream().map(m -> mapper.InstructorToDTO(m)).collect(Collectors.toList());
+	}
+	
+	//Find by Id
+	public Optional<InstructorDTO> getInstructorById(Long id)
+	{
+		// Set Mapper View
+		mapper.setInstructorView(true);
+		// Retrieve, set to Optional in order to use Repository functions, then to DTO
+		return Optional.of(mapper.InstructorToDTO(instructorRepository.findById(id).get()));
+	}
+	
 	//Update
 	public void updateInstructor(Instructor instructor)
 	{

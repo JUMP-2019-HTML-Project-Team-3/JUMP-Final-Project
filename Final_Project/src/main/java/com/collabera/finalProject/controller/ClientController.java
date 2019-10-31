@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.collabera.finalProject.dto.ClientDTO;
 import com.collabera.finalProject.model.Client;
 import com.collabera.finalProject.service.ClientService;
 
@@ -37,9 +38,15 @@ public class ClientController {
 				aClient.getAddress().getId());
 		return "Saved";
 	}
-
+	
+	@GetMapping(path = "/allclients")
+	public @ResponseBody Iterable<ClientDTO> getAllClients()
+	{
+		return clientService.findAll();
+	}
+	
 	@GetMapping(path = "/getclient/{id}")
-	public Optional<Client> getClientById(@PathVariable Long id)
+	public Optional<ClientDTO> getClientById(@PathVariable Long id)
 	{
 		return clientService.getClientById(id);
 	}
