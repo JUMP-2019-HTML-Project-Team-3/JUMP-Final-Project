@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.collabera.finalProject.dto.AddressDTO;
 import com.collabera.finalProject.model.Address;
 import com.collabera.finalProject.service.AddressService;
 
@@ -43,13 +44,13 @@ public class AddressController {
 	}
 	
 	@GetMapping(path = "/alladdresses")
-	public @ResponseBody Iterable<Address> getAllAddresss()
+	public @ResponseBody Iterable<AddressDTO> getAllAddresss()
 	{
 		return addressService.findAll();
 	}
 	
 	@GetMapping(path = "/getaddress/{id}")
-	public Optional<Address> getAddressById(@PathVariable Long id)
+	public Optional<AddressDTO> getAddressById(@PathVariable Long id)
 	{
 		return addressService.getAddressById(id);
 	}

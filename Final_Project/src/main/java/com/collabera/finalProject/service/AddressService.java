@@ -2,10 +2,13 @@ package com.collabera.finalProject.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.collabera.finalProject.dto.AddressDTO;
+import com.collabera.finalProject.mapper.Mapper;
 import com.collabera.finalProject.model.Address;
 import com.collabera.finalProject.repository.AddressRepository;
 
@@ -14,6 +17,9 @@ public class AddressService {
 
 	@Autowired
 	private AddressRepository addressRepository;
+	
+	@Autowired
+	private Mapper mapper;
 	
 	
 	//Constructor
@@ -38,15 +44,21 @@ public class AddressService {
 	}
 
 	//Find By Id
-	public Optional<Address> getAddressById(Long id) {
+	public Optional<AddressDTO> getAddressById(Long id) {
 
-		return addressRepository.findById(id);
+		// Set Mapper View
+		mapper.setAddressView(true);
+		// Retrieve, set to Optional in order to use Repository functions, then to DTO
+		return Optional.of(mapper.AddressToDTO(addressRepository.findById(id).get()));
 		
 	}
 
 	//Find All
-	public List<Address> findAll() {
-		return addressRepository.findAll();
+	public List<AddressDTO> findAll() {
+		// Set View for mapper
+		mapper.setAddressView(true);
+		
+		return addressRepository.findAll().stream().map(m -> mapper.AddressToDTO(m)).collect(Collectors.toList());
 	}
 
 	//Update

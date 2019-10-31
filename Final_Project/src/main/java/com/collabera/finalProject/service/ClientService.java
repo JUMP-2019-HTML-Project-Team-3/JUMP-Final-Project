@@ -2,10 +2,13 @@ package com.collabera.finalProject.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.collabera.finalProject.dto.ClientDTO;
+import com.collabera.finalProject.mapper.Mapper;
 import com.collabera.finalProject.model.Address;
 import com.collabera.finalProject.model.Client;
 import com.collabera.finalProject.repository.ClientRepository;
@@ -15,6 +18,9 @@ public class ClientService {
 
 	@Autowired
 	private ClientRepository clientRepository;
+	
+	@Autowired
+	private Mapper mapper;
 	
 	//Constructor
 	public ClientService(ClientRepository clientRepository)
@@ -37,15 +43,21 @@ public class ClientService {
 	}
 	
 	//Find All
-	public List<Client> findAll()
+	public List<ClientDTO> findAll()
 	{
-		return clientRepository.findAll();
+		// Set View for mapper
+		mapper.setClientView(true);
+		
+		return clientRepository.findAll().stream().map(m -> mapper.ClientToDTO(m)).collect(Collectors.toList());
 	}
 	
 	//Find by Id
-	public Optional<Client> getClientById(Long id)
+	public Optional<ClientDTO> getClientById(Long id)
 	{
-		return clientRepository.findById(id);
+		// Set Mapper View
+		mapper.setClientView(true);
+		// Retrieve, set to Optional in order to use Repository functions, then to DTO
+		return Optional.of(mapper.ClientToDTO(clientRepository.findById(id).get()));
 	}
 	
 	//Update

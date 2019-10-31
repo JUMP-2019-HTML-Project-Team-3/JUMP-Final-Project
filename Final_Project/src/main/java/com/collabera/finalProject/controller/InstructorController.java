@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.collabera.finalProject.dto.InstructorDTO;
 import com.collabera.finalProject.model.Instructor;
 import com.collabera.finalProject.service.InstructorService;
 
@@ -40,13 +41,13 @@ public class InstructorController {
   	}
 
   	@GetMapping(path = "/getinstructor/{id}")
-  	public Optional<Instructor> getInstructorById(@PathVariable Long id)
+  	public Optional<InstructorDTO> getInstructorById(@PathVariable Long id)
 	{
 		return instructorService.getInstructorById(id);
 	}
 
 	@GetMapping("/allinstructors")
-	public Iterable<Instructor> getAllInstructors()
+	public Iterable<InstructorDTO> getAllInstructors()
 	{
 		return instructorService.findAll();
 	}
