@@ -1,0 +1,19 @@
+spring:
+  jackson:
+    serialization:
+      indent-output: true
+  datasource:
+    url:      jdbc:mysql://den1.mysql2.gear.host:3306/jumpfinalproject
+    username: jumpfinalproject
+    password: jumpfinalproject!
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.id.new_generator_mappings: false
+
+#server:
+#  port: 8080
