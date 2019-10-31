@@ -27,18 +27,18 @@ public class ClientService {
 	{
 		this.clientRepository = clientRepository;
 	}
-	
+
 	//Add
 	public void addClient(String imagePath, String name, String phone, String description, Address address, Long long1)
 	{
 		Client tempClient = new Client();
-		
+
 		tempClient.setImagePath(imagePath);
 		tempClient.setName(name);
 		tempClient.setPhone(phone);
 		tempClient.setDescription(description);
 		tempClient.setAddress(address);
-	
+
 		clientRepository.save(tempClient);
 	}
 	
@@ -59,16 +59,22 @@ public class ClientService {
 		// Retrieve, set to Optional in order to use Repository functions, then to DTO
 		return Optional.of(mapper.ClientToDTO(clientRepository.findById(id).get()));
 	}
-	
+
+	//Find All
+	public List<Client> findAll()
+	{
+		return clientRepository.findAll();
+	}
+
 	//Update
 	public void updateClient(Client client)
 	{
 		Optional<Client> findById = clientRepository.findById(client.getId());
-		
+
 		if(findById.isPresent())
 		{
 			Client clientToUpdate = findById.get();
-			
+
 			clientToUpdate.setImagePath(clientToUpdate.getImagePath());
 			clientToUpdate.setName(clientToUpdate.getName());
 			clientToUpdate.setPhone(clientToUpdate.getPhone());
@@ -87,6 +93,4 @@ public class ClientService {
 	{
 		clientRepository.deleteById(id);
 	}
-
-	
 }

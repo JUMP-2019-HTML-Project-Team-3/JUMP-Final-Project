@@ -51,7 +51,7 @@ export class Repository {
     resource: Resource;
     resources: Resource[];
     student: Student;
-    students: Student[]; 
+    students: Student[];
     tool: Tool;
     tools: Tool[];
     user: User;
@@ -301,7 +301,7 @@ export class Repository {
         //this.http.get<any>(url).subscribe(response => this.students = response);
          //this.studentListFetched.next(true);
     }
-     
+
     // Create Student
     createStudent(newStudent: Student) {
       this.http.post<Student>(studentsUrl, newStudent).subscribe(response => {

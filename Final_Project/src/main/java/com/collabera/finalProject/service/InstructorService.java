@@ -33,8 +33,8 @@ public class InstructorService {
 	{
 		this.instructorRepository = instructorRepository;
 	}
-	
-	// Create Instructor
+
+	//Create Instructor
 	public void addInstructor(String firstName, String lastName, String description, UserType userType, Long long1)
 	{
 		Instructor tempInstructor = new Instructor();
@@ -43,9 +43,22 @@ public class InstructorService {
 		tempInstructor.setLastName(lastName);
 		tempInstructor.setDescription(description);
 		tempInstructor.setUserType(userType);
-		instructorRepository. save(tempInstructor);
+
+		instructorRepository.save(tempInstructor);
 	}
-	
+
+	//Find by Id
+	public Optional<Instructor> getInstructorById(Long id)
+	{
+		return instructorRepository.findById(id);
+	}
+
+	//Find All
+	public List<Instructor> findAll()
+	{
+		return instructorRepository.findAll();
+	}
+
 	// Add Location
 	public void addLocation(Location aLocation, Instructor aInstructor)
 	{
@@ -56,40 +69,40 @@ public class InstructorService {
 		
 		instructorRepository.save(aInstructor);
 	}
-	
+
 	// Add/Remove Student
 	public void addStudent(Student s, Instructor i)
 	{
 		i.addStudent(s);
 		instructorRepository.save(i);
 	}
-	
+
 	public void removeStudent(Student s, Instructor i)
 	{
 		i.removeStudent(s);
 		instructorRepository.save(i);
 	}
-	
+
 	// Add/Remove Resource
 	public void addResource(Resource r, Instructor i)
 	{
 		i.addResource(r);
 		instructorRepository.save(i);
 	}
-	
+
 	public void removeResource(Resource r, Instructor i)
 	{
 		i.removeResource(r);
 		instructorRepository.save(i);
 	}
-	
+
 	// Add/Remove Tool
 	public void addTool(Tool t, Instructor i)
 	{
 		i.addTool(t);
 		instructorRepository.save(i);
 	}
-	
+
 	public void removeTool(Tool t, Instructor i)
 	{
 		i.removeTool(t);
@@ -118,11 +131,11 @@ public class InstructorService {
 	public void updateInstructor(Instructor instructor)
 	{
 		Optional<Instructor> findById = instructorRepository.findById(instructor.getId());
-		
+
 		if(findById.isPresent())
 		{
 			Instructor instructorToUpdate = findById.get();
-			
+
 			instructorToUpdate.setFirstName(instructor.getFirstName());
 			instructorToUpdate.setLastName(instructor.getLastName());
 			instructorToUpdate.setDescription(instructor.getDescription());
@@ -139,13 +152,11 @@ public class InstructorService {
 		{
 			throw new IllegalArgumentException();
 		}
-		
 	}
 
 	//Delete
 	public void deleteInstructor(Long id)
 	{
 		instructorRepository.deleteById(id);
-	}
-	
+	}	
 }

@@ -45,7 +45,7 @@
           </div>
 
           <div class="form-group" *ngIf="signUp">
-            <input type="radio" formControlName="uType" value="1" [checked]="true"> Student
+            <input type="radio" formControlName="uType" value="1" checked=""> Student
             <input type="radio" formControlName="uType" value="2"> Instructor
             <span
               *ngIf="!signInForm.get('userData.uType').valid && signInForm.get('userData.uType').touched"

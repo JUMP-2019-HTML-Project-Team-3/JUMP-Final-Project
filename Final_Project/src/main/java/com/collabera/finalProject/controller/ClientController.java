@@ -19,14 +19,13 @@ import com.collabera.finalProject.dto.ClientDTO;
 import com.collabera.finalProject.model.Client;
 import com.collabera.finalProject.service.ClientService;
 
-
 @RestController
 @RequestMapping("/cognixia")
 public class ClientController {
-	
+
 	@Autowired
 	private ClientService clientService;
-	
+
 	@PostMapping(path = "/addclient")
 	public @ResponseBody String addNewClient (@RequestBody @Valid Client aClient)
 	{
@@ -37,7 +36,6 @@ public class ClientController {
 				aClient.getDescription(),
 				aClient.getAddress(),
 				aClient.getAddress().getId());
-		
 		return "Saved";
 	}
 	
@@ -52,7 +50,13 @@ public class ClientController {
 	{
 		return clientService.getClientById(id);
 	}
-	
+
+	@GetMapping(path = "/allclients")
+	public @ResponseBody Iterable<Client> getAllClients()
+	{
+		return clientService.findAll();
+	}
+
 	@PutMapping("/updateclient")
 	public String updateClient(@RequestBody @Valid Client client)
 	{
@@ -60,7 +64,7 @@ public class ClientController {
 		clientService.updateClient(client);
 		return "Updated";
 	}
-	
+
 	@DeleteMapping("/deleteclient/{id}")
 	public void deleteClient(@PathVariable String id)
 	{

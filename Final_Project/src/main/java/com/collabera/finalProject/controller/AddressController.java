@@ -19,14 +19,13 @@ import com.collabera.finalProject.dto.AddressDTO;
 import com.collabera.finalProject.model.Address;
 import com.collabera.finalProject.service.AddressService;
 
-
 @RestController
 @RequestMapping("/cognixia")
 public class AddressController {
-	
+
 	@Autowired
 	private AddressService addressService;
-	
+
 	@PostMapping(path = "/addaddress")
 	public @ResponseBody String addNewAddress (@RequestBody @Valid Address aAddress)
 	{
@@ -54,7 +53,13 @@ public class AddressController {
 	{
 		return addressService.getAddressById(id);
 	}
-	
+
+	@GetMapping(path = "/alladdresses")
+	public @ResponseBody Iterable<Address> getAllAddresss()
+	{
+		return addressService.findAll();
+	}
+
 	@PutMapping("/updateaddress")
 	public String updateAddress(@RequestBody @Valid Address address)
 	{
@@ -62,7 +67,7 @@ public class AddressController {
 		addressService.updateAddress(address);
 		return "Updated";
 	}
-	
+
 	@DeleteMapping("/deleteaddress/{id}")
 	public void deleteAddress(@PathVariable String id)
 	{

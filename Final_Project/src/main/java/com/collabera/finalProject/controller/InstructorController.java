@@ -37,6 +37,7 @@ public class InstructorController {
 				aInstructor.getUserType(),
 				aInstructor.getUserType().getId()
 				);
+
 		return "Saved";
   	}
 
@@ -52,7 +53,7 @@ public class InstructorController {
 		return instructorService.findAll();
 	}
 
-	@PutMapping("updateinstructor/{id}")
+	@PutMapping("/updateinstructor/{id}")
 	public String updateInstructor(@RequestBody @Valid Instructor instructor)
 	{
 		System.out.println("Added Instructor");
