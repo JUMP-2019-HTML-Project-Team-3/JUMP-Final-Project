@@ -5,13 +5,13 @@
   <div>
     <h3 class="d-flex p-2">Your Students</h3>
     {{students}}
-    <app-card *ngFor="let someA of this.repo.students; let i = index" [student]="someA" [id]="i">  </app-card>
+    <app-card *ngFor="let someA of this.repo.students; let i = index" [student]="someA" [id]="i"></app-card>
 
       <!-- <div *ngIf="i % 4 = 0; i++">
       </div>
        -->
       <!-- <div *ngIf="index < 3 || i = 3">
-        
+         
 
       </div> -->
   </div>

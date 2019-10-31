@@ -51,12 +51,6 @@ public class ClientController {
 		return clientService.getClientById(id);
 	}
 
-	@GetMapping(path = "/allclients")
-	public @ResponseBody Iterable<Client> getAllClients()
-	{
-		return clientService.findAll();
-	}
-
 	@PutMapping("/updateclient")
 	public String updateClient(@RequestBody @Valid Client client)
 	{

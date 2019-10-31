@@ -54,12 +54,6 @@ public class AddressController {
 		return addressService.getAddressById(id);
 	}
 
-	@GetMapping(path = "/alladdresses")
-	public @ResponseBody Iterable<Address> getAllAddresss()
-	{
-		return addressService.findAll();
-	}
-
 	@PutMapping("/updateaddress")
 	public String updateAddress(@RequestBody @Valid Address address)
 	{
