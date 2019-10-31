@@ -17,6 +17,11 @@ import { LogoutComponent } from './logout/logout.component';
 import { CheckComponent } from './check/check.component';
 import { HomePageComponent } from './View/homePage.component';
 import { Repository } from './models/repository';
+import {AddClientComponent} from './addComponents/add-client/add-client.component';
+import {AddInstructorComponent} from './addComponents/add-instructor/add-instructor.component';
+import {AddLocationComponent} from './addComponents/add-location/add-location.component';
+import {AddStudentComponent} from './addComponents/add-student/add-student.component';
+import {AddToolComponent} from './addComponents/add-tool/add-tool.component';
 
 @NgModule({
   schemas: [
@@ -28,7 +33,12 @@ import { Repository } from './models/repository';
     UserLoginComponent,
     HomePageComponent,
     LogoutComponent,
-    CheckComponent
+    CheckComponent,
+    AddClientComponent,
+    AddInstructorComponent,
+    AddLocationComponent,
+    AddStudentComponent,
+    AddToolComponent
   ],
   imports: [
     RoutingConfig,
