@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.collabera.finalProject.dto.UserDTO;
 import com.collabera.finalProject.model.Login;
 import com.collabera.finalProject.model.User;
 import com.collabera.finalProject.service.UserService;
@@ -57,13 +58,13 @@ public class UserController {
   	}
 
   	@GetMapping(path = "/getuser/{id}")
-  	public Optional<User> getUserById(@PathVariable Long id)
+  	public Optional<UserDTO> getUserById(@PathVariable Long id)
 	{
 		return userService.getUserById(id);
 	}
 
 	@GetMapping("/allusers")
-	public Iterable<User> getAllUsers()
+	public Iterable<UserDTO> getAllUsers()
 	{
 		return userService.findAll();
 	}
