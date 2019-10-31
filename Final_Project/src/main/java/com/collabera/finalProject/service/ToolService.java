@@ -2,10 +2,13 @@ package com.collabera.finalProject.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.collabera.finalProject.dto.ToolDTO;
+import com.collabera.finalProject.mapper.Mapper;
 import com.collabera.finalProject.model.Tool;
 import com.collabera.finalProject.repository.ToolRepository;
 
@@ -14,6 +17,9 @@ public class ToolService {
 
 	@Autowired
 	private ToolRepository toolRepository;
+	
+	@Autowired
+	private Mapper mapper;
 	
 	//Constructor
 	public ToolService(ToolRepository toolRepository)
@@ -35,15 +41,21 @@ public class ToolService {
 	}
 	
 	//Find All
-	public List<Tool> findAll()
+	public List<ToolDTO> findAll()
 	{
-		return toolRepository.findAll();
+		// Set View for mapper
+		mapper.setToolView(true);
+		
+		return toolRepository.findAll().stream().map(m -> mapper.ToolToDTO(m)).collect(Collectors.toList());
 	}
 	
 	//Find by Id
-	public Optional<Tool> getToolById(Long id)
+	public Optional<ToolDTO> getToolById(Long id)
 	{
-		return toolRepository.findById(id);
+		// Set Mapper View
+		mapper.setToolView(true);
+		// Retrieve, set to Optional in order to use Repository functions, then to DTO
+		return Optional.of(mapper.ToolToDTO(toolRepository.findById(id).get()));
 	}
 	
 	//Update

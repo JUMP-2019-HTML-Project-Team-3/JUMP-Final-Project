@@ -2,10 +2,13 @@ package com.collabera.finalProject.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.collabera.finalProject.dto.ResourceDTO;
+import com.collabera.finalProject.mapper.Mapper;
 import com.collabera.finalProject.model.Resource;
 import com.collabera.finalProject.repository.ResourceRepository;
 
@@ -14,6 +17,9 @@ public class ResourceService {
 
 	@Autowired
 	private ResourceRepository resourceRepository;
+	
+	@Autowired
+	private Mapper mapper;
 	
 	//Constructor
 	public ResourceService(ResourceRepository resourceRepository)
@@ -34,15 +40,21 @@ public class ResourceService {
 	}
 	
 	//Find All
-	public List<Resource> findAll()
+	public List<ResourceDTO> findAll()
 	{
-		return resourceRepository.findAll();
+		// Set View for mapper
+		mapper.setResourceView(true);
+		
+		return resourceRepository.findAll().stream().map(m -> mapper.ResourceToDTO(m)).collect(Collectors.toList());
 	}
 	
 	//Find by Id
-	public Optional<Resource> getResourceById(Long id)
+	public Optional<ResourceDTO> getResourceById(Long id)
 	{
-		return resourceRepository.findById(id);
+		// Set Mapper View
+		mapper.setResourceView(true);
+		// Retrieve, set to Optional in order to use Repository functions, then to DTO
+		return Optional.of(mapper.ResourceToDTO(resourceRepository.findById(id).get()));
 	}
 	
 	//Update
