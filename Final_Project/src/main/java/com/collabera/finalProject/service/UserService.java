@@ -1,5 +1,6 @@
 package com.collabera.finalProject.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,8 +24,7 @@ public class UserService {
 	@Autowired
 	private UserTypeRepository userTypeRepository;
 	
-	@Autowired
-	private Mapper mapper;
+	private Mapper mapper = new Mapper();
 	
 	//Constructor
 	public UserService(UserRepository userRepository)
@@ -140,4 +140,8 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 
+	@Override
+	public void finalize() throws IOException {
+		mapper.closeStreams();
+	}
 }

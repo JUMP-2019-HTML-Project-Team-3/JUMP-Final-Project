@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-public class InstructorDTO implements Serializable {
+public class InstructorDTO implements Serializable, DTO {
 
 	private static final long serialVersionUID = 1L;
 

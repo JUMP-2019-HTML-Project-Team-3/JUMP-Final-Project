@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Tool implements Serializable {
+public class Tool implements Serializable, Model {
 
 	private static final long serialVersionUID = 1L;
 

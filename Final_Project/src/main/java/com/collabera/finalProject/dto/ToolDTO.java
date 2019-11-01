@@ -15,7 +15,7 @@ import com.collabera.finalProject.model.Instructor;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-public class ToolDTO implements Serializable {
+public class ToolDTO implements Serializable, DTO {
 
 	private static final long serialVersionUID = 1L;
 

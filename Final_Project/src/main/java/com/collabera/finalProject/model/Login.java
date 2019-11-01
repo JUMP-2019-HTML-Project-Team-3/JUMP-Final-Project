@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Login implements Serializable
+public class Login implements Serializable, Model
 {
 	private static final long serialVersionUID = 1L;
 	
