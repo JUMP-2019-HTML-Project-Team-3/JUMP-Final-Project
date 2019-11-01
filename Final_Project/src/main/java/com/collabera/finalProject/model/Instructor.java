@@ -19,6 +19,9 @@ public class Instructor implements Serializable, Model {
 	@Column(name = "instructor_id", updatable = false, nullable = false)
 	private Long id;
 	
+	@Column(name = "imagePath", nullable = true, length = 250)
+	private String imagePath;
+	
 	@Column(name = "firstName", nullable = false, length = 25)
 	private String firstName;
 	
@@ -129,6 +132,16 @@ public class Instructor implements Serializable, Model {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 

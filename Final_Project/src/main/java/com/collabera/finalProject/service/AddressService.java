@@ -19,7 +19,6 @@ public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
 	
-	@Autowired
 	private Mapper mapper = new Mapper();
 	
 	
@@ -82,6 +81,7 @@ public class AddressService {
 	//Delete
 	public void deleteAddress(Long id) { addressRepository.deleteById(id); }
 	
+	// Finalize method to close streams
 	@Override
 	public void finalize() throws IOException {
 		mapper.closeStreams();

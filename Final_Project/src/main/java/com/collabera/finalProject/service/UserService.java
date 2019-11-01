@@ -21,7 +21,6 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
 	private UserTypeRepository userTypeRepository;
 	
 	private Mapper mapper = new Mapper();
@@ -140,6 +139,7 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 
+	// Finalize method to close streams
 	@Override
 	public void finalize() throws IOException {
 		mapper.closeStreams();

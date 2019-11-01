@@ -21,7 +21,6 @@ public class ClientService {
 	@Autowired
 	private ClientRepository clientRepository;
 	
-	@Autowired
 	private Mapper mapper = new Mapper();
 	
 	
@@ -92,6 +91,7 @@ public class ClientService {
 		clientRepository.deleteById(id);
 	}
 
+	// Finalize method to close streams
 	@Override
 	public void finalize() throws IOException {
 		mapper.closeStreams();

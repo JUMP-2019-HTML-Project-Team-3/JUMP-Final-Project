@@ -98,6 +98,7 @@ public class StudentService {
 		studentRepository.deleteById(id);
 	}
 	
+	// Finalize method to close streams
 	@Override
 	public void finalize() throws IOException {
 		mapper.closeStreams();
