@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Address implements Serializable {
+public class Address implements Serializable, Model {
 	private static final long serialVersionUID = 1L;
 
 	@Id

@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-public class ResourceDTO implements Serializable {
+public class ResourceDTO implements Serializable, DTO {
 	
 	private static final long serialVersionUID = 1L;
 

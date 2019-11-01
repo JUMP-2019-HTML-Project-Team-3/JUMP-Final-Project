@@ -9,7 +9,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-public class ClientDTO implements  Serializable {
+public class ClientDTO implements  Serializable, DTO {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;

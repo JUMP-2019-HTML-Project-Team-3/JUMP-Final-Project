@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
-public class UserDTO implements Serializable {
+public class UserDTO implements Serializable, DTO {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;

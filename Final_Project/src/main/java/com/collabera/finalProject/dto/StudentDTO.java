@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 
-public class StudentDTO implements  Serializable {
+public class StudentDTO implements  Serializable, DTO {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;

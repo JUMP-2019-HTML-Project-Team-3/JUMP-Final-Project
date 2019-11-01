@@ -1,8 +1,10 @@
 package com.collabera.finalProject.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,8 @@ public class ClientService {
 	private ClientRepository clientRepository;
 	
 	@Autowired
-	private Mapper mapper;
+	private Mapper mapper = new Mapper();
+	
 	
 	//Constructor
 	public ClientService(ClientRepository clientRepository)
@@ -48,7 +51,8 @@ public class ClientService {
 		// Set View for mapper
 		mapper.setClientView(true);
 		
-		return clientRepository.findAll().stream().map(m -> mapper.ClientToDTO(m)).collect(Collectors.toList());
+		Stream<Client> clientStream = clientRepository.findAll().stream();
+		return clientStream.map(m -> mapper.ClientToDTO(m)).collect(Collectors.toList());
 	}
 	
 	//Find by Id
@@ -88,5 +92,9 @@ public class ClientService {
 		clientRepository.deleteById(id);
 	}
 
+	@Override
+	public void finalize() throws IOException {
+		mapper.closeStreams();
+	}
 	
 }
