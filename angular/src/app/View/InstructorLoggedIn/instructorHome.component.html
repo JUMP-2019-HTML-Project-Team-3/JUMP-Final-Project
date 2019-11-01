@@ -2,33 +2,35 @@
 
 <div class="container-fluid d-flex row">
 
-  <div>
+  <!-- <div>
     <h3 class="d-flex p-2">Your Students</h3>
     {{students}} 
     <app-card *ngFor="let someA of this.repo.students; let i = index" [student]="someA" [id]="i"></app-card>
-  </div>
+  </div> -->
+
+  <app-cardcarousel></app-cardcarousel>
 
   <div>
     <h3 class="d-flex p-2">Your Locations</h3>
-    {{locations}}
+    <!-- {{locations}} -->
     <app-card *ngFor="let someA of this.repo.locations; let i = index" [location]="someA" [id]="i"></app-card>
   </div>
 
   <div>
     <h3 class="d-flex p-2">Your Colleagues</h3>
-    {{instructors}}
+    <!-- {{instructors}} -->
     <app-card *ngFor="let someA of this.repo.instructors; let i = index" [instructor]="someA" [id]="i"></app-card>
   </div>
 
   <div>
     <h3 class="d-flex p-2">Your Resources</h3>
-    {{resources}}
+    <!-- {{resources}} -->
     <app-card *ngFor="let someA of this.repo.resources; let i = index" [resource]="someA" [id]="i"></app-card>
   </div>
 
   <div>
     <h3 class="d-flex p-2">Your Tools</h3>
-    {{tools}}
+    <!-- {{tools}} -->
     <app-card *ngFor="let someA of this.repo.tools; let i = index" [tool]="someA" [id]="i"></app-card>
   </div>
 </div>
