@@ -1,5 +1,6 @@
 package com.collabera.finalProject.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -25,8 +26,7 @@ public class InstructorService {
 	@Autowired
 	private InstructorRepository instructorRepository;
 	
-	@Autowired
-	private Mapper mapper;
+	private Mapper mapper = new Mapper();
 	
 	//Constructor
 	public InstructorService(InstructorRepository instructorRepository)
@@ -146,6 +146,11 @@ public class InstructorService {
 	public void deleteInstructor(Long id)
 	{
 		instructorRepository.deleteById(id);
+	}
+	
+	@Override
+	public void finalize() throws IOException {
+		mapper.closeStreams();
 	}
 	
 }

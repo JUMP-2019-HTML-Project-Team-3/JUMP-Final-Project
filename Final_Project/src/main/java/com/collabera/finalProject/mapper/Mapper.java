@@ -3,8 +3,12 @@ package com.collabera.finalProject.mapper;
 import com.collabera.finalProject.model.*;
 import com.collabera.finalProject.dto.*;
 
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Component;
 
@@ -22,6 +26,25 @@ public class Mapper {
 	Boolean locationView = false;
 	Boolean userView = false;
 	Boolean userTypeView = false;
+	
+	// Streams for DTO and Model, using marker interfaces
+	private Stream<StudentDTO> studentDTOStream;
+	private Stream<Student> studentEntityStream;
+	
+	private Stream<InstructorDTO> instructorDTOStream;
+	private Stream<Instructor> instructorEntitystream;
+	
+	private Stream<ClientDTO> clientDTOStream;
+	private Stream<Client> clientEntityStream;
+	
+	private Stream<ResourceDTO> resourceDTOStream;
+	private Stream<Resource> resourceEntityStream;
+	
+	private Stream<ToolDTO> toolDTOStream;
+	private Stream<Tool> toolEntityStream;
+	
+	private Stream<LocationDTO> locationDTOStream;
+	private Stream<Location> locationEntityStream;
 	
 	// Getters and Setters for view types
 	public Boolean isAddressView() {
@@ -96,6 +119,23 @@ public class Mapper {
 		this.userTypeView = userTypeView;
 	}
 
+//	private Stream<DTO> getDtoStream() {
+//		return dtoStream;
+//	}
+//
+//	private void setDtoStream(Stream<DTO> dtoStream) {
+//		this.dtoStream = dtoStream;
+//	}
+
+	// Stream handling set and get
+//	private static <T> Stream<T> getMapperStream() {
+//		return (Stream<T>) mapperStream;
+//	}
+//
+//	private static <T extends DTO> void setMapperStream(Stream<T> streamIn) {
+//        mapperStream = streamIn;
+//    } 
+
 	// Address
 	public Address AddressToEntity(AddressDTO dto) {
 		Address address = new Address();
@@ -130,6 +170,7 @@ public class Mapper {
 	
 	// Client
 	public Client ClientToEntity(ClientDTO dto) {
+		
 		Client client = new Client();
 		
 		client.setId(dto.getId());
@@ -139,7 +180,8 @@ public class Mapper {
 		client.setPhone(dto.getPhone());
 		// Returning students is not necessary if not calling from client controller
 		if(clientView) {
-			client.setStudents(dto.getStudents().stream().map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
+			studentDTOStream = dto.getStudents().stream();
+			client.setStudents(studentDTOStream.map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
 		}
 		client.setAddress(AddressToEntity(dto.getAddress()));
 		
@@ -157,7 +199,8 @@ public class Mapper {
 		client.setPhone(entity.getPhone());
 		// Return not necessary outside of client controller
 		if(clientView) {
-			client.setStudents(entity.getStudents().stream().map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
+			studentEntityStream = entity.getStudents().stream();
+			client.setStudents(studentEntityStream.map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
 		}
 		client.setAddress(AddressToDTO(entity.getAddress()));
 		
@@ -176,13 +219,17 @@ public class Mapper {
 		instructor.setDescription(dto.getDescription());
 		// Only necessary from Instructor Controller
 		if(instructorView) {
-			instructor.setLocations(dto.getLocations().stream().map(s -> LocationToEntity(s)).collect(Collectors.toSet()));
+			locationDTOStream = dto.getLocations().stream();
+			instructor.setLocations(locationDTOStream.map(s -> LocationToEntity(s)).collect(Collectors.toSet()));
 	
-			instructor.setStudents(dto.getStudents().stream().map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
+			studentDTOStream = dto.getStudents().stream();
+			instructor.setStudents(studentDTOStream.map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
 	
-			instructor.setTools(dto.getTools().stream().map(s -> ToolToEntity(s)).collect(Collectors.toSet()));
+			toolDTOStream = dto.getTools().stream();
+			instructor.setTools(toolDTOStream.map(s -> ToolToEntity(s)).collect(Collectors.toSet()));
 	
-			instructor.setResources(dto.getResources().stream().map(s -> ResourceToEntity(s)).collect(Collectors.toSet()));
+			resourceDTOStream = dto.getResources().stream();
+			instructor.setResources(resourceDTOStream.map(s -> ResourceToEntity(s)).collect(Collectors.toSet()));
 		}
 		
 		return instructor;
@@ -200,13 +247,17 @@ public class Mapper {
 		instructor.setDescription(entity.getDescription());
 		// Only necessary from constructor controller
 		if(instructorView) {
-			instructor.setLocations(entity.getLocations().stream().map(s -> LocationToDTO(s)).collect(Collectors.toSet()));
+			locationEntityStream = entity.getLocations().stream();
+			instructor.setLocations(locationEntityStream.map(s -> LocationToDTO(s)).collect(Collectors.toSet()));
 	
+			studentEntityStream = entity.getStudents().stream();
 			instructor.setStudents(entity.getStudents().stream().map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
 	
-			instructor.setTools(entity.getTools().stream().map(s -> ToolToDTO(s)).collect(Collectors.toSet()));
+			toolEntityStream = entity.getTools().stream();
+			instructor.setTools(toolEntityStream.map(s -> ToolToDTO(s)).collect(Collectors.toSet()));
 	
-			instructor.setResources(entity.getResources().stream().map(s -> ResourceToDTO(s)).collect(Collectors.toSet()));
+			resourceEntityStream = entity.getResources().stream();
+			instructor.setResources(resourceEntityStream.map(s -> ResourceToDTO(s)).collect(Collectors.toSet()));
 		}
 		
 		return instructor;
@@ -223,9 +274,11 @@ public class Mapper {
 		location.setAddress(AddressToEntity(dto.getAddress()));
 		// Only needed in location controller call
 		if(locationView) {
-			location.setInstructors(dto.getInstructors().stream().map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
+			instructorDTOStream = dto.getInstructors().stream();
+			location.setInstructors(instructorDTOStream.map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
 	
-			location.setStudents(dto.getStudents().stream().map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
+			studentDTOStream = dto.getStudents().stream();
+			location.setStudents(studentDTOStream.map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
 		}
 
 		return location;
@@ -242,9 +295,11 @@ public class Mapper {
 		location.setAddress(AddressToDTO(entity.getAddress()));
 		// Only needed in location view
 		if(locationView) {
-			location.setInstructors(entity.getInstructors().stream().map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
+			instructorEntitystream = entity.getInstructors().stream();
+			location.setInstructors(instructorEntitystream.map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
 	
-			location.setStudents(entity.getStudents().stream().map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
+			studentEntityStream = entity.getStudents().stream();
+			location.setStudents(studentEntityStream.map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
 		}
 		
 		return location;
@@ -260,9 +315,11 @@ public class Mapper {
 		resource.setLink(dto.getLink());
 		// Only needed from Resource Controller
 		if(resourceView) {
-			resource.setStudents(dto.getStudents().stream().map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
+			studentDTOStream = dto.getStudents().stream();
+			resource.setStudents(studentDTOStream.map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
 	
-			resource.setInstructors(dto.getInstructors().stream().map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
+			instructorDTOStream = dto.getInstructors().stream();
+			resource.setInstructors(instructorDTOStream.map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
 		}
 		
 		return resource;
@@ -278,9 +335,11 @@ public class Mapper {
 		resource.setLink(entity.getLink());
 		// Only needed from Resource Controller
 		if(resourceView) {
-			resource.setStudents(entity.getStudents().stream().map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
+			studentEntityStream = entity.getStudents().stream();
+			resource.setStudents(studentEntityStream.map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
 	
-			resource.setInstructors(entity.getInstructors().stream().map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
+			instructorEntitystream = entity.getInstructors().stream();
+			resource.setInstructors(instructorEntitystream.map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
 		}
 		
 		return resource;
@@ -299,13 +358,17 @@ public class Mapper {
 		student.setUserType(UserTypeToEntity(dto.getUserType()));
 		// Only need from student controller
 		if(studentView) {
-			student.setInstructors(dto.getInstructors().stream().map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
+			instructorDTOStream = dto.getInstructors().stream();
+			student.setInstructors(instructorDTOStream.map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
 	
-			student.setClients(dto.getClients().stream().map(s -> ClientToEntity(s)).collect(Collectors.toSet()));
+			clientDTOStream = dto.getClients().stream();
+			student.setClients(clientDTOStream.map(s -> ClientToEntity(s)).collect(Collectors.toSet()));
 	
-			student.setResources(dto.getResources().stream().map(s -> ResourceToEntity(s)).collect(Collectors.toSet()));
+			resourceDTOStream = dto.getResources().stream();
+			student.setResources(resourceDTOStream.map(s -> ResourceToEntity(s)).collect(Collectors.toSet()));
 	
-			student.setTools(dto.getTools().stream().map(s -> ToolToEntity(s)).collect(Collectors.toSet()));
+			toolDTOStream = dto.getTools().stream();
+			student.setTools(toolDTOStream.map(s -> ToolToEntity(s)).collect(Collectors.toSet()));
 		}
 		
 		return student;
@@ -324,13 +387,17 @@ public class Mapper {
 		student.setUserType(UserTypeToDTO(entity.getUserType()));
 		// Only needed from student controller
 		if(studentView) {
-			student.setInstructors(entity.getInstructors().stream().map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
+			instructorEntitystream = entity.getInstructors().stream();
+			student.setInstructors(instructorEntitystream.map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
 	
-			student.setClients(entity.getClients().stream().map(s -> ClientToDTO(s)).collect(Collectors.toSet()));
+			clientEntityStream = entity.getClients().stream();
+			student.setClients(clientEntityStream.map(s -> ClientToDTO(s)).collect(Collectors.toSet()));
 	
-			student.setResources(entity.getResources().stream().map(s -> ResourceToDTO(s)).collect(Collectors.toSet()));
+			resourceEntityStream = entity.getResources().stream();
+			student.setResources(resourceEntityStream.map(s -> ResourceToDTO(s)).collect(Collectors.toSet()));
 	
-			student.setTools(entity.getTools().stream().map(s -> ToolToDTO(s)).collect(Collectors.toSet()));
+			toolEntityStream = entity.getTools().stream();
+			student.setTools(toolEntityStream.map(s -> ToolToDTO(s)).collect(Collectors.toSet()));
 		}
 		
 		return student;
@@ -347,9 +414,11 @@ public class Mapper {
 		tool.setLinkDocumentation(dto.getLinkDocumentation());
 		// Only needed from Tool Controller
 		if(resourceView) {
-			tool.setStudents(dto.getStudents().stream().map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
+			studentDTOStream = dto.getStudents().stream();
+			tool.setStudents(studentDTOStream.map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
 	
-			tool.setInstructors(dto.getInstructors().stream().map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
+			instructorDTOStream = dto.getInstructors().stream();
+			tool.setInstructors(instructorDTOStream.map(s -> InstructorToEntity(s)).collect(Collectors.toSet()));
 		}
 		
 		return tool;
@@ -366,9 +435,11 @@ public class Mapper {
 		tool.setLinkDocumentation(entity.getLinkDocumentation());
 		// Only needed from Tool Controller
 		if(resourceView) {
-			tool.setStudents(entity.getStudents().stream().map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
+			studentEntityStream = entity.getStudents().stream();
+			tool.setStudents(studentEntityStream.map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
 	
-			tool.setInstructors(entity.getInstructors().stream().map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
+			instructorEntitystream = entity.getInstructors().stream();
+			tool.setInstructors(instructorEntitystream.map(s -> InstructorToDTO(s)).collect(Collectors.toSet()));
 		}
 		
 		return tool;
@@ -416,5 +487,43 @@ public class Mapper {
 		userType.setName(entity.getName());
 		
 		return userType;
+	}
+	
+	public void closeStreams() throws IOException {
+		studentDTOStream.close();
+		System.out.println("Closed studentDTOStream in the Mapper");
+
+		studentEntityStream.close();
+		System.out.println("Closed studentEntityStream in the Mapper");
+		
+		instructorDTOStream.close();
+		System.out.println("Closed instructorDTOStream in the Mapper");
+		
+		instructorEntitystream.close();
+		System.out.println("Closed instructorEntitystream in the Mapper");
+		
+		clientDTOStream.close();
+		System.out.println("Closed clientDTOStream in the Mapper");
+		
+		clientEntityStream.close();
+		System.out.println("Closed clientEntityStream in the Mapper");
+		
+		resourceDTOStream.close();
+		System.out.println("Closed resourceDTOStream in the Mapper");
+		
+		resourceEntityStream.close();
+		System.out.println("Closed resourceEntityStream in the Mapper");
+		
+		toolDTOStream.close();
+		System.out.println("Closed toolDTOStream in the Mapper");
+		
+		toolEntityStream.close();
+		System.out.println("Closed toolEntityStream in the Mapper");
+		
+		locationDTOStream.close();
+		System.out.println("Closed locationDTOStream in the Mapper");
+		
+		locationEntityStream.close();
+		System.out.println("Closed locationEntityStream in the Mapper");
 	}
 }

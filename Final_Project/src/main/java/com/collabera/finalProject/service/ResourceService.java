@@ -1,5 +1,6 @@
 package com.collabera.finalProject.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,8 +19,7 @@ public class ResourceService {
 	@Autowired
 	private ResourceRepository resourceRepository;
 	
-	@Autowired
-	private Mapper mapper;
+	private Mapper mapper = new Mapper();
 	
 	//Constructor
 	public ResourceService(ResourceRepository resourceRepository)
@@ -82,6 +82,11 @@ public class ResourceService {
 	public void deleteResource(Long id)
 	{
 		resourceRepository.deleteById(id);
+	}
+	
+	@Override
+	public void finalize() throws IOException {
+		mapper.closeStreams();
 	}
 	
 }

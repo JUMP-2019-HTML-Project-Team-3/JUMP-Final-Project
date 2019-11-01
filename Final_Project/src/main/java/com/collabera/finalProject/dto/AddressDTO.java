@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-public class AddressDTO implements Serializable {
+public class AddressDTO implements Serializable, DTO {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;

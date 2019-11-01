@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Location implements Serializable {
+public class Location implements Serializable, Model {
 	private static final long serialVersionUID = 1L;
 
 	@Id

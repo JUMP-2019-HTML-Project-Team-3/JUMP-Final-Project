@@ -1,5 +1,6 @@
 package com.collabera.finalProject.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,8 +20,7 @@ public class LocationService {
 	@Autowired
 	private LocationRepository locationRepository;
 	
-	@Autowired
-	private Mapper mapper;
+	private Mapper mapper = new Mapper();
 	
 	//Constructor
 	public LocationService(LocationRepository locationRepository) {
@@ -68,4 +68,9 @@ public class LocationService {
 
 	//Delete
 	public void deleteLocation(Long id) { locationRepository.deleteById(id); }
+	
+	@Override
+	public void finalize() throws IOException {
+		mapper.closeStreams();
+	}
 }
