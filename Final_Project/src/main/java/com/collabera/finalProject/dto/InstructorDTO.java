@@ -20,6 +20,8 @@ public class InstructorDTO implements Serializable, DTO {
 
 	private Long id;
 	
+	private String imagePath;
+	
 	private String firstName;
 	
 	private String lastName;
@@ -97,6 +99,16 @@ public class InstructorDTO implements Serializable, DTO {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 

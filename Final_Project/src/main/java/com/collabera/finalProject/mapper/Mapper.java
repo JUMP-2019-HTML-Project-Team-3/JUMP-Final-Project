@@ -119,23 +119,6 @@ public class Mapper {
 		this.userTypeView = userTypeView;
 	}
 
-//	private Stream<DTO> getDtoStream() {
-//		return dtoStream;
-//	}
-//
-//	private void setDtoStream(Stream<DTO> dtoStream) {
-//		this.dtoStream = dtoStream;
-//	}
-
-	// Stream handling set and get
-//	private static <T> Stream<T> getMapperStream() {
-//		return (Stream<T>) mapperStream;
-//	}
-//
-//	private static <T extends DTO> void setMapperStream(Stream<T> streamIn) {
-//        mapperStream = streamIn;
-//    } 
-
 	// Address
 	public Address AddressToEntity(AddressDTO dto) {
 		Address address = new Address();
@@ -212,6 +195,7 @@ public class Mapper {
 		Instructor instructor = new Instructor();
 		
 		instructor.setId(dto.getId());
+		instructor.setImagePath(dto.getImagePath());
 		instructor.setFirstName(dto.getFirstName());
 		instructor.setLastName(dto.getLastName());
 		instructor.setUser(UserToEntity(dto.getUser()));
@@ -240,6 +224,7 @@ public class Mapper {
 		InstructorDTO instructor = new InstructorDTO();
 		
 		instructor.setId(entity.getId());
+		instructor.setImagePath(entity.getImagePath());
 		instructor.setFirstName(entity.getFirstName());
 		instructor.setLastName(entity.getLastName());
 		instructor.setUser(UserToDTO(entity.getUser()));
