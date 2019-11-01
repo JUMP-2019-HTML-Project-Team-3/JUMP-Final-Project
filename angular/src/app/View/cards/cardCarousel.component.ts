@@ -1,23 +1,26 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {CardComponent} from './card.component';
 import { Location } from '../../models/location.model';
-import { Student } from '../../models/student.model'
+import { Student } from '../../models/student.model';
+import { Tool } from '../../models/tool.model';
+import { Resource } from '../../models/resource.model';
+import { Instructor } from '../../models/instructor.model';
+import { Repository } from '../../models/repository';
 
 @Component({
     selector: 'app-cardcarousel',
-   // template: '<app-card [cardMessage]="parentMessage"></app-card>',
-   //template: 'Message: {{message}} <app-card (messageEvent)="recieveMessage($event)"></app-card>"',
-   //template: '{{cardcomponent.location}}',
-   templateUrl: './cardCarousel.component.html'
+   templateUrl: './cardCarousel.component.html',
+   styleUrls: ['./cardCarousel.component.css']
 })
 
 export class CardCarouselComponent {
-  //parentMessage[] = @Input() location: Location, @Input() student: Student;
+  @Input() location: Location;
+  @Input() student: Student;
+  @Input() instructor: Instructor;
+  @Input() resource: Resource;
+  @Input() tool: Tool;
 
-  //  @Input() location: Location;
-  //  @Input() student: Student;
 
-
-  constructor() {}
+  constructor(private repo: Repository ) {}
 
 }

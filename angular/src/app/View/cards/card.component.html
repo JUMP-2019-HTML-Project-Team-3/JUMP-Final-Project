@@ -1,61 +1,57 @@
-<!--Slides-->
-<div class="carousel-inner" role="listbox">
-
-  <!--First slide-->
-  <div class="carousel-item active">
-
-    <!--Empty cards show up-->
-    <div class="col-md-4">
-      <div class="card mb-2">
-        <!--If Location, show locations-->
-        <ng-template [ngIf]='location'>
-          <img class="card-img-top" src="{{ location.imagePath }}" alt="Card image cap">
-          <div class="card-body">
-            <h4 class="card-title">{{ location.name }}</h4>
-            <p class="card-text">{{ location.address.streetName }}</p>
-            <a class="btn btn-primary">Button</a>
-          </div>
-        </ng-template>
-
-        <!--If Student, show students-->
-        <ng-template [ngIf]='student'>
-          <img class="card-img-top" src="{{ student.imagePath }}" alt="Card image cap">
-          <div class="card-body">
-            <h4 class="card-title">{{ student.firstName + " " + student.lastName }}</h4>
-            <p class="card-text">{{ student.description }}</p>
-            <a class="btn btn-primary">Button</a>
-          </div>
-        </ng-template>
- 
-        <!--If Instructor-->
-        <ng-template [ngIf]='instructor'>
-            <img class="card-img-top" src="{{ instructor.imagePath }}" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">{{ instructor.firstName + " " + instructor.lastName }}</h4>
-              <p class="card-text">{{ instructor.description }}</p>
-              <a class="btn btn-primary">Button</a>
-            </div>
-          </ng-template>
-
-           <!--If Resource-->
-        <ng-template [ngIf]='resource'>
-            <div class="card-body">
-              <h4 class="card-title">{{ resource.name}}</h4>
-              <p class="card-text">{{ resource.description }}</p>
-              <a class="btn btn-primary">Button</a>
-            </div>
-          </ng-template>
-
-          <!--If Tool-->
-          <ng-template [ngIf]='tool'>
-              <div class="card-body">
-                <h4 class="card-title">{{ tool.name}}</h4>
-                <p class="card-text">{{ tool.linkDocumentation }}</p>
-                <a class="btn btn-primary">Button</a>
-              </div>
-            </ng-template>
+<!--Empty cards show up-->
+<div class="col-md-4">
+    <div class="card mb-4">
+    <!--If Location, show locations-->
+    <ng-template [ngIf]='location'>
+      <img class="card-img-top" style="object-fit : 'cover'; max-height : 300px" src="{{ location.imagePath }}"
+        alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">{{ location.name }}</h4>
+        <p class="card-text">{{ location.address.streetName }}</p>
+        <a class="btn btn-primary">Button</a>
       </div>
-    </div>
+    </ng-template> 
+
+    <!--If Student, show students-->
+    <ng-template [ngIf]='student'>
+      <img class="card-img-top" style="object-fit : 'cover'; max-height : 300px" src="{{ student.imagePath }}"
+        alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">{{ student.firstName + " " + student.lastName }}</h4>
+        <p class="card-text">{{ student.description }}</p>
+        <a class="btn btn-primary">Button</a>
+      </div>
+    </ng-template>
+
+    <!--If Instructor-->
+    <ng-template [ngIf]='instructor'>
+      <img class="card-img-top" style="object-fit : 'cover'; max-height : 300px" src="{{ instructor.imagePath }}"
+        alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">{{ instructor.firstName + " " + instructor.lastName }}</h4>
+        <p class="card-text">{{ instructor.description }}</p>
+        <a class="btn btn-primary">Button</a>
+      </div>
+    </ng-template>
+
+    <!--If Resource-->
+    <ng-template [ngIf]='resource'>
+      <div class="card-body">
+        <h4 class="card-title">{{ resource.name}}</h4>
+        <p class="card-text">{{ resource.description }}</p>
+        <a class="btn btn-primary">Button</a>
+      </div>
+    </ng-template>
+
+    <!--If Tool-->
+    <ng-template [ngIf]='tool'>
+      <div class="card-body">
+        <h4 class="card-title">{{ tool.name}}</h4>
+        <p class="card-text">{{ tool.linkDocumentation }}</p>
+        <a class="btn btn-primary">Button</a>
+      </div>
+    </ng-template>
+
   </div>
-  <!--/.First slide-->
+
 </div>

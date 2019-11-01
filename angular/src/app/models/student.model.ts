@@ -7,7 +7,7 @@ import { Tool } from "./tool.model";
 import { Location } from "./location.model";
 
 export class Student {
-    constructor (
+    constructor(
         public id?: number,
         public imagePath?: string,
         public firstName?: string,
