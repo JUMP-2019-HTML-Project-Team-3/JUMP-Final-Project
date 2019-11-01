@@ -1,6 +1,6 @@
 <!--Empty cards show up-->
 <div class="col-md-4">
-    <div class="card mb-4">
+  <div class="card mb-4">
     <!--If Location, show locations-->
     <ng-template [ngIf]='location'>
       <img class="card-img-top" style="object-fit : 'cover'; max-height : 300px" src="{{ location.imagePath }}"
@@ -10,7 +10,7 @@
         <p class="card-text">{{ location.address.streetName }}</p>
         <a class="btn btn-primary">Button</a>
       </div>
-    </ng-template> 
+    </ng-template>
 
     <!--If Student, show students-->
     <ng-template [ngIf]='student'>
