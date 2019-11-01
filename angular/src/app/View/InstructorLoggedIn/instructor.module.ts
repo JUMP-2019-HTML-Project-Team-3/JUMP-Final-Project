@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {CardCarouselModule} from '../cards/cardCarousel.module';
+//import {CardComponent} from '../cards/card.component';
 // Component Imports 
 import { InstructorHomeComponent } from './instructorHome.component';
 import { LocationListComponent } from './Lists/locationList.component';
@@ -25,7 +26,8 @@ import { StudentListComponent } from './Lists/studentList.component';
       InstructorHomeComponent,
       LocationListComponent,
       //ResourceListComponent
-      StudentListComponent
+      StudentListComponent,
+     // CardComponent
     ],
     providers: [
 

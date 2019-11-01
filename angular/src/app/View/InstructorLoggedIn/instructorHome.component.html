@@ -4,30 +4,20 @@
 
   <div>
     <h3 class="d-flex p-2">Your Students</h3>
-    {{students}}
+    {{students}} 
     <app-card *ngFor="let someA of this.repo.students; let i = index" [student]="someA" [id]="i"></app-card>
-
-      <!-- <div *ngIf="i % 4 = 0; i++">
-      </div>
-       -->
-      <!-- <div *ngIf="index < 3 || i = 3">
-         
-
-      </div> -->
   </div>
 
   <div>
     <h3 class="d-flex p-2">Your Locations</h3>
     {{locations}}
     <app-card *ngFor="let someA of this.repo.locations; let i = index" [location]="someA" [id]="i"></app-card>
-
   </div>
 
   <div>
     <h3 class="d-flex p-2">Your Colleagues</h3>
     {{instructors}}
     <app-card *ngFor="let someA of this.repo.instructors; let i = index" [instructor]="someA" [id]="i"></app-card>
-
   </div>
 
   <div>
