@@ -1,10 +1,13 @@
 package com.collabera.finalProject.controller;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,32 +30,29 @@ public class ClientController {
 	@Autowired
 	private ClientService clientService;
 	
+	// Create
 	@PostMapping(path = "/addclient")
-	public @ResponseBody String addNewClient (@RequestBody @Valid Client aClient)
-	{
-		clientService.addClient(
-				aClient.getImagePath(), 
-				aClient.getName(), 
-				aClient.getPhone(), 
-				aClient.getDescription(),
-				aClient.getAddress(),
-				aClient.getAddress().getId());
+	public String create(@RequestBody @Valid Client client) throws URISyntaxException {
 		
-		return "Saved";
+		clientService.addClient(client.getName(), client.getImagePath(), client.getPhone(), client.getDescription());
+		return "Created";
 	}
 	
+	// Read All
 	@GetMapping(path = "/allclients")
 	public @ResponseBody Iterable<ClientDTO> getAllClients()
 	{
 		return clientService.findAll();
 	}
 	
+	// Read One
 	@GetMapping(path = "/getclient/{id}")
 	public Optional<ClientDTO> getClientById(@PathVariable Long id)
 	{
 		return clientService.getClientById(id);
 	}
 	
+	// Update
 	@PutMapping("/updateclient")
 	public String updateClient(@RequestBody @Valid Client client)
 	{
@@ -61,6 +61,7 @@ public class ClientController {
 		return "Updated";
 	}
 	
+	// Delete
 	@DeleteMapping("/deleteclient/{id}")
 	public void deleteClient(@PathVariable String id)
 	{

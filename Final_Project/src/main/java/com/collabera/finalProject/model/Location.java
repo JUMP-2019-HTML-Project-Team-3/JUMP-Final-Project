@@ -26,14 +26,17 @@ public class Location implements Serializable, Model {
 	
 	@Column(name = "phoneNo", nullable = true, length = 14)
 	private String phoneNo; // phone number has default value as annotated
-
-	@OneToOne
-	@JoinColumn(name = "address_id", referencedColumnName = "address_id")
+	
+	//Address
+	@ManyToOne
+	@JoinColumn(name = "address_id")
 	private Address address;
 
+	//Students
 	@OneToMany(mappedBy = "location", targetEntity = Student.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Student> students = new HashSet<Student>();
 
+	//Instructors
     @ManyToMany(mappedBy = "locations")
 	private Set<Instructor> instructors = new HashSet<Instructor>();
 

@@ -30,10 +30,12 @@ public class Client implements  Serializable, Model {
 	@Column(name = "description", nullable = true, length = 250)
 	private String description;
 	
-	@OneToOne
-	@JoinColumn(name = "address_id", referencedColumnName = "address_id")
+	//Address
+	@ManyToOne
+	@JoinColumn(name = "address_id")
 	private Address address;
 	
+	//Students
 	@ManyToMany(mappedBy = "clients")
 	private Set<Student> students = new HashSet<>();
 	
@@ -41,16 +43,12 @@ public class Client implements  Serializable, Model {
 		
 	}
 
-	public Client(Long id, String imagePath, String name, String phone, String description, Address address,
-			Set<Student> students) {
-		super();
-		this.id = id;
+	public Client(String imagePath, String name, String phone, String description) {
+
 		this.imagePath = imagePath;
 		this.name = name;
 		this.phone = phone;
 		this.description = description;
-		this.address = address;
-		this.students = students;
 	}
 
 	public Long getId() {

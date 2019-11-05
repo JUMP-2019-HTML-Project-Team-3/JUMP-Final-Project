@@ -27,7 +27,7 @@ public class Mapper {
 	Boolean userView = false;
 	Boolean userTypeView = false;
 	
-	// Streams for DTO and Model, using marker interfaces
+	// Streams for DTO and Model, using marker interfaces	
 	private Stream<StudentDTO> studentDTOStream;
 	private Stream<Student> studentEntityStream;
 	
@@ -122,8 +122,10 @@ public class Mapper {
 	// Address
 	public Address AddressToEntity(AddressDTO dto) {
 		Address address = new Address();
+		// Check for null id
+		if(dto.getId() == null) {address.setId((long)0);}
+		else {address.setId(dto.getId());}
 		
-		address.setId(dto.getId());
 		address.setStreetNumber(dto.getStreetNumber());
 		address.setStreetName(dto.getStreetName());
 		address.setSuiteNo(dto.getSuiteNo());
@@ -138,8 +140,10 @@ public class Mapper {
 	
 	public AddressDTO AddressToDTO(Address entity) {
 		AddressDTO address = new AddressDTO();
+		// Check for null id
+		if(entity.getId() == null) {address.setId((long)0);}
+		else {address.setId(entity.getId());}
 		
-		address.setId(entity.getId());
 		address.setStreetNumber(entity.getStreetNumber());
 		address.setStreetName(entity.getStreetName());
 		address.setSuiteNo(entity.getSuiteNo());
@@ -156,17 +160,22 @@ public class Mapper {
 		
 		Client client = new Client();
 		
-		client.setId(dto.getId());
+		if(dto.getId() == null) {client.setId((long)0);}
+		else client.setId(dto.getId());
+		
 		client.setName(dto.getName());
 		client.setImagePath(dto.getImagePath());
 		client.setDescription(dto.getDescription());
 		client.setPhone(dto.getPhone());
 		// Returning students is not necessary if not calling from client controller
-		if(clientView) {
+		if(clientView && dto.getStudents()!=null) {
 			studentDTOStream = dto.getStudents().stream();
 			client.setStudents(studentDTOStream.map(s -> StudentToEntity(s)).collect(Collectors.toSet()));
 		}
-		client.setAddress(AddressToEntity(dto.getAddress()));
+		// Address if not null
+		if(dto.getAddress()!=null) {
+			client.setAddress(AddressToEntity(dto.getAddress()));
+		}
 		
 		return client;
 		
@@ -175,17 +184,22 @@ public class Mapper {
 	public ClientDTO ClientToDTO(Client entity) {
 		ClientDTO client = new ClientDTO();
 		
-		client.setId(entity.getId());
+		if(entity.getId() == null) {client.setId((long)0);}
+		else client.setId(entity.getId());
+		
 		client.setName(entity.getName());
 		client.setImagePath(entity.getImagePath());
 		client.setDescription(entity.getDescription());
 		client.setPhone(entity.getPhone());
 		// Return not necessary outside of client controller
-		if(clientView) {
+		if(clientView && entity.getStudents()!=null) {
 			studentEntityStream = entity.getStudents().stream();
 			client.setStudents(studentEntityStream.map(s -> StudentToDTO(s)).collect(Collectors.toSet()));
 		}
-		client.setAddress(AddressToDTO(entity.getAddress()));
+		// Address if not null
+		if(entity.getAddress()!=null) {
+			client.setAddress(AddressToDTO(entity.getAddress()));
+		}
 		
 		return client;
 	}
@@ -437,7 +451,9 @@ public class Mapper {
 		user.setId(dto.getId());
 		user.setUserType(UserTypeToEntity(dto.getUserType()));
 		user.setUsername(dto.getUsername());
-		user.setPassword(dto.getPassword());
+		if(userView) {
+			user.setPassword(dto.getPassword());
+		}
 		
 		return user;
 		
@@ -449,7 +465,9 @@ public class Mapper {
 		user.setId(entity.getId());
 		user.setUserType(UserTypeToDTO(entity.getUserType()));
 		user.setUsername(entity.getUsername());
-		user.setPassword(entity.getPassword());
+		if(userView) {
+			user.setPassword(entity.getPassword());
+		}
 		
 		return user;
 	}
