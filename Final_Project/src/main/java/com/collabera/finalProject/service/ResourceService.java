@@ -27,7 +27,7 @@ public class ResourceService {
 		this.resourceRepository = resourceRepository;
 	}
 	
-	//Add
+	//Add *Works*
 	public void addResource(String name, String link, String description)
 	{
 		Resource tempResource = new Resource();

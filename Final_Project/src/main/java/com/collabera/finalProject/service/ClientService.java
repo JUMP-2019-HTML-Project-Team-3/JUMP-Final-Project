@@ -13,6 +13,7 @@ import com.collabera.finalProject.dto.ClientDTO;
 import com.collabera.finalProject.mapper.Mapper;
 import com.collabera.finalProject.model.Address;
 import com.collabera.finalProject.model.Client;
+import com.collabera.finalProject.repository.AddressRepository;
 import com.collabera.finalProject.repository.ClientRepository;
 
 @Service
@@ -20,6 +21,9 @@ public class ClientService {
 
 	@Autowired
 	private ClientRepository clientRepository;
+	
+	@Autowired
+	private AddressRepository addressRepository;
 	
 	private Mapper mapper = new Mapper();
 	
@@ -31,16 +35,11 @@ public class ClientService {
 	}
 	
 	//Add
-	public void addClient(String imagePath, String name, String phone, String description, Address address, Long long1)
-	{
-		Client tempClient = new Client();
-		
-		tempClient.setImagePath(imagePath);
-		tempClient.setName(name);
-		tempClient.setPhone(phone);
-		tempClient.setDescription(description);
-		tempClient.setAddress(address);
-	
+	public void addClient(String name, String imagePath, String phone, String description) {
+		//Optional<Address> findAddressByID = addressRepository.findById(client.getAddress().getId());
+//		findAddressByID.ifPresent(client.setAddress(findAddressByID));
+
+		Client tempClient = new Client(imagePath, name, phone, description);
 		clientRepository.save(tempClient);
 	}
 	

@@ -27,6 +27,7 @@ public class ResourceController {
 	@Autowired
 	private ResourceService resourceService;
 	
+	// Create *Works*
 	@PostMapping(path = "/addresource")
 	public @ResponseBody String addNewResource (@RequestBody @Valid Resource aResource){
 		{

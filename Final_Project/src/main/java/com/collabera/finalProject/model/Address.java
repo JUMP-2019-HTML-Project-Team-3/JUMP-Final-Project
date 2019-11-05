@@ -1,12 +1,17 @@
 package com.collabera.finalProject.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -15,7 +20,7 @@ public class Address implements Serializable, Model {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "address_id", updatable = false, nullable = false) // establishes column value id as final and never null
+	@Column(name = "address_id", updatable = false) // establishes column value id as final and never null
 	private Long id;
 	
 	@Column(name = "streetNumber", nullable = false, length = 10)
@@ -40,12 +45,13 @@ public class Address implements Serializable, Model {
 	@Column(name = "country", nullable = false, length = 50)
 	private String country;
 	
-	//FK LINKS
-	@OneToOne(mappedBy = "address")
-	private Location location;
+	//Locations
+	@OneToMany(mappedBy = "address", targetEntity = Location.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Location> locations = new HashSet<Location>();
 	
-	@OneToOne(mappedBy = "address")
-	private Client client;
+	//Clients
+	@OneToMany(mappedBy = "address", targetEntity = Client.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Client> clients = new HashSet<Client>();
 
 	//Constructor
 	public Address(Long id, String streetNumber, String streetName, String suiteNo, String township, String state,
@@ -113,5 +119,21 @@ public class Address implements Serializable, Model {
 	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public Set<Location> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(Set<Location> locations) {
+		this.locations = locations;
+	}
+
+	public Set<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
 	}	
 }
