@@ -89,11 +89,5 @@ public class ClientService {
 	{
 		clientRepository.deleteById(id);
 	}
-
-	// Finalize method to close streams
-	@Override
-	public void finalize() throws IOException {
-		mapper.closeStreams();
-	}
 	
 }

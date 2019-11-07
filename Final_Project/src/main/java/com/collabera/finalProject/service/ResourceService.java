@@ -84,10 +84,4 @@ public class ResourceService {
 		resourceRepository.deleteById(id);
 	}
 	
-	// Finalize method to close streams
-	@Override
-	public void finalize() throws IOException {
-		mapper.closeStreams();
-	}
-	
 }
