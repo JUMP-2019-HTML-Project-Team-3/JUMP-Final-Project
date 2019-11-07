@@ -81,9 +81,4 @@ public class AddressService {
 	//Delete
 	public void deleteAddress(Long id) { addressRepository.deleteById(id); }
 	
-	// Finalize method to close streams
-	@Override
-	public void finalize() throws IOException {
-		mapper.closeStreams();
-	}
 }

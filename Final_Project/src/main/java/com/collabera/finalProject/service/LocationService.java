@@ -69,9 +69,4 @@ public class LocationService {
 	//Delete
 	public void deleteLocation(Long id) { locationRepository.deleteById(id); }
 	
-	// Finalize method to close streams
-	@Override
-	public void finalize() throws IOException {
-		mapper.closeStreams();
-	}
 }
